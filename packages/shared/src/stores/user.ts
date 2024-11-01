@@ -4,7 +4,7 @@
  */
 
 import { set, get, noop, merge, cloneDeep } from 'lodash';
-import { useMutation, useInfiniteQuery, useQueries, useQuery } from 'react-query';
+import { useMutation, useInfiniteQuery, useQuery } from 'react-query';
 
 import { useUrl } from '../hooks';
 import {
@@ -30,6 +30,7 @@ import type { FetchListParams } from '../utils/formatter';
 
 export const module = 'users';
 
+// eslint-disable-next-line react-hooks/rules-of-hooks
 const { getPath } = useUrl({ module });
 
 function getModule(params?: PathParams) {
@@ -165,8 +166,7 @@ function useInfiniteUserList(params: FetchListParams & Record<string, any>) {
   const res = useInfiniteQuery({
     queryKey: ['InfinityUserList', params],
     queryFn: async ({ pageParam = params }) => {
-      const result = await fetchList(pageParam);
-      return result;
+      return fetchList(pageParam);
     },
     getNextPageParam: (lastPage: any) => {
       const { data, total, limit, page, ...rest } = lastPage;
@@ -268,30 +268,90 @@ function useUsersStatusMutation(options?: { onSuccess?: () => void }) {
   );
 }
 
-function useFetchMembersList(params: PathParams) {
-  const queryKeys = Object.entries(params).map((key, value) => `${key}-${value}`);
-  const results = useQueries([
-    {
-      queryKey: ['get', ...queryKeys],
-      queryFn: () => request.get(getResourceUrl(params)),
-    },
-    {
-      queryFn: () => request.get(getResourceUrl()),
-      queryKey: ['getAllUsers'],
-    },
-  ]);
-  const data = get(results, '0.data');
-  const list = get(results, '1.data');
+interface FetchMemberUsersOptions extends FetchListParams {
+  roleKey: string;
+}
+
+async function fetchMemberUsers({
+  roleKey,
+  name,
+  cluster,
+  workspace,
+  namespace,
+  devops,
+  sortBy,
+  ascending,
+  limit,
+  page,
+}: FetchMemberUsersOptions) {
+  const pathParams = { cluster, workspace, namespace, devops };
+  const moduleName = getModule(pathParams);
+
+  const fetchListParams = formatFetchListParams(moduleName, {
+    sortBy,
+    ascending,
+    limit,
+    page,
+  });
+  const filterParams = getFilterParams(fetchListParams);
+
+  const membersUrl = getResourceUrl(pathParams);
+  const memberList = await request.get<never, ResponseUser>(membersUrl, {
+    params: { ...filterParams, [roleKey]: name, namespace, workspace, cluster },
+  });
+  const members = memberList?.items ?? [];
+
+  let result: ResponseUser;
+
+  if (members.length === 0 || moduleName === 'users') {
+    result = memberList;
+  } else {
+    const usersUrl = getResourceUrl();
+    const names = members.map(member => member?.metadata?.name);
+    const userList = await request.get<never, ResponseUser>(usersUrl, {
+      params: { names: names.join(','), limit: -1 },
+    });
+    result = combineUserList(memberList, userList);
+  }
+
+  const totalItems = result?.totalItems ?? 0;
+  const originalUsers = result?.items ?? [];
+  const formattedUsers = originalUsers.map(originalUser => ({
+    ...pathParams,
+    ...originalUser,
+    ...mapper(originalUser),
+  }));
+
+  return { totalItems, originalUsers, formattedUsers };
+}
+
+type UseFetchMembersListOptions = FetchMemberUsersOptions;
+
+function useFetchMembersList(options: UseFetchMembersListOptions) {
+  const { sortBy, ascending, limit, page, ...pathParams } = options;
+  const filterParams = { sortBy, ascending, limit, page };
+  const queryKey = ['fetchMembersList', pathParams, filterParams];
+
+  const { data, ...rest } = useQuery({
+    queryKey,
+    queryFn: () => fetchMemberUsers(options),
+  });
+  const totalItems = data?.totalItems ?? 0;
+  const originalUsers = data?.originalUsers ?? [];
+  const formattedUsers = data?.formattedUsers ?? [];
 
   return {
-    data: combineUserList(data, list),
-    isLoading: results.some(result => result.isLoading),
+    ...rest,
+    data: originalUsers,
+    totalItems,
+    originalUsers,
+    formattedUsers,
   };
 }
 
 function useAllUserListQuery() {
   const queryKey = ['getAllUserList'];
-  return useQuery(queryKey, () => request.get(getResourceUrl()));
+  return useQuery(queryKey, () => request.get(getResourceUrl(), { params: { limit: -1 } }));
 }
 
 const store = {

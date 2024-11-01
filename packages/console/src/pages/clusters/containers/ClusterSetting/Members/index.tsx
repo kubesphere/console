@@ -5,9 +5,8 @@
 
 import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import type { ListPageProps, Column, FormattedUser, FormattedRole } from '@ks-console/shared';
 import {
-  Column,
-  FormattedUser,
   formatTime,
   hasPermission,
   StatusIndicator,
@@ -18,7 +17,6 @@ import {
   MemberModifyModal,
   InviteMemberPayload,
   EditMemberRoleValue,
-  FormattedRole,
   useActionMenu,
   ListPage,
   useCommonActions,
@@ -51,7 +49,7 @@ function Members() {
 
   const { isOpen: isCreateOpen, open: openCreate, close: closeCreate } = useDisclosure(false);
   const { isOpen: isEditOpen, open: openEdit, close: closeEdit } = useDisclosure(false);
-  const { data: allUserList } = useAllUserListQuery();
+  const { data: allUserList, refetch: refetchAllUserList } = useAllUserListQuery();
 
   const { del } = useCommonActions({
     store: userStore,
@@ -78,14 +76,17 @@ function Members() {
     action: 'view',
   });
 
-  const { data: roles = [] } = useQuery<FormattedRole[]>(['clusterroles'], async () => {
-    const res = await fetchList({
-      ...params,
-      limit: -1,
-      annotation: 'kubesphere.io/creator',
-    } as any);
-    return res.data;
-  });
+  const { data: roles = [], refetch: refetchRoles } = useQuery<FormattedRole[]>(
+    ['clusterroles'],
+    async () => {
+      const res = await fetchList({
+        ...params,
+        limit: -1,
+        annotation: 'kubesphere.io/creator',
+      } as any);
+      return res.data;
+    },
+  );
 
   const { mutate: mutateEditUser, isLoading: isEditLoading } = useEditUserMutation(
     {
@@ -254,7 +255,7 @@ function Members() {
     description: t('INVITE_CLUSTER_MEMBER_DESC'),
   };
 
-  const table = {
+  const table: { ref: typeof tableRef } & ListPageProps['table'] = {
     ref: tableRef,
     columns: columns,
     tableName: 'members',
@@ -264,6 +265,10 @@ function Members() {
     disableRowSelect: (row: any) => isCurrentUser(row),
     toolbarRight: renderTableAction({}),
     serverDataFormat: serverDataFormatter,
+    onRefresh: () => {
+      refetchAllUserList();
+      refetchRoles();
+    },
   };
 
   return (

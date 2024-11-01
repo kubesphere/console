@@ -5,9 +5,8 @@
 
 import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import type { ListPageProps, Column, FormattedUser, FormattedRole } from '@ks-console/shared';
 import {
-  Column,
-  FormattedUser,
   formatTime,
   hasPermission,
   StatusIndicator,
@@ -18,7 +17,6 @@ import {
   MemberModifyModal,
   InviteMemberPayload,
   EditMemberRoleValue,
-  FormattedRole,
   useActionMenu,
   ListPage,
   useCommonActions,
@@ -45,7 +43,7 @@ function Members() {
   const params: Record<string, any> = useParams();
   const [editUser, setEditUser] = useState<FormattedUser>();
   const [rolesMap, setRolesMap] = useState<Record<string, string>>({});
-  const { data: allUserList } = useAllUserListQuery();
+  const { data: allUserList, refetch: refetchAllUserList } = useAllUserListQuery();
 
   const { isOpen: isCreateOpen, open: openCreate, close: closeCreate } = useDisclosure(false);
   const { isOpen: isEditOpen, open: openEdit, close: closeEdit } = useDisclosure(false);
@@ -63,19 +61,22 @@ function Members() {
     action: 'view',
   });
 
-  const { data: roles = [] } = useQuery<FormattedRole[]>(['memberRoles'], async () => {
-    const res = await fetchList({
-      ...params,
-      limit: -1,
-      annotation: 'kubesphere.io/creator',
-    } as any);
-    const maps: Record<string, string> = {};
-    res.data.forEach((item: any) => {
-      maps[item.name] = item.aliasName ? `${item.aliasName}（${item.name}）` : item.name;
-    });
-    setRolesMap(maps);
-    return res.data;
-  });
+  const { data: roles = [], refetch: refetchRoles } = useQuery<FormattedRole[]>(
+    ['memberRoles'],
+    async () => {
+      const res = await fetchList({
+        ...params,
+        limit: -1,
+        annotation: 'kubesphere.io/creator',
+      } as any);
+      const maps: Record<string, string> = {};
+      res.data.forEach((item: any) => {
+        maps[item.name] = item.aliasName ? `${item.aliasName}（${item.name}）` : item.name;
+      });
+      setRolesMap(maps);
+      return res.data;
+    },
+  );
 
   const { mutate: mutateEditUser, isLoading: isEditLoading } = useEditUserMutation(
     {
@@ -239,9 +240,9 @@ function Members() {
     description: t('PROJECT_MEMBER_DESC'),
   };
 
-  const table = {
-    url: getResourceUrl(params),
+  const table: { ref: typeof tableRef } & ListPageProps['table'] = {
     ref: tableRef,
+    url: getResourceUrl(params),
     columns: columns,
     tableName: 'members',
     rowKey: 'name',
@@ -250,6 +251,10 @@ function Members() {
     disableRowSelect: (row: any) => isCurrentUser(row),
     toolbarRight: renderTableAction({}),
     serverDataFormat: serverDataFormatter,
+    onRefresh: () => {
+      refetchAllUserList();
+      refetchRoles();
+    },
   };
 
   return (
