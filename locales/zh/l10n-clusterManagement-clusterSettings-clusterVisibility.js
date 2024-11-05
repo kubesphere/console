@@ -32,4 +32,5 @@ module.exports = {
     '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
   REMOVE_WORKSPACE_CONFIRM_PL:
     '请输入企业空间名称 <strong>{resource}</strong> 确保您已了解操作所带来的风险。',
+  REMOVE_WORKSPACE_CONFIRM_TIP: '删除企业空间的项目',
 };
