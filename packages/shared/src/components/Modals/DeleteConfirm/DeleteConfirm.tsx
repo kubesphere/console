@@ -31,6 +31,7 @@ interface DeleteConfirmContentProps {
   title?: ReactNode;
   tip?: string;
   desc?: ReactNode;
+  child?: ReactNode;
   onOk?: (data: any[] | undefined) => void;
   onCancel?: () => void;
 }
@@ -67,6 +68,7 @@ export function DeleteConfirmContent({
   desc,
   onCancel = () => {},
   onOk = () => {},
+  child,
 }: // ...rest
 DeleteConfirmContentProps) {
   // @ts-ignore
@@ -163,6 +165,7 @@ DeleteConfirmContentProps) {
             />
           )}
           {desc}
+          {child ?? child}
         </Content>
       </Body>
       <Footer>

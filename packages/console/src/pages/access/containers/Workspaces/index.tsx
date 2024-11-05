@@ -5,7 +5,7 @@
 
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Banner, Field, notify, Empty, Card } from '@kubed/components';
+import { Banner, Field, notify, Empty, Card, Checkbox } from '@kubed/components';
 import { Enterprise, Trash, Pen } from '@kubed/icons';
 import {
   DataTable,
@@ -32,7 +32,7 @@ import { CreateWorkspacesModal } from '../../../workspaces/components/Modals';
 
 import type { FormattedWorkspace, WorkspaceFormValues } from '@ks-console/shared';
 
-import { FieldLabel, Wrapper } from './styles';
+import { FieldLabel, Wrapper, CheckboxWrapper } from './styles';
 
 const { fetchList } = clusterStore;
 const { getListUrl, mapper: workspaceMapper, usePostMutation } = workspaceStore;
@@ -40,6 +40,7 @@ const { getListUrl, mapper: workspaceMapper, usePostMutation } = workspaceStore;
 export default function Workspaces(): JSX.Element {
   const url = getListUrl({});
   const tableRef = useRef<any>();
+  const checkkboxRef = useRef(false);
   const [createVisible, setCreateVisible] = useState<boolean>(false);
 
   const refetch = () => {
@@ -78,10 +79,45 @@ export default function Workspaces(): JSX.Element {
         action: 'delete',
         onClick: () => {
           const selectedRows = tableRef.current?.getSelectedFlatRows() || [];
-          del({ resource: selectedRows, type: 'WORKSPACE' });
-          removeDashboardHistory(
-            globals.user.username,
-            selectedRows.map((r: { uid: string }) => r.uid),
+          const onSuccess = () => {
+            removeDashboardHistory(
+              globals.user.username,
+              selectedRows.map((r: { uid: string }) => r.uid),
+            );
+          };
+          del(
+            {
+              resource: selectedRows,
+              type: 'WORKSPACE',
+              child: (
+                <CheckboxWrapper>
+                  <Checkbox
+                    label={t('REMOVE_WORKSPACE_CONFIRM_TIP')}
+                    onChange={e => {
+                      checkkboxRef.current = e.target.checked;
+                    }}
+                  />
+                </CheckboxWrapper>
+              ),
+              onOk: async params => {
+                const deleteParams = selectedRows.map(
+                  (item: { namespace?: string; name: string }) => ({
+                    namespace: item.namespace,
+                    name: item.name,
+                    deleteProject: checkkboxRef.current,
+                    ...params,
+                  }),
+                );
+                await workspaceStore.batchDelete(deleteParams);
+                notify.success(t('DELETED_SUCCESSFULLY'));
+                onSuccess();
+                refetch();
+              },
+              onCancel: () => {
+                checkkboxRef.current = false;
+              },
+            },
+            '',
           );
         },
         props: {
@@ -110,8 +146,41 @@ export default function Workspaces(): JSX.Element {
         action: 'delete',
         show: row => !isSystemWorkspaces(row),
         onClick: (_, record) => {
-          del({ type: 'WORKSPACE', resource: [record] });
-          removeDashboardHistory(globals.user.username, record.uid);
+          const onSuccess = () => {
+            removeDashboardHistory(globals.user.username, record.uid);
+          };
+          del(
+            {
+              type: 'WORKSPACE',
+              resource: [record],
+              child: (
+                <CheckboxWrapper>
+                  <Checkbox
+                    label={t('REMOVE_WORKSPACE_CONFIRM_TIP')}
+                    onChange={e => {
+                      checkkboxRef.current = e.target.checked;
+                    }}
+                  />
+                </CheckboxWrapper>
+              ),
+              onOk: async params => {
+                const deleteParams = [record].map(item => ({
+                  namespace: item.namespace,
+                  name: item.name,
+                  deleteProject: checkkboxRef.current,
+                  ...params,
+                }));
+                await workspaceStore.batchDelete(deleteParams);
+                notify.success(t('DELETED_SUCCESSFULLY'));
+                onSuccess();
+                refetch();
+              },
+              onCancel: () => {
+                checkkboxRef.current = false;
+              },
+            },
+            '',
+          );
         },
       },
     ],

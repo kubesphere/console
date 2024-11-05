@@ -114,14 +114,19 @@ const patch = async (params: PathParams, data: Record<string, any>) => {
 
 interface DeleteWorkspaceOptions extends PathParams {
   shouldDeleteResource?: boolean;
+  deleteProject?: boolean;
 }
 
-const deleteWorkspace = ({ shouldDeleteResource, ...params }: DeleteWorkspaceOptions) => {
+const deleteWorkspace = ({
+  shouldDeleteResource,
+  deleteProject,
+  ...params
+}: DeleteWorkspaceOptions) => {
   const data = !shouldDeleteResource
     ? {
         kind: 'DeleteOptions',
         apiVersion: 'v1',
-        propagationPolicy: 'Orphan',
+        propagationPolicy: deleteProject ? 'Background' : 'Orphan',
       }
     : {};
   return request.delete<never, OriginalWorkspace, Record<string, any>>(getDetailUrl(params), {

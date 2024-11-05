@@ -32,4 +32,5 @@ module.exports = {
     '請輸入企業空間名稱 <strong>{resource}</strong> 確保您已了解操作所带来的風險。',
   REMOVE_WORKSPACE_CONFIRM_PL:
     '請輸入企業空間名稱 <strong>{resource}</strong> 確保您已了解操作所带来的風險。',
+  REMOVE_WORKSPACE_CONFIRM_TIP: '刪除企業空間的項目',
 };
