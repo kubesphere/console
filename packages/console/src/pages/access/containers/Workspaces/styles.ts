@@ -20,3 +20,8 @@ export const Wrapper = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
 `;
+
+export const CheckboxWrapper = styled.div`
+  margin-top: 12px;
+  color: #79879c;
+`;
