@@ -13,6 +13,7 @@ import { StylesConstants, useGlobalStyles } from '@ks-console/shared';
 import Toolbox from '../../../containers/Toolbox';
 import Header from '../Header';
 import { Main } from './styles';
+import v3Notify from './v3Notify';
 
 const GlobalStyle = createGlobalStyle<{ $navbarHeight?: number; $licenseTipHeight?: number }>`
   :root {
@@ -55,7 +56,9 @@ export default function BaseLayout() {
         window.history.pushState('', '', url);
       }
     });
+    bus.$on('notify', v3Notify);
     return () => {
+      bus.$off('notify', v3Notify);
       document.removeEventListener('click', eventer);
     };
   }, []);
