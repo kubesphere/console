@@ -191,6 +191,7 @@ const handleLogin = async ctx => {
   }
 
   if (authAuthorizeUrl) {
+    ctx.cookies.set('authAuthorizeUrl', null);
     ctx.body = {
       success: true,
       redirect: authAuthorizeUrl,

@@ -141,7 +141,10 @@ const oauthProxy = {
   target,
   changeOrigin: true,
   optionsHandle(options, req, ctx) {
-    ctx.cookies.set('authAuthorizeUrl', req.url);
+    // if not login, redirect to login page
+    if (!ct.cookies.get('token')) {
+      ctx.cookies.set('authAuthorizeUrl', req.url);
+    }
   },
   events: {
     proxyReq(proxyReq, req) {
