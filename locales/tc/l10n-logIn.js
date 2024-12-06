@@ -6,6 +6,7 @@
 module.exports = {
   // Log in page
   INPUT_USERNAME_OR_EMAIL_TIP: '請輸入用戶名或信箱',
+  INPUT_EMAIL_TIP: '請輸入信箱',
   LOG_IN: 'Log In',
   LOG_IN_WITH_TITLE: '通過 {title} 登入',
   LOG_OUT: 'Log Out',
