@@ -43,7 +43,7 @@ export default function UserCreateModal({ visible, onSuccess, onCancel }: UserCr
     },
     'spec.email': {
       rules: [
-        { required: true, message: t('INPUT_USERNAME_OR_EMAIL_TIP') },
+        { required: true, message: t('INPUT_EMAIL_TIP') },
         { type: 'email', message: t('INVALID_EMAIL') },
         { validator: validator.emailValidator },
       ],

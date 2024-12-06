@@ -5,7 +5,8 @@
 
 module.exports = {
   // Log in page
-  INPUT_USERNAME_OR_EMAIL_TIP: 'Please enter your username or email.',
+  INPUT_USERNAME_OR_EMAIL_TIP: 'Please enter your username or email',
+  INPUT_EMAIL_TIP: 'Please enter your email',
   LOG_IN: 'Log In',
   LOG_IN_WITH_TITLE: 'Log in with {title}',
   LOG_OUT: 'Log Out',
