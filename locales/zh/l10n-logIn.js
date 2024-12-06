@@ -5,7 +5,8 @@
 
 module.exports = {
   // Log in page
-  INPUT_USERNAME_OR_EMAIL_TIP: '请输入用户名或邮箱。',
+  INPUT_USERNAME_OR_EMAIL_TIP: '请输入用户名或邮箱',
+  INPUT_EMAIL_TIP: '请输入邮箱',
   LOG_IN: '登录',
   LOG_IN_WITH_TITLE: '通过 {title} 登录',
   LOG_OUT: '登出',
