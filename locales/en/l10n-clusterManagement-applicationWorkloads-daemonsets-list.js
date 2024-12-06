@@ -52,4 +52,5 @@ module.exports = {
   // List > Edit YAML
   // List > Re-create
   // List > Delete
+  GRPC_PORT: 'GRPC Port',
 };

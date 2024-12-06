@@ -39,4 +39,5 @@ module.exports = {
   TCP_PORT: 'TCP 端口',
   // List > Create > Storage Settings
   MOUNT_PATH_IN_USE: '挂载路径已被使用，请输入其他挂载路径。',
+  GRPC_PORT: 'GRPC 端口',
 };
