@@ -15,6 +15,9 @@
     <% } %> <% if (manifest && manifest.css && manifest.css.length > 0) { %> <%
     manifest.css.forEach(function(item){ %>
     <link href="<%= bundlePrefix %>/<%= item %>" rel="stylesheet" media="all" />
+    <% }) %> <% } %> <% if (!isDev && extStyles && extStyles.length > 0) { %> <%
+    extStyles.forEach(function(extstyle){ %>
+    <link href="/pstatic<%= extstyle %>" rel="stylesheet" media="all" />
     <% }) %> <% } %>
   </head>
   <body>
