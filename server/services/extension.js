@@ -65,6 +65,7 @@ const getInstalledExtensions = async ctx => {
         const extensionName = get(item, 'metadata.labels["kubesphere.io/extension-ref"]');
         const resourceVersion = get(item, 'metadata.resourceVersion');
         const { link, state } = item.status;
+        const styleLink = item.spec.assets?.style?.link;
 
         if (state === 'Available') {
           const entries = extensionEntries.find(record => record.extensionName === extensionName);
@@ -75,6 +76,7 @@ const getInstalledExtensions = async ctx => {
               name,
               extensionName,
               link,
+              styleLink,
               resourceVersion,
             },
             entries,
