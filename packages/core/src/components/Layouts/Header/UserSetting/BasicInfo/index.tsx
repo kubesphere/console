@@ -55,9 +55,17 @@ const BasicInfo = ({ visible, formData, form }: BasicInfoProps) => {
         key={formData?.metadata?.name}
       >
         <FormItem label={t('USERNAME')} name={['metadata', 'name']}>
-          <Input placeholder="user@example.com" disabled />
+          <Input disabled />
         </FormItem>
-        <FormItem label={t('EMAIL')} name={['spec', 'email']} help={t('USER_SETTING_EMAIL_DESC')}>
+        <FormItem
+          label={t('EMAIL')}
+          name={['spec', 'email']}
+          help={t('USER_SETTING_EMAIL_DESC')}
+          rules={[
+            { required: true, message: t('INPUT_EMAIL_TIP') },
+            { type: 'email', message: t('INVALID_EMAIL') },
+          ]}
+        >
           <Input placeholder="user@example.com" />
         </FormItem>
         {globals.config.supportLangs && (
