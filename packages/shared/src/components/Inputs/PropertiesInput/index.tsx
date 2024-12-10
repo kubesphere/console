@@ -50,6 +50,7 @@ function PropertiesInput({
     const newHiddenValues: ValueType[] = [];
     const newReadOnlyValues: ValueType[] = [];
     const newArrayValues: ValueType[] = [];
+    let empty = false;
 
     Object.keys(selfValue).forEach(key => {
       const entry = { key, value: selfValue[key], id: nanoid() };
@@ -64,10 +65,11 @@ function PropertiesInput({
 
     if (isEmpty(newArrayValues) && isEmpty(newReadOnlyValues)) {
       newArrayValues.push({ key: '', id: nanoid() });
+      empty = true;
     }
 
     let valueSize = Object.keys(selfValue).length;
-    if (valueSize !== arrayValues.length) {
+    if (valueSize !== arrayValues.length || empty) {
       setArrayValues(newArrayValues);
     }
 
