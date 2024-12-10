@@ -68,7 +68,10 @@ function PropertiesInput({
       empty = true;
     }
 
-    let valueSize = Object.keys(selfValue).length;
+    // todo
+    // arrayValue is not synchronized with selfvalue
+    // after each modification may cause potential issues
+    let valueSize = newArrayValues.length;
     if (valueSize !== arrayValues.length || empty) {
       setArrayValues(newArrayValues);
     }
