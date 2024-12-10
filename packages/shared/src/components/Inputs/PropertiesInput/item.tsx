@@ -10,6 +10,7 @@ import ObjectInput from '../ObjectInput';
 import { DeleteButton, Item } from './styles';
 
 interface ValueType {
+  id: string;
   key: string;
   value?: any;
 }
