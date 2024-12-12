@@ -19,6 +19,9 @@ RUN mv /kubesphere/server/locales \
 #RUN ["/bin/bash", "-c", "mv /kubesphere/server/{locales,public,sample,views,config.yaml} /out/server/"]
 RUN mv /kubesphere/package.json /out/
 
+# generate version file to out
+RUN hack/version.sh > /out/version.txt
+
 ##############
 # Final Image
 ##############
