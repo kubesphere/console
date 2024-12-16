@@ -41,6 +41,9 @@ const renderIndex = async (ctx, params) => {
   const dllManifest = getDllManifest();
   const localeManifest = getLocaleManifest();
   const importMap = getImportMap();
+  const extStyles = params?.installedExtensions
+    ?.filter(item => !!item.styleLink)
+    .map(ext => ext.styleLink);
 
   await ctx.render('index', {
     manifest,
@@ -49,6 +52,7 @@ const renderIndex = async (ctx, params) => {
     title: useDefaultTheme ? defaultTheme?.tabTitle : title,
     favicon,
     background,
+    extStyles,
     hostname: ctx.hostname,
     importMap: JSON.stringify(importMap),
     globals: JSON.stringify({
