@@ -7,6 +7,7 @@ import React from 'react';
 import cx from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeSlug from 'rehype-slug';
 
 import type { MarkdownProps } from './types';
 import { DEFAULT_THEME, THEMES } from './constants';
@@ -19,6 +20,7 @@ export function Markdown({
   styles,
   className,
   remarkPlugins,
+  rehypePlugins,
   children,
   ...rest
 }: MarkdownProps) {
@@ -26,11 +28,14 @@ export function Markdown({
 
   const finalRemarkPlugins = [...(isSupportGFM ? [remarkGfm] : []), ...(remarkPlugins ?? [])];
 
+  const finalRehypePlugins = [rehypeSlug, ...(rehypePlugins ?? [])];
+
   return (
     <Root $styles={theme?.styles} className={classNames?.root} style={styles?.root}>
       <ReactMarkdown
         className={cx(theme.className, classNames?.markdown, className)}
         remarkPlugins={finalRemarkPlugins}
+        rehypePlugins={finalRehypePlugins}
         {...rest}
       >
         {children}
