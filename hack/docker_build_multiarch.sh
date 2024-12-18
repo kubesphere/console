@@ -27,6 +27,9 @@ sudo chown $(id -u):$(id -g) -R $PROJECT_DIR/server
 # build out dir
 rm -rf "$PROJECT_DIR"/out/
 mkdir -p "$PROJECT_DIR"/out/server
+# generate version file to out
+"$PROJECT_DIR"/hack/version.sh > "$PROJECT_DIR"/out/version.txt
+
 mv "$PROJECT_DIR"/dist/ "$PROJECT_DIR"/package.json "$PROJECT_DIR"/out/
 mv "$PROJECT_DIR"/server/locales \
   "$PROJECT_DIR"/server/public \
