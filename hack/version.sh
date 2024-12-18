@@ -18,7 +18,6 @@ KUBE_GIT_TREE_STATE=""
 KUBE_GIT_VERSION=""
 KUBE_GIT_MAJOR=""
 KUBE_GIT_MINOR=""
-KUBE_GIT_RELEASE_COMMIT=""
 SOURCE_DATE_EPOCH=""
 
 version_get_version_vars() {
@@ -72,10 +71,9 @@ version() {
   "gitTreeState": "%s",
   "gitMajor": "%s",
   "gitMinor": "%s",
-  "gitVersion": "%s",
-  "gitReleaseCommit": "%s"
+  "gitVersion": "%s"
 }\n' \
-    "$buildDate" "$KUBE_GIT_COMMIT" "$KUBE_GIT_TREE_STATE" "$KUBE_GIT_MAJOR" "$KUBE_GIT_MINOR" "$KUBE_GIT_VERSION" "$KUBE_GIT_RELEASE_COMMIT"
+    "$buildDate" "$KUBE_GIT_COMMIT" "$KUBE_GIT_TREE_STATE" "$KUBE_GIT_MAJOR" "$KUBE_GIT_MINOR" "$KUBE_GIT_VERSION"
 }
 
 if [ "$(basename "$0")" = "version.sh" ]; then
