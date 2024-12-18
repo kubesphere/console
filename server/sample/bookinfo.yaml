@@ -72,7 +72,7 @@ spec:
               cpu: "1"
               memory: 1000Mi
           imagePullPolicy: IfNotPresent
-          image: "istio/examples-bookinfo-productpage-v1:1.10.1"
+          image: "istio/examples-bookinfo-productpage-v1:1.17.0"
           ports:
             - name: http-web
               protocol: TCP
@@ -151,7 +151,7 @@ spec:
               cpu: "1"
               memory: 1000Mi
           imagePullPolicy: IfNotPresent
-          image: "istio/examples-bookinfo-reviews-v1:1.10.1"
+          image: "istio/examples-bookinfo-reviews-v1:1.17.0"
           ports:
             - name: http-web
               protocol: TCP
@@ -230,7 +230,7 @@ spec:
               cpu: "1"
               memory: 1000Mi
           imagePullPolicy: IfNotPresent
-          image: "istio/examples-bookinfo-details-v1:1.10.1"
+          image: "istio/examples-bookinfo-details-v1:1.17.0"
           ports:
             - name: http-web
               protocol: TCP
@@ -309,7 +309,7 @@ spec:
               cpu: "1"
               memory: 1000Mi
           imagePullPolicy: IfNotPresent
-          image: "istio/examples-bookinfo-ratings-v1:1.10.1"
+          image: "istio/examples-bookinfo-ratings-v1:1.17.0"
           ports:
             - name: http-web
               protocol: TCP
