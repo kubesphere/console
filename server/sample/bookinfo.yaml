@@ -7,7 +7,7 @@ metadata:
     app.kubernetes.io/version: v1
     app.kubernetes.io/name: bookinfo
   annotations:
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
 spec:
   selector:
     matchLabels:
@@ -16,9 +16,9 @@ spec:
   addOwnerRef: true
   descriptor:
     icons:
-      - src: "/assets/bookinfo.svg"
+      - src: '/assets/bookinfo.svg'
   componentKinds:
-    - group: ""
+    - group: ''
       kind: Service
     - group: apps
       kind: Deployment
@@ -37,7 +37,7 @@ kind: Deployment
 metadata:
   namespace: servicemesh
   annotations:
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
   labels:
     app: productpage
     version: v1
@@ -60,7 +60,7 @@ spec:
         app.kubernetes.io/version: v1
         app.kubernetes.io/name: bookinfo
       annotations:
-        sidecar.istio.io/inject: "true"
+        sidecar.istio.io/inject: 'true'
     spec:
       containers:
         - name: productpage
@@ -69,10 +69,10 @@ spec:
               cpu: 10m
               memory: 10Mi
             limits:
-              cpu: "1"
+              cpu: '1'
               memory: 1000Mi
           imagePullPolicy: IfNotPresent
-          image: "istio/examples-bookinfo-productpage-v1:1.17.0"
+          image: 'istio/examples-bookinfo-productpage-v1:1.17.0'
           ports:
             - name: http-web
               protocol: TCP
@@ -95,7 +95,7 @@ metadata:
     app.kubernetes.io/name: bookinfo
   annotations:
     kubesphere.io/workloadType: Deployment
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
   name: productpage
 spec:
   type: ClusterIP
@@ -116,7 +116,7 @@ kind: Deployment
 metadata:
   namespace: servicemesh
   annotations:
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
   labels:
     app: reviews
     version: v1
@@ -139,7 +139,7 @@ spec:
         app.kubernetes.io/version: v1
         app.kubernetes.io/name: bookinfo
       annotations:
-        sidecar.istio.io/inject: "true"
+        sidecar.istio.io/inject: 'true'
     spec:
       containers:
         - name: reviews
@@ -148,10 +148,10 @@ spec:
               cpu: 10m
               memory: 10Mi
             limits:
-              cpu: "1"
+              cpu: '1'
               memory: 1000Mi
           imagePullPolicy: IfNotPresent
-          image: "istio/examples-bookinfo-reviews-v1:1.17.0"
+          image: 'istio/examples-bookinfo-reviews-v1:1.17.0'
           ports:
             - name: http-web
               protocol: TCP
@@ -174,7 +174,7 @@ metadata:
     app.kubernetes.io/name: bookinfo
   annotations:
     kubesphere.io/workloadType: Deployment
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
   name: reviews
 spec:
   type: ClusterIP
@@ -195,7 +195,7 @@ kind: Deployment
 metadata:
   namespace: servicemesh
   annotations:
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
   labels:
     app: details
     version: v1
@@ -218,7 +218,7 @@ spec:
         app.kubernetes.io/version: v1
         app.kubernetes.io/name: bookinfo
       annotations:
-        sidecar.istio.io/inject: "true"
+        sidecar.istio.io/inject: 'true'
     spec:
       containers:
         - name: details
@@ -227,10 +227,10 @@ spec:
               cpu: 10m
               memory: 10Mi
             limits:
-              cpu: "1"
+              cpu: '1'
               memory: 1000Mi
           imagePullPolicy: IfNotPresent
-          image: "istio/examples-bookinfo-details-v1:1.17.0"
+          image: 'istio/examples-bookinfo-details-v1:1.17.0'
           ports:
             - name: http-web
               protocol: TCP
@@ -253,7 +253,7 @@ metadata:
     app.kubernetes.io/name: bookinfo
   annotations:
     kubesphere.io/workloadType: Deployment
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
   name: details
 spec:
   type: ClusterIP
@@ -274,7 +274,7 @@ kind: Deployment
 metadata:
   namespace: servicemesh
   annotations:
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
   labels:
     app: ratings
     version: v1
@@ -297,7 +297,7 @@ spec:
         app.kubernetes.io/version: v1
         app.kubernetes.io/name: bookinfo
       annotations:
-        sidecar.istio.io/inject: "true"
+        sidecar.istio.io/inject: 'true'
     spec:
       containers:
         - name: ratings
@@ -306,10 +306,10 @@ spec:
               cpu: 10m
               memory: 10Mi
             limits:
-              cpu: "1"
+              cpu: '1'
               memory: 1000Mi
           imagePullPolicy: IfNotPresent
-          image: "istio/examples-bookinfo-ratings-v1:1.17.0"
+          image: 'istio/examples-bookinfo-ratings-v1:1.17.0'
           ports:
             - name: http-web
               protocol: TCP
@@ -332,7 +332,7 @@ metadata:
     app.kubernetes.io/name: bookinfo
   annotations:
     kubesphere.io/workloadType: Deployment
-    servicemesh.kubesphere.io/enabled: "true"
+    servicemesh.kubesphere.io/enabled: 'true'
   name: ratings
 spec:
   type: ClusterIP
@@ -348,7 +348,7 @@ spec:
       targetPort: 9080
 
 ---
-apiVersion: "networking.k8s.io/v1"
+apiVersion: 'networking.k8s.io/v1'
 kind: Ingress
 metadata:
   namespace: servicemesh
