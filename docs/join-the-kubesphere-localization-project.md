@@ -17,9 +17,8 @@ The locale files containing UI strings of the KubeSphere web console have been u
 3. On the translation editing page, select a UI string, enter your translation, and click **Save** to translate the string. Keep HTML tags and words enclosed in braces ({}) unchanged in your translations. Words enclosed in braces are variables and the values are dynamically loaded.
 
    For example, keep **\<a href="{link}"\>**, **\</a\>**, and **{time}** unchanged in your translation for the following UI string.
-   
+
    ![crowdin-html-and-variables](./images/crowdin-html-and-variables.png)
-   
 
 For more information about operations on Crowdin, see the [official Crowdin documentation](https://support.crowdin.com/).
 
@@ -28,10 +27,10 @@ For more information about operations on Crowdin, see the [official Crowdin docu
 Obtaining necessary context could be crucial for UI localization. To make the localization work easier, the KubeSphere team has set up a KubeSphere demo environment where you can locate the UI strings and preview your translations. The KubeSphere demo environment is synchronized with the locale files on Crowdin about once an hour.
 
 1. Visit the KubeSphere demo environment at [https://l10n.kubesphere.io/](https://l10n.kubesphere.io/) and log in with you GitHub account. By default, you are allowed only to view resources in the KubeSphere demo environment. If you require administrator permissions, please send an email to l10n@kubesphere.io and provide the following information:
-   
-   * Your GitHub username
-   * Your GitHub email address
-   * Your organization name (if any)
+
+   - Your GitHub username
+   - Your GitHub email address
+   - Your organization name (if any)
 
 2. On Crowdin, obtain the paths of the UI strings from the locale file names and comments.
 
@@ -47,10 +46,10 @@ Obtaining necessary context could be crucial for UI localization. To make the lo
 
 Localizing a software platform is a tough task and many issues could become obstacles for localization. Though plenty of these issues have been realized and resolved, some still remain unresolved due to various reasons, which you may need to be aware of.
 
-* The KubeSphere web console is under rapid iteration, which means function modules could be added, removed, or modified, and the current locale files could be updated rapidly.
-* The KubeSphere team has been working to optimize the English UI strings, which are used as the source text in localization. However, there are still certain flaws in the English UI strings to be resolved in future updates.
-* Concatenated UI strings could make localization difficult or even impossible, which have not been completely eliminated from the KubeSphere web console.
-* Languages such as Arabic and Hebrew are read from right to left, which require the layout of web console to be mirrored. This feature is currently not supported and is planned in future versions. 
+- The KubeSphere web console is under rapid iteration, which means function modules could be added, removed, or modified, and the current locale files could be updated rapidly.
+- The KubeSphere team has been working to optimize the English UI strings, which are used as the source text in localization. However, there are still certain flaws in the English UI strings to be resolved in future updates.
+- Concatenated UI strings could make localization difficult or even impossible, which have not been completely eliminated from the KubeSphere web console.
+- Languages such as Arabic and Hebrew are read from right to left, which require the layout of web console to be mirrored. This feature is currently not supported and is planned in future versions.
 
 All preceding issues will be resolved in subsequent updates to the locale files and the console source code.
 

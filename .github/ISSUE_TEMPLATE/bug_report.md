@@ -4,7 +4,6 @@ about: Create a report to help us improve
 labels: kind/bug
 ---
 
- 
 **General remarks**
 
 > This form is to report bugs. For general usage questions refer to our Slack channel
@@ -19,18 +18,18 @@ For UI issues please also add a screenshot that shows the issue.
 KubeSphere:
 Kubernetes: (If KubeSphere installer used, you can skip this)
 
-
 **Environment**
-How many nodes and their hardware configuration: 
+How many nodes and their hardware configuration:
 
 For example:
-3 masters:  8cpu/8g
+3 masters: 8cpu/8g
 3 nodes: 8cpu/16g
 
 (and other info are welcomed to help us debugging)
 
 **To Reproduce**
 Steps to reproduce the behavior:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
