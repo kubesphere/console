@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>画板</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.280676355" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="5" y="5" width="110" height="110" rx="8"></rect>
+        <filter x="-25.5%" y="-18.2%" width="150.9%" height="150.9%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.2   0 0 0 0 0.521568627   0 0 0 0 0.690196078  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <rect id="path-4" x="0" y="0" width="110" height="40"></rect>
+    </defs>
+    <g id="画板" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="矩形">
+            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+            <use fill="#329DCE" fill-rule="evenodd" xlink:href="#path-2"></use>
+            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
+        </g>
+        <g id="椭圆形" transform="translate(5.000000, 66.000000)">
+            <mask id="mask-5" fill="white">
+                <use xlink:href="#path-4"></use>
+            </mask>
+            <g id="蒙版"></g>
+            <ellipse stroke="#7EB8DC" opacity="0.6" mask="url(#mask-5)" cx="55" cy="40" rx="55" ry="30"></ellipse>
+        </g>
+        <g id="Icon/istio-White" transform="translate(22.000000, 10.000000)" fill="#FFFFFF">
+            <g id="Group-4-2" transform="translate(17.416667, 6.468085)">
+                <polygon id="Shape" fill-rule="nonzero" points="0 56.0567376 42.2222222 56.0567376 15.8333333 64.6808511"></polygon>
+                <polygon id="Shape" fill-rule="nonzero" points="0 53.9007092 14.7777778 51.2056738 14.7777778 21.5602837"></polygon>
+                <polygon id="Shape" fill-rule="nonzero" points="19 51.2056738 42.2222222 53.9007092 19 0"></polygon>
+            </g>
+        </g>
+        <text id="BookInfo" font-family="Roboto" font-size="20" font-weight="500" fill="#FFFFFF">
+            <tspan x="21" y="106">BookInfo</tspan>
+        </text>
+    </g>
+</svg>
