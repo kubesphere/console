@@ -7,6 +7,7 @@ import { has, isEmpty } from 'lodash';
 import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import PropertyItem, { Props as ItemProps } from './item';
 import { AddButton, Wrapper } from './styles';
+import { nanoid } from 'nanoid';
 
 interface Props {
   name?: string;
@@ -20,6 +21,7 @@ interface Props {
 }
 
 interface ValueType {
+  id: string;
   key: string;
   value?: any;
 }
@@ -48,37 +50,38 @@ function PropertiesInput({
     const newHiddenValues: ValueType[] = [];
     const newReadOnlyValues: ValueType[] = [];
     const newArrayValues: ValueType[] = [];
+    let empty = false;
 
     Object.keys(selfValue).forEach(key => {
+      const entry = { key, value: selfValue[key], id: nanoid() };
       if (hiddenKeys.some(hiddenKey => new RegExp(hiddenKey).test(key))) {
-        newHiddenValues.push({
-          key,
-          value: selfValue[key],
-        });
+        newHiddenValues.push(entry);
       } else if (readOnlyKeys.some(readOnlyKey => new RegExp(readOnlyKey).test(key))) {
-        newReadOnlyValues.push({
-          key,
-          value: selfValue[key],
-        });
+        newReadOnlyValues.push(entry);
       } else {
-        newArrayValues.push({
-          key,
-          value: selfValue[key],
-        });
+        newArrayValues.push(entry);
       }
     });
 
     if (isEmpty(newArrayValues) && isEmpty(newReadOnlyValues)) {
-      newArrayValues.push({ key: '' });
+      newArrayValues.push({ key: '', id: nanoid() });
+      empty = true;
     }
 
-    setArrayValues(newArrayValues);
+    // todo
+    // arrayValue is not synchronized with selfvalue
+    // after each modification may cause potential issues
+    let valueSize = newArrayValues.length;
+    if (valueSize !== arrayValues.length || empty) {
+      setArrayValues(newArrayValues);
+    }
+
     setHiddenValues(newHiddenValues);
     setReadOnlyValues(newReadOnlyValues);
   }, [selfValue]);
 
   const handleAdd = () => {
-    setArrayValues([...arrayValues, { key: '' }]);
+    setArrayValues([...arrayValues, { key: '', id: nanoid() }]);
   };
 
   const triggerChange = (values: ValueType[]) => {
@@ -145,7 +148,7 @@ function PropertiesInput({
       {readOnlyValues.map((item, index) => (
         <PropertyItem
           index={index}
-          key={`readonly-${item.key}`}
+          key={`readonly-${item.id}`}
           value={item}
           defaultValue={item}
           readOnly
@@ -154,7 +157,7 @@ function PropertiesInput({
       ))}
       {arrayValues.map((item, index) => (
         <PropertyItem
-          key={`array-${item.key}`}
+          key={`array-${item.id}`}
           index={index}
           value={item || {}}
           defaultValue={item || {}}
