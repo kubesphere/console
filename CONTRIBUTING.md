@@ -7,14 +7,17 @@ Table Of Contents
 [Code of Conduct](#code-of-conduct)
 
 [How Can I Contribute?](#how-can-i-contribute)
-  * [Reporting Bugs](#reporting-bugs)
-  * [Pull Requests](#pull-requests)
+
+- [Reporting Bugs](#reporting-bugs)
+- [Pull Requests](#pull-requests)
 
 [Style Guides](#style-guides)
-  * [Git Commit Messages](#git-commit-messages)
-  * [JavaScript Styleguide](#javascript-styleguide)
+
+- [Git Commit Messages](#git-commit-messages)
+- [JavaScript Styleguide](#javascript-styleguide)
 
 ## Code of Conduct
+
 All members of the KubeSphere community must abide by [Code of Conduct](docs/code-of-conduct.md). Only by respecting each other can we develop a productive, collaborative community.
 
 ## How Can I Contribute?
@@ -27,9 +30,9 @@ When you are creating a bug report, please fill out [the required template](http
 
 #### Before Submitting A Bug Report
 
-* **Check the [FAQs on the docs](https://kubesphere.io/docs/v2.1/zh-CN/faq/faq-console/)** for a list of common questions and problems.
-* **Check the [Forum](https://kubesphere.io/forum/)** to see if there is a way to resolve.
-* **Perform a [cursory search](https://github.com/kubesphere/console/issues)** to see if the problem has already been reported. If it has, **and the issue is still open**, add a comment to the existing issue instead of opening a new one.
+- **Check the [FAQs on the docs](https://kubesphere.io/docs/v2.1/zh-CN/faq/faq-console/)** for a list of common questions and problems.
+- **Check the [Forum](https://kubesphere.io/forum/)** to see if there is a way to resolve.
+- **Perform a [cursory search](https://github.com/kubesphere/console/issues)** to see if the problem has already been reported. If it has, **and the issue is still open**, add a comment to the existing issue instead of opening a new one.
 
 ### Pull Requests
 
