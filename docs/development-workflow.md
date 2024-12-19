@@ -57,6 +57,7 @@ git rebase upstream/master
 git checkout new_feature
 git rebase -i master
 ```
+
 **Commit local changes**
 
 See [Git Commit Messages Style Guide](../CONTRIBUTING.md#git-commit-messages)

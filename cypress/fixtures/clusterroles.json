@@ -42,13 +42,7 @@
         {
           "verbs": ["get", "list"],
           "apiGroups": ["openpitrix.io"],
-          "resources": [
-            "repos",
-            "app_versions",
-            "app_version/*",
-            "apps",
-            "clusters"
-          ]
+          "resources": ["repos", "app_versions", "app_version/*", "apps", "clusters"]
         },
         {
           "verbs": ["*"],
@@ -247,13 +241,7 @@
         { "verbs": ["*"], "apiGroups": [""], "resources": ["namespaces"] },
         {
           "verbs": ["*"],
-          "apiGroups": [
-            "",
-            "apps",
-            "extensions",
-            "batch",
-            "resources.kubesphere.io"
-          ],
+          "apiGroups": ["", "apps", "extensions", "batch", "resources.kubesphere.io"],
           "resources": [
             "serviceaccounts",
             "limitranges",
@@ -293,13 +281,7 @@
         {
           "verbs": ["get", "list"],
           "apiGroups": ["openpitrix.io"],
-          "resources": [
-            "apps",
-            "clusters",
-            "repos",
-            "app_versions",
-            "app_version/*"
-          ]
+          "resources": ["apps", "clusters", "repos", "app_versions", "app_version/*"]
         },
         {
           "verbs": ["get", "watch", "list"],
@@ -382,12 +364,7 @@
         {
           "verbs": ["list"],
           "apiGroups": ["kubesphere.io"],
-          "resources": [
-            "quota",
-            "status",
-            "monitoring",
-            "persistentvolumeclaims"
-          ]
+          "resources": ["quota", "status", "monitoring", "persistentvolumeclaims"]
         },
         {
           "verbs": ["get", "list"],

@@ -12,8 +12,5 @@
       "@ks-console/*": ["../*/src"]
     }
   },
-  "include": [
-    "src",
-    "../core/src/globals.d.ts"
-  ]
+  "include": ["src", "../core/src/globals.d.ts"]
 }
