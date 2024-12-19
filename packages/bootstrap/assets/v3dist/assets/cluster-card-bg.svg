@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="326" height="108" viewBox="0 0 326 108">
+    <defs>
+        <linearGradient id="prefix__c" x1="50%" x2="50%" y1=".193%" y2="100%">
+            <stop offset="0%" stop-color="#EDF2F7"/>
+            <stop offset="100%" stop-color="#B6C2CD"/>
+        </linearGradient>
+        <linearGradient id="prefix__d" x1="50%" x2="50%" y1="0%" y2="99.916%">
+            <stop offset="0%" stop-color="#B6C2CD"/>
+            <stop offset="99.958%" stop-color="#324558"/>
+        </linearGradient>
+        <linearGradient id="prefix__e" x1="50%" x2="50%" y1="0%" y2="100%">
+            <stop offset=".193%" stop-color="#EDF2F7"/>
+            <stop offset="100%" stop-color="#B6C2CD"/>
+        </linearGradient>
+        <rect id="prefix__a" width="326" height="108" x="0" y="0" rx="2"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="prefix__b" fill="#fff">
+            <use xlink:href="#prefix__a"/>
+        </mask>
+        <use fill="#242E42" fill-rule="nonzero" xlink:href="#prefix__a"/>
+        <g style="mix-blend-mode:multiply" mask="url(#prefix__b)">
+            <g>
+                <path fill="url(#prefix__c)" d="M0 110.48L63.989 147.433 64.196 73.903 0.21 36.949z" transform="translate(222.098)"/>
+                <path fill="url(#prefix__d)" d="M64.197 73.903L63.987 147.433 127.555 110.484 127.762 36.954z" transform="translate(222.098)"/>
+                <path fill="url(#prefix__e)" d="M63.773 0L0.208 36.949 64.197 73.903 127.762 36.954z" transform="translate(222.098)"/>
+            </g>
+        </g>
+    </g>
+</svg>
