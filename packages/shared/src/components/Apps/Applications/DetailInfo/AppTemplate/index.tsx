@@ -73,7 +73,9 @@ function AppTemplate(): JSX.Element {
           {filesLoading ? (
             <Loading className="page-loading" />
           ) : (
-            <Markdown isSupportGFM themeName="github-light">{readme}</Markdown>
+            <Markdown isSupportGFM themeName="github-light">
+              {readme}
+            </Markdown>
           )}
         </>
       )}
