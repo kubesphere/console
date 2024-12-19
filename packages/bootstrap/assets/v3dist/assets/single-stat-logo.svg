@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 40 40">
+    <g fill="none" fill-rule="evenodd">
+        <rect width="32" height="32" x="4" y="4" fill="#FFF" rx="2"/>
+        <filter id="prefix__a" width="143.8%" height="143.8%" x="-21.9%" y="-15.6%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.141176471 0 0 0 0 0.180392157 0 0 0 0 0.258823529 0 0 0 0.1 0"/>
+        </filter>
+        <text id="prefix__b" fill="#242E42" font-family="ProximaNova-Semibold, Proxima Nova" font-size="24" font-weight="500">
+            <tspan x="11.924" y="28">A</tspan>
+        </text>
+    </g>
+</svg>
