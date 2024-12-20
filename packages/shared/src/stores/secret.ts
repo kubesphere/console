@@ -64,10 +64,10 @@ const validateImageRegistrySecret = async ({
   };
 
   await request
-    .post(url, fedFormTemplate, {})
+    .post(url, fedFormTemplate, { headers: { 'x-ignore-error-notify': 'true' } })
     .then()
     .catch((err: any) => {
-      const msg = get(err, 'message', '');
+      const msg = get(err, 'response.data', '');
       if (msg) {
         result.reason = t(msg);
       }
