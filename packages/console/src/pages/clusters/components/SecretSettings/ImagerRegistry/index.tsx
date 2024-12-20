@@ -6,7 +6,8 @@
 import React, { useEffect, useState, forwardRef, useImperativeHandle, Ref } from 'react';
 import { Success } from '@kubed/icons';
 import { debounce, get, has, set } from 'lodash';
-import { Alert, Button, Col, Input, InputPassword, Row } from '@kubed/components';
+import { Alert, Col, Input, InputPassword, Row } from '@kubed/components';
+import { StyledButton } from './styles';
 
 import { safeBtoa, clusterStore, parser, secretStore } from '@ks-console/shared';
 
@@ -221,9 +222,9 @@ function ImagerRegistry(
                 onChange={handlePasswordChange}
                 autoComplete="new-password"
               />
-              <Button onClick={handleValidate} loading={isValidating}>
+              <StyledButton onClick={handleValidate} loading={isValidating}>
                 {t('VALIDATE')}
-              </Button>
+              </StyledButton>
             </PasswordItem>
           </Wrapper>
         </Col>
