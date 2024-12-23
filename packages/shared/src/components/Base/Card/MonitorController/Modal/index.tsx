@@ -161,6 +161,7 @@ function MonitorControllerModal({
         step={initializeParams.step}
         times={initializeParams.times}
         onChange={handleChange}
+        zIndex={1000}
       />
       {renderAutoRefresh}
       <IconButton onClick={handleRefresh}>
