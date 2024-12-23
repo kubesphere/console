@@ -31,6 +31,7 @@ type UrlAndDataFormatterType = { url: string; formatter: TypeProjectsFormatterFu
 
 interface FetchProjectsByTypeInfiniteParams {
   limit?: number;
+  page?: number;
   sortBy?: string;
   name?: string;
   cluster?: string;
@@ -72,6 +73,7 @@ export function useFetchProjectsByTypeInfiniteQuery({
   const isFederated = type === 'federatedprojects';
   const defaultParams: FetchProjectsByTypeInfiniteParams = {
     limit: 10,
+    page: 1,
     sortBy: 'createTime',
     labelSelector: isFederated
       ? `kubesphere.io/kubefed-host-namespace=true`
