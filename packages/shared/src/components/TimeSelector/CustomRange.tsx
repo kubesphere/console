@@ -27,6 +27,7 @@ interface Props {
   timeOps?: string[];
   onSubmit?: (value: ValueType) => void;
   onCancel?: () => void;
+  zIndex?: number;
 }
 
 interface FormValue {
@@ -77,6 +78,7 @@ function CustomRange({
   timeOps = DEFAULT_TIME_OPTIONS,
   onSubmit,
   onCancel,
+  zIndex = 100,
 }: Props) {
   const formRef = useRef<FormInstance<FormValue>>(null);
 
@@ -120,7 +122,7 @@ function CustomRange({
             disabledDate={disabledDate}
             disabledTime={disabledRangeTime}
             showTime
-            popupStyle={{ zIndex: 100 }}
+            popupStyle={{ zIndex }}
             showNow={false}
             format="YYYY-MM-DD HH:mm:ss"
           ></DatePicker>
@@ -129,7 +131,7 @@ function CustomRange({
           <DatePicker
             disabledDate={disabledDate}
             disabledTime={disabledRangeTime}
-            popupStyle={{ zIndex: 100 }}
+            popupStyle={{ zIndex }}
             showTime
             showNow={false}
             format="YYYY-MM-DD HH:mm:ss"

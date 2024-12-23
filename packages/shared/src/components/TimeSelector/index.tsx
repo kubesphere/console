@@ -22,6 +22,7 @@ interface Props {
   onChange?: (val: Omit<ValueType, 'lastTime'>) => void;
   onToggle?: (toggled: boolean) => void;
   timeOps?: string[];
+  zIndex?: number;
 }
 
 function TimeSelector({
@@ -34,6 +35,7 @@ function TimeSelector({
   timeOps,
   onChange,
   onToggle,
+  zIndex,
 }: Props) {
   const [visible, setVisible] = useState<boolean>(false);
   const [selfValue, setSelfValue] = useState<ValueType>({
@@ -101,6 +103,7 @@ function TimeSelector({
             showStep={showStep}
             onSubmit={handleTimeChange}
             onCancel={hideSelector}
+            zIndex={zIndex}
           />
         )}
       </Content>
