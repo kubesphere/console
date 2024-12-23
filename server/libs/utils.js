@@ -353,6 +353,51 @@ const mapResource = resource => {
   return `/theme/static/images/${resource}`;
 };
 
+function getServiceAccountToken() {
+  const serviceAccountTokenByConfig = serverConfig?.apiServer?.serviceAccountToken;
+
+  if (serviceAccountTokenByConfig && typeof serviceAccountTokenByConfig === 'string') {
+    console.info('Use serviceAccountToken from config');
+    return { serviceAccountToken: serviceAccountTokenByConfig };
+  }
+
+  const DEFAULT_RET = { serviceAccountToken: undefined };
+
+  const serviceAccountTokenFilePath = serverConfig?.apiServer?.serviceAccountTokenFilePath;
+
+  if (!serviceAccountTokenFilePath) {
+    console.error('server.apiServer.serviceAccountTokenFilePath is not set');
+    return DEFAULT_RET;
+  }
+
+  if (typeof serviceAccountTokenFilePath !== 'string') {
+    console.error('server.apiServer.serviceAccountTokenFilePath is not a string');
+    return DEFAULT_RET;
+  }
+
+  const filePath = path.resolve(serviceAccountTokenFilePath);
+
+  try {
+    const serviceAccountTokenByFile = fs.readFileSync(filePath, { encoding: 'utf8' });
+
+    if (!serviceAccountTokenByFile) {
+      console.error('serviceAccountTokenByFile is empty');
+      return DEFAULT_RET;
+    }
+
+    if (typeof serviceAccountTokenByFile !== 'string') {
+      console.error('serviceAccountTokenByFile is not a string');
+      return DEFAULT_RET;
+    }
+
+    console.info(`Use serviceAccountToken from ${filePath}`);
+    return { serviceAccountToken: serviceAccountTokenByFile };
+  } catch (error) {
+    console.error('Failed to read serviceAccountTokenByFile', error);
+    return DEFAULT_RET;
+  }
+}
+
 module.exports = {
   root,
   cwdResolve,
@@ -373,4 +418,5 @@ module.exports = {
   getV3LocaleManifest,
   mapResource,
   getDllManifest,
+  getServiceAccountToken,
 };

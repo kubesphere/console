@@ -33,6 +33,7 @@ server:
     clientSecret: kubesphere
     url: http://ks-apiserver
     wsUrl: ws://ks-apiserver
+    serviceAccountTokenFilePath: '/var/run/secrets/kubesphere.io/serviceaccount/token'
 
   # docker image search default url
   dockerHubUrl: https://hub.docker.com
