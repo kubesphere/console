@@ -14,7 +14,7 @@ import { request } from '../../../../utils';
 import { AppDetailWrapper, LabelText, ImageWrapper, ImageItem } from './styles';
 
 type Props = {
-  appDetail: AppDetail;
+  appDetail: AppDetail | null;
   versionDetail: AppVersion[];
 };
 
@@ -36,6 +36,7 @@ export function AppInfo({ appDetail, versionDetail }: Props): JSX.Element {
   const [filterImages, setFilterImages] = useState<string[]>([]);
 
   async function getList() {
+    if (!appDetail) return;
     const { workspace } = appDetail;
     // @ts-ignore
     const list: string[] = await Promise.all(screenshots?.map(item => getImage(item, workspace)));
