@@ -23,7 +23,7 @@
       { "imports": <%- importMap %> }
     </script>
     <script type="text/javascript">
-      window.globals = JSON.parse(`<%- globals %>`);
+      window.globals = JSON.parse(decodeURIComponent(`<%- globals %>`));
     </script>
     <% if (isDev) { %>
     <script type="text/javascript" src="<%= bundlePrefix %>/runtime.js"></script>
