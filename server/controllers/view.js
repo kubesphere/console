@@ -55,15 +55,17 @@ const renderIndex = async (ctx, params) => {
     extStyles,
     hostname: ctx.hostname,
     importMap: JSON.stringify(importMap),
-    globals: JSON.stringify({
-      config: clientConfig,
-      manifest,
-      localeManifest,
-      theme,
-      defaultTheme,
-      useDefaultTheme,
-      ...params,
-    }),
+    globals: encodeURIComponent(
+      JSON.stringify({
+        config: clientConfig,
+        manifest,
+        localeManifest,
+        theme,
+        defaultTheme,
+        useDefaultTheme,
+        ...params,
+      }),
+    )
   });
 };
 
@@ -82,16 +84,18 @@ const renderV3Index = async (ctx, params) => {
     isDev: global.MODE_DEV,
     title: clientConfig.title,
     hostname: ctx.hostname,
-    globals: JSON.stringify({
-      config: clientConfig,
-      localeManifest,
+    globals: encodeURIComponent(
+      JSON.stringify({
+        config: clientConfig,
+        localeManifest,
 
-      theme,
-      defaultTheme,
-      useDefaultTheme,
+        theme,
+        defaultTheme,
+        useDefaultTheme,
 
-      ...params,
-    }),
+        ...params,
+      }),
+    )
   });
 };
 
@@ -164,17 +168,19 @@ const renderTerminal = async ctx => {
       favicon,
       hostname: ctx.hostname,
       importMap: JSON.stringify(importMap),
-      globals: JSON.stringify({
-        config: clientConfig,
-        manifest,
-        localeManifest,
-        user,
-        ksConfig,
-        runtime,
-        theme,
-        defaultTheme,
-        useDefaultTheme,
-      }),
+      globals: encodeURIComponent(
+        JSON.stringify({
+          config: clientConfig,
+          manifest,
+          localeManifest,
+          user,
+          ksConfig,
+          runtime,
+          theme,
+          defaultTheme,
+          useDefaultTheme,
+        }),
+      )
     });
   } catch (err) {
     await renderViewErr(ctx, err);
