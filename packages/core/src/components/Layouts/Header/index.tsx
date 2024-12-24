@@ -166,7 +166,7 @@ export default function Header() {
         </NavbarLeft>
         <LogoWrapper>
           <Link to={isAppsPage && !isLogin ? '/apps' : '/'} className="logo">
-            <img src={isDarkHeader ? '/assets/login-logo.svg' : logo} alt="" />
+            <img src={logo} alt="" />
           </Link>
         </LogoWrapper>
         <NavbarRight>
