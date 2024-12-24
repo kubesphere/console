@@ -18,7 +18,7 @@
   <body>
     <div id="root"></div>
     <script type="text/javascript">
-      window.globals = JSON.parse(`<%- globals %>`);
+      window.globals = JSON.parse(decodeURIComponent(`<%- globals %>`));
     </script>
     <% if (manifest && manifest.js && manifest.js.length > 0) { %> <%
     manifest.js.forEach(function(item){ %>
