@@ -18,6 +18,6 @@ module.exports = {
   UNABLE_TO_ACCESS_TIP:
     'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
   CERTIFICATE_VALUE: 'Certificate: {value}',
-  // Metadata
-  // Events
+  ROUTE_PATH: 'Path',
+  ROUTE_PORT: 'Port',
 };
