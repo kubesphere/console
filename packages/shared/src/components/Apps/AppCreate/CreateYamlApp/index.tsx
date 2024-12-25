@@ -74,6 +74,10 @@ export function CreateYamlApp(props: Props) {
               name={['appName']}
               rules={[
                 { required: true, message: t('NAME_EMPTY_DESC') },
+                {
+                  pattern: Pattern.PATTERN_ALIAS_NAME,
+                  message: t('PROJECT_NAME_INVALID_DESC'),
+                },
                 // {
                 //   pattern: Pattern.PATTERN_SERVICE_NAME,
                 //   message: t('PROJECT_NAME_INVALID_DESC'),

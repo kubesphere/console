@@ -104,7 +104,7 @@ export default function Workspaces(): JSX.Element {
                   (item: { namespace?: string; name: string }) => ({
                     namespace: item.namespace,
                     name: item.name,
-                    deleteProject: checkkboxRef.current,
+                    shouldDeleteResource: checkkboxRef.current,
                     ...params,
                   }),
                 );
@@ -167,7 +167,7 @@ export default function Workspaces(): JSX.Element {
                 const deleteParams = [record].map(item => ({
                   namespace: item.namespace,
                   name: item.name,
-                  deleteProject: checkkboxRef.current,
+                  shouldDeleteResource: checkkboxRef.current,
                   ...params,
                 }));
                 await workspaceStore.batchDelete(deleteParams);
