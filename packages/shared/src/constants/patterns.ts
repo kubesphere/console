@@ -6,6 +6,8 @@
 export const PATTERN_NAME = /^[a-z0-9]([-a-z0-9]*[a-z0-9])?$/;
 export const PATTERN_USER_NAME =
   /^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$/;
+export const PATTERN_ALIAS_NAME =
+  /^[a-zA-Z0-9\u4e00-\u9fa5]([a-zA-Z0-9\u4e00-\u9fa5-]*[a-zA-Z0-9\u4e00-\u9fa5])*$/;
 export const PATTERN_IMAGE_NAME =
   /^[a-z0-9]([-a-z0-9]*[a-z0-9])?((\.|\/)[a-z0-9]([-a-z0-9]*[a-z0-9])?)*(:([a-z0-9])*)?$/;
 export const PATTERN_SERVICE_NAME = /^[a-z]([-a-z0-9]*[a-z0-9])?$/;
@@ -36,6 +38,3 @@ export const PATTERN_UTC_TIME = /^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[
 export const PATTERN_WORD = /(?=.*?[A-Z])(?=.*?[a-z])/;
 export const PATTERN_NUMBER = /(?=.*?[0-9])/;
 export const PATTERN_INTEGER_NUMBER = /^[+]{0,1}(\d+)$/;
-// export const PATTERN_ALIAS_NAME=/^[a-zA-Z0-9\u4e00-\u9fa5]([a-zA-Z0-9\u4e00-\u9fa5-]*[a-zA-Z0-9\u4e00-\u9fa5])*$/;
-export const PATTERN_ALIAS_NAME =
-  /^[a-zA-Z0-9\u4e00-\u9fa5](?:[a-zA-Z0-9\u4e00-\u9fa5]|-(?=[a-zA-Z0-9\u4e00-\u9fa5]))*$/;
