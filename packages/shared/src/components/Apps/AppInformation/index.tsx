@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom';
 import { useCacheStore as useStore } from '../../../index';
 import { AppInfo, LabelText } from './AppInfo';
 import type { AppDetail } from '../../../types';
-// import { useAppVersionList } from '../../../stores/openpitrix';
 
 import { isRadonDB } from '../../../utils';
 import { openpitrixStore } from '../../../stores';
