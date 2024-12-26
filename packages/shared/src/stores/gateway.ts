@@ -303,6 +303,40 @@ const useBatchDeleteMutation = (options?: MutationOptions) => {
   );
 };
 
+const getUrlParams = ({ workspace, namespace, cluster }: PathParams) => {
+  return workspace && !namespace
+    ? { workspace, cluster }
+    : { namespace: namespace || 'kubesphere-system', cluster };
+};
+
+const getIngressUrl = ({ cluster, namespace, workspace }: PathParams) => {
+  const pathParams = getUrlParams({ workspace, namespace, cluster });
+
+  return `kapis/gateway.kubesphere.io/v1alpha2${getPath(pathParams)}/availableingressclassscopes`;
+};
+
+const ingressClassScopesMapper = (item: Record<string, any>) => ({
+  ...getBaseInfo(item),
+  name: get(item, 'metadata.name'),
+  ingressClass: get(item, 'spec.ingressClass.name'),
+  service: get(item, 'status.service'),
+  ingressIp: get(item, 'status.loadBalancer.ingress[0].ip', ''),
+  _originData: item,
+});
+
+const useQueryNewGatewayByProject = (params: PathParams, options: Record<string, any>) => {
+  const url = getIngressUrl(params);
+
+  return useQuery<Record<string, any>[]>({
+    queryKey: [module, 'Ingress', params],
+    queryFn: () => request.get(url),
+    select: data => {
+      return data?.map(ingressClassScopesMapper);
+    },
+    ...options,
+  });
+};
+
 const store = BaseStore({
   module,
   apiVersion,
@@ -335,4 +369,5 @@ export default {
   del,
   batchDelete,
   useBatchDeleteMutation,
+  useQueryNewGatewayByProject,
 };

@@ -12,6 +12,8 @@ import PodWorkloads from '../../AppTypeTable/OPAppTable/PodWorkloads';
 import EdgeWorkloads from '../../AppTypeTable/OPAppTable/EdgeWorkloads';
 import Services from '../../AppTypeTable/OPAppTable/Services';
 import Workloads from '../../AppTypeTable/OPAppTable/Workloads';
+import Ingresses from '../../AppTypeTable/OPAppTable/Ingresses';
+import Volumes from '../../AppTypeTable/OPAppTable/Volumes';
 
 const ResourceStatusWrapper = styled.div`
   & > div {
@@ -43,9 +45,11 @@ function ResourceStatus(): JSX.Element {
         <EdgeWorkloads appDetail={appDetail} detail={detail} prefix={urlPrefix} />
       ) : (
         <>
-          <PodWorkloads detail={detail} params={params} prefix={urlPrefix} />
-          <Services detail={detail} params={params} prefix={urlPrefix} />
-          <Workloads detail={detail} params={params} prefix={urlPrefix} />
+          <PodWorkloads detail={detail} params={params} />
+          <Services detail={detail} params={params} />
+          <Workloads detail={detail} params={params} />
+          <Ingresses detail={detail} params={params} />
+          <Volumes detail={detail} prefix={urlPrefix} />
         </>
       )}
     </ResourceStatusWrapper>
