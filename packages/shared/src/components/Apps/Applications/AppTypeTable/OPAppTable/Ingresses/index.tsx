@@ -3,68 +3,48 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import React, { useMemo } from 'react';
-import { isEmpty } from 'lodash';
-import { useQueries } from 'react-query';
+import React, { useEffect, useMemo, useState } from 'react';
 
-import { joinSelector } from '../../../../../../utils';
-import { gatewayStore } from '../../../../../../stores';
 import IngressesItem from './Item';
 import ResourceCard from '../ResourceCard';
-import { openpitrixStore } from '../../../../../../stores';
-const { useBaseK8sList } = openpitrixStore;
-
-const { fetchDetail } = gatewayStore;
+import { EmptyTips } from './styles';
 
 type Props = {
-  cluster?: string;
-  namespace?: string;
-  prefix?: string;
-  title?: string;
-  selector?: any;
+  detail: any;
+
+  params: Record<string, string>;
 };
 
-function Ingresses({ title, cluster, namespace, selector, prefix }: Props): JSX.Element {
-  const k8sParams = useMemo(() => {
-    if (!isEmpty(selector)) {
-      return {
-        cluster,
-        namespace,
-        labelSelector: joinSelector(selector),
-      };
-    }
+function Ingresses({ detail, params }: Props): JSX.Element {
+  const { workspace, cluster, namespace } = params;
+  const prefix = workspace
+    ? `/${workspace}/clusters/${cluster}/projects/${namespace}`
+    : `/clusters/${cluster}/projects/${namespace}`;
+  const [ingressList, setIngressList] = useState<any[]>([]);
 
-    return {};
-  }, [selector]);
-  const gateWays = useQueries([
-    {
-      queryKey: ['gateWay', 'cluster', cluster],
-      queryFn: () => fetchDetail({ cluster }),
-      enabled: !!cluster,
-    },
-    {
-      queryKey: ['gateWay', 'namespace', cluster, namespace],
-      queryFn: () => fetchDetail({ cluster, namespace }),
-      enabled: !!cluster && !!namespace,
-    },
-  ]);
-  const { data } = useBaseK8sList({
-    module: 'ingresses',
-    params: k8sParams,
-    autoFetch: gateWays[0].isSuccess && gateWays[1].isSuccess,
-  });
-
+  const list = useMemo(
+    () =>
+      detail.map((item: any) => ({
+        ...item,
+        module: item.kind,
+        ...item.metadata,
+      })),
+    [detail],
+  );
+  useEffect(() => {
+    if (!list) return;
+    const ingressItems = list.filter((item: any) => item.kind === 'Ingress');
+    setIngressList(ingressItems);
+  }, [list]);
   return (
     <ResourceCard
-      title={title || t('ROUTE_PL')}
-      data={data}
+      title={t('ROUTE_PL')}
+      data={ingressList}
+      emptyPlaceholder={
+        <EmptyTips>{t('NO_AVAILABLE_RESOURCE_VALUE', { resource: t('ROUTE_PL') })}</EmptyTips>
+      }
       itemRender={item => (
-        <IngressesItem
-          key={item.name}
-          prefix={prefix}
-          detail={item}
-          gateway={gateWays[0].data || gateWays[1].data}
-        />
+        <IngressesItem params={params} key={item.name} prefix={prefix} ingress={item} />
       )}
     />
   );
