@@ -2,7 +2,6 @@
  * Please refer to the LICENSE file in the root directory of the project.
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
-
 module.exports = {
   // Attributes
   // Resource Status
@@ -15,9 +14,8 @@ module.exports = {
   SERVICE_COLON: 'Service: ',
   ACCESS_SERVICE: '訪問服務',
   UNABLE_TO_ACCESS: '無法訪問服務',
-  UNABLE_TO_ACCESS_TIP:
-    'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
+  UNABLE_TO_ACCESS_TIP: 'Make sure that domain name resolution policies have been configured in your DNS server or the hosts file of your client machine.',
   CERTIFICATE_VALUE: 'Certificate: {value}',
   ROUTE_PATH: '路徑',
-  ROUTE_PORT: '端口',
+  ROUTE_PORT: '通訊埠'
 };
