@@ -1,18 +1,28 @@
 /*
- * Please refer to the LICENSE file in the root directory of the project.
- * https://github.com/kubesphere/console/blob/master/LICENSE
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   // Banner
-  ROUTE_DESC:
-    '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
+  ROUTE_DESC: '应用路由提供一种聚合服务的方式，您可以通过一个外部可访问的 IP 地址将集群的内部服务暴露给外部。',
   PREREQUESTS_FOR_USE_ROUTE_Q: '使用应用路由的前提条件？',
   PREREQUESTS_FOR_USE_ROUTE_A: '如需使用应用路由，您需要联系项目管理员启用项目网关。',
   ACCESS_TYPES_OF_ROUTE_Q: '应用路由支持哪些的访问模式？',
   ACCESS_TYPES_OF_ROUTE_A: 'KubeSphere 应用路由支持 NodePort 访问模式以及 LoadBalancer 访问模式。',
   ROUTE_PL: '应用路由',
-  ROUTE_SETTING_PL: '应用路由工具',
   // List
   GATEWAY_ADDRESS_TCAP: '网关地址',
   ROUTE_EMPTY_DESC: '请创建应用路由。',
@@ -46,5 +56,5 @@ module.exports = {
   // List > Edit Annotations
   EDIT_ANNOTATIONS: '编辑注解',
   // List > Delete
-  ROUTE_LOW: '应用路由',
+  ROUTE_LOW: '应用路由'
 };
