@@ -2,7 +2,6 @@
  * Please refer to the LICENSE file in the root directory of the project.
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
-
 module.exports = {
   // Attributes
   // Resource Status
@@ -18,5 +17,5 @@ module.exports = {
   UNABLE_TO_ACCESS_TIP: '请确保已在您的 DNS 服务器或客户机 hosts 文件中配置域名解析规则。',
   CERTIFICATE_VALUE: '证书：{value}',
   ROUTE_PATH: '路径',
-  ROUTE_PORT: '端口',
+  ROUTE_PORT: '端口'
 };
