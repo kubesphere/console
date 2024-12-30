@@ -65,4 +65,12 @@ module.exports = {
   VERSION_ACTIVATE_SUCCESSFUL: '发布成功。',
   SYSTEM_REPO_TYPE: '系统仓库',
   OWNER_REPO_TYPE: '自有仓库',
+  USE_GUIDE_TITLE: 'KubeSphere 应用商店使用指南',
+  USE_GUIDE_DESC:
+    'KubeSphere 应用商店提供了面向企业内部全局可见的应用分发平台，其中所有应用均需通过 "KubeSphere 应用商店管理" 审核并上架，KubeSphere 不承担应用商店中应用的售后维保。',
+  USE_GUIDE_DESC2: '若需通过KubeSphere 应用商店管理创建应用，请参考以下步骤：',
+  USE_GUIDE_STEP_1: '安装"KubeSphere 应用商店管理"扩展组件',
+  USE_GUIDE_STEP_2: '在自建的企业空间中创建应用模板，并提交审核',
+  USE_GUIDE_STEP_3: '"平台管理员"通过"KubeSphere应用商店管理"完成应用模板审核后，上架到应用商店',
+  USE_GUIDE_STEP_4: '随后，各项目中的用户可以通过KubeSphere 应用商店创建应用',
 };
