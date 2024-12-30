@@ -66,4 +66,12 @@ module.exports = {
   VERSION_ACTIVATE_SUCCESSFUL: '發佈成功。',
   SYSTEM_REPO_TYPE: '系統倉庫',
   OWNER_REPO_TYPE: '自有倉庫',
+  USE_GUIDE_TITLE: 'KubeSphere 應用商店使用指南',
+  USE_GUIDE_DESC:
+    'KubeSphere 應用商店提供了面向企業內部全局可見的應用分發平台，其中所有應用均需通過 "KubeSphere 應用商店管理" 審核並上架，KubeSphere 不承擔應用商店中應用的售後維保。',
+  USE_GUIDE_DESC2: '若需通過KubeSphere 應用商店管理創建應用，請參考以下步驟：',
+  USE_GUIDE_STEP_1: '安裝"KubeSphere 應用商店管理"擴展組件',
+  USE_GUIDE_STEP_2: '在自建的企業空間中創建應用模板，並提交審核',
+  USE_GUIDE_STEP_3: '"平台管理員"通過"KubeSphere應用商店管理"完成應用模板審核後，上架到應用商店',
+  USE_GUIDE_STEP_4: '隨後，各項目中的用戶可以通過KubeSphere 應用商店創建應用',
 };
