@@ -12,7 +12,7 @@ import { getDisplayName } from '../../../utils';
 import type { CategoryDetail } from '../../../types';
 import Toolbar from './Toolbar';
 import Categories from './Categories';
-
+import UseGuide from './UseGuide';
 import { PageMain } from './styles';
 
 const { useCategoryList } = openpitrixStore;
@@ -85,6 +85,7 @@ export function AppsDashBoard(): JSX.Element {
   return (
     <>
       <Toolbar onKeywordChange={setKeyword} />
+      <UseGuide />
       <PageMain>
         <Categories
           categoryId={categoryId}

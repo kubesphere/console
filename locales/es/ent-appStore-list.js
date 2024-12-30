@@ -67,4 +67,16 @@ module.exports = {
   VERSION_ACTIVATE_SUCCESSFUL: 'Lanzamiento exitoso .',
   SYSTEM_REPO_TYPE: 'Almacén del sistema',
   OWNER_REPO_TYPE: 'Almacén propio',
+  USE_GUIDE_TITLE: 'Guía de uso de KubeSphere App Store',
+  USE_GUIDE_DESC:
+    'KubeSphere App Store proporciona una plataforma de distribución de aplicaciones a nivel interno visible para todas las empresas, donde todas las aplicaciones deben pasar por la aprobación de "KubeSphere App Store Management" y ser listadas. KubeSphere no se hace responsable de la garantía de las aplicaciones en la App Store.',
+  USE_GUIDE_DESC2:
+    'Si necesita crear una aplicación a través de KubeSphere App Store Management, por favor consulte los siguientes pasos:',
+  USE_GUIDE_STEP_1: 'Instale el componente de extensión "KubeSphere App Store Management"',
+  USE_GUIDE_STEP_2:
+    'Cree una plantilla de aplicación en un espacio de empresa personalizado y envíela para su aprobación',
+  USE_GUIDE_STEP_3:
+    '"El administrador del sistema" aprueba la plantilla de aplicación a través de "KubeSphere App Store Management" y la lista en la App Store',
+  USE_GUIDE_STEP_4:
+    'Luego, los usuarios de cada proyecto pueden crear aplicaciones a través de KubeSphere App Store',
 };
