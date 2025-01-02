@@ -9,7 +9,7 @@ import { Button, Modal, notify } from '@kubed/components';
 import Icon from '../../Icon';
 import { useV3action } from '../../../hooks';
 import { openpitrixStore, workspaceStore } from '../../../stores';
-import { getCreateAppParams } from '../../../utils';
+import { getCreateAppParams, getCreateAppParamsFormData } from '../../../utils';
 import { CreateHelmApp } from './CreateHelmApp';
 import { CreateYamlApp } from './CreateYamlApp';
 import { Header, HeaderFieldItem, Logo, FieldItem } from './styles';
@@ -17,6 +17,7 @@ import { Header, HeaderFieldItem, Logo, FieldItem } from './styles';
 type Props = {
   visible?: boolean;
   onOk?: (data: any, params: any) => void;
+  onOkFormData?: (data: any, formData: FormData, params: any) => void;
   onCancel?: () => void;
   tableRef?: any;
   workspace?: string;
@@ -27,7 +28,7 @@ type Props = {
 
 type ModalType = 'create_helm' | 'create_yaml' | 'create_edge';
 
-const { createApp } = openpitrixStore;
+const { createApp, createAppFormData } = openpitrixStore;
 const { useFetchWorkspaceQuery } = workspaceStore;
 
 export function CreateApp({
@@ -35,6 +36,7 @@ export function CreateApp({
   onCancel,
   tableRef,
   onOk,
+  onOkFormData,
   workspace = '',
   isDetail,
   appName,
@@ -104,6 +106,27 @@ export function CreateApp({
     onCancel?.();
     tableRef?.current?.refetch();
   }
+
+  // todo 当使用 formData 时，且外部传递操作函数，使用onOkFormData
+  async function handleCreateFormData(fileData: any, formData: FormData): Promise<void> {
+    fileData.maintainers = [{ name: globals.user.username }];
+    fileData.workspace = workspace;
+    if (onOkFormData) {
+      onOkFormData(getCreateAppParamsFormData(fileData), formData, { workspace });
+      notify.success(t('UPLOAD_SUCCESSFUL'));
+
+      setModalVisible(false);
+      onCancel?.();
+      tableRef?.current?.refetch();
+      return;
+    }
+    sessionStorage.removeItem('appType');
+    await createAppFormData({ workspace }, fileData, formData);
+    notify.success(t('UPLOAD_SUCCESSFUL'));
+    setModalVisible(false);
+    onCancel?.();
+    tableRef?.current?.refetch();
+  }
   function renderModal() {
     if (modalType === 'create_helm') {
       return (
@@ -111,6 +134,7 @@ export function CreateApp({
           visible={modalVisible}
           onCancel={() => setModalVisible(false)}
           onOk={handleCreate}
+          onOkFormData={!onOk || onOkFormData ? handleCreateFormData : undefined}
         />
       );
     }

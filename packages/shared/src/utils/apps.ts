@@ -66,6 +66,19 @@ export function getCreateAppParams(data: Record<string, any>) {
   };
 }
 
+export function getCreateAppParamsFormData(data: Record<string, any>) {
+  const { appName, versionName, workspace, ...otherData } = data;
+  return {
+    repoName: 'upload',
+    originalName: appName,
+    categoryName: getUncategorizedApp,
+    appName: appName || undefined,
+    versionName,
+    workspace,
+    ...otherData,
+  };
+}
+
 export function getCategoryDisplayName(name: string): string {
   if (!name) return '-';
   if (name === getUncategorizedApp) {

@@ -7,7 +7,13 @@ import { isArray, isString, keys } from 'lodash';
 import { useQuery, UseQueryOptions, UseQueryResult } from 'react-query';
 
 import { Constants } from '../../constants';
-import { downloadFileFromBase64, request, safeAtob, getCreateAppParams } from '../../utils';
+import {
+  downloadFileFromBase64,
+  request,
+  safeAtob,
+  getCreateAppParams,
+  getCreateAppParamsFormData,
+} from '../../utils';
 
 import { BaseUrlParams, getBaseUrl } from './base';
 
@@ -46,6 +52,12 @@ export function handleFileByBase64Str(file: File, callBack: (base64Str: string) 
 
     return callBack(base64Str);
   });
+}
+
+export function handleFileFormData(file: File, callBack: (formData: FormData) => void) {
+  const formData = new FormData();
+  formData.append('file', file);
+  callBack(formData);
 }
 
 type ValidateResponse = {
@@ -101,6 +113,55 @@ export async function validatePackage({
   return response;
 }
 
+export async function validatePackageFormData({
+  formData,
+  appName,
+  versionName,
+  workspace,
+}: {
+  formData: FormData;
+  appName?: string;
+  name?: string;
+  versionName?: string;
+  workspace?: string;
+}): Promise<Omit<ValidatePackageResponse, 'base64Str'>> {
+  const data: Record<string, string | undefined> = getCreateAppParamsFormData({
+    appType: 'helm',
+    appName,
+    versionName,
+    workspace,
+  });
+
+  const jsonData = JSON.stringify(data);
+  formData.append('jsonData', jsonData);
+
+  const result: ValidateResponse | undefined = await request.post(
+    `${getBaseUrl(
+      { workspace, appName: appName, name: appName ? 'versions' : 'apps' },
+      resourceName,
+    )}?validate=true`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    },
+  );
+
+  const response: Omit<ValidatePackageResponse, 'base64Str'> = result ? { ...result } : {};
+
+  // if (result?.versionName) {
+  //   response.base64Str = base64Str;
+  // }
+
+  if (result?.errorDetails) {
+    response.error = 'MISS_FILE_NOTE';
+    response.missFile = keys(result.errorDetails);
+  }
+
+  return response;
+}
+
 export type UploadPackageParams = {
   base64Str?: string;
   version_type?: string;
@@ -112,6 +173,8 @@ export type UploadPackageParams = {
   version_package?: string;
   package?: string;
 };
+
+export type UploadPackageParamsFormData = Omit<Omit<UploadPackageParams, 'base64Str'>, 'package'>;
 
 /**
  *
@@ -126,6 +189,15 @@ export async function uploadPackage(
   return callFun?.(params);
 }
 
+export async function uploadPackageFormData(
+  type: string,
+  params: UploadPackageParamsFormData,
+  formData: FormData,
+  callFun?: (data: UploadPackageParamsFormData, form: FormData) => any,
+) {
+  return callFun?.(params, formData);
+}
+
 export type FileError = string;
 
 export function checkFile(uploadFile: File, type: string): FileError {
@@ -137,6 +209,16 @@ export function checkFile(uploadFile: File, type: string): FileError {
 
   if (uploadFile.size > rule.size) {
     return `FILE_MAX_${type.toLocaleUpperCase()}`;
+  }
+
+  return '';
+}
+
+export function checkFileFormData(uploadFile: File, type: string): FileError {
+  const rule = Constants.UPLOAD_CHECK_RULES[type];
+
+  if (!rule.format.test(uploadFile.name.toLocaleLowerCase())) {
+    return `FILE_FORMAT_${type.toLocaleUpperCase()}`;
   }
 
   return '';
