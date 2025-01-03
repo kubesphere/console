@@ -2,7 +2,6 @@
  * Please refer to the LICENSE file in the root directory of the project.
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
-
 module.exports = {
   // Banner
   APP_CATEGORY_PL: '應用類別',
@@ -13,8 +12,7 @@ module.exports = {
   // All Categories > Add
   ENTER_CATEGORY_NAME_TIP: '請輸入類別名稱。',
   CATEGORY_NAME_DESC: '名稱可包含任意字元，最長 20 個字元。',
-  APP_CATEGORY_NAME_DESC:
-    '名稱只能包含小寫字母、數字、隔符號（-）和點（.），必須以小寫字母或數字開頭及結尾，最長 20 個字元。',
+  APP_CATEGORY_NAME_DESC: 'The name must consist of lower case alphanumeric characters, (-) or (.) and must start and end with an alphanumeric character.',
   // All Categories > Eit
   // All Categories > Delete
   DELETE_CATEGORY_DESC: '您確定要刪除類別 <b>{name}</b> 嗎?',
@@ -22,5 +20,5 @@ module.exports = {
   // List > Change Category
   CHANGED_SUCCESSFULLY: '已更改成功',
   CHANGE_CATEGORY: '調整類別',
-  CHANGE_CATEGORY_DESC: '應用類別將決定該應用在應用商店中的類別',
+  CHANGE_CATEGORY_DESC: '應用類別將決定該應用在應用商店中的類別'
 };

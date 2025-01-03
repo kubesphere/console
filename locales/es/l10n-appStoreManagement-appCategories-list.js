@@ -2,21 +2,17 @@
  * Please refer to the LICENSE file in the root directory of the project.
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
-
 module.exports = {
   // Banner
   APP_CATEGORY_PL: 'Categorias de Aplicación',
-  APP_CATEGORIES_DESC:
-    'Este módulo te permite crear, editar y eliminar categorías; así como clasificar las aplicaciones activas de la Tienda.',
+  APP_CATEGORIES_DESC: 'Este módulo te permite crear, editar y eliminar categorías; así como clasificar las aplicaciones activas de la Tienda.',
   // All Categories
   ALL_CATEGORIES_VALUE: 'Todas las categorías ({value})',
   APP_CATEGORY_EMPTY_DESC: 'Ninguna aplicación pertenece a la categoría.',
   // All Categories > Add
   ENTER_CATEGORY_NAME_TIP: 'Por favor, introduzca un nombre de categoría.',
-  CATEGORY_NAME_DESC:
-    'El nombre puede contener cualquier carácter y el largo máximo es de 20 caracteres.',
-  APP_CATEGORY_NAME_DESC:
-    'El nombre debe consistir en caracteres alfanuméricos en minúsculas, (-) o (.) y debe comenzar y terminar con un carácter alfanumérico.',
+  CATEGORY_NAME_DESC: 'El nombre puede contener cualquier carácter y el largo máximo es de 20 caracteres.',
+  APP_CATEGORY_NAME_DESC: 'The name must consist of lower case alphanumeric characters, (-) or (.) and must start and end with an alphanumeric character.',
   // All Categories > Eit
   // All Categories > Delete
   DELETE_CATEGORY_DESC: '¿Está seguro que desea eliminar la categoría <b>{name}</b>?',
@@ -24,6 +20,5 @@ module.exports = {
   // List > Change Category
   CHANGED_SUCCESSFULLY: 'Cambiado exitosamente.',
   CHANGE_CATEGORY: 'Cambiar Categoría',
-  CHANGE_CATEGORY_DESC:
-    'La clasificación de la aplicación determinará la clasificación de la aplicación en la Tienda de Aplicaciones.',
+  CHANGE_CATEGORY_DESC: 'La clasificación de la aplicación determinará la clasificación de la aplicación en la Tienda de Aplicaciones.'
 };
