@@ -137,8 +137,8 @@ export function PackageUpload({
     setUploadStatus(status);
     onCheckStatusChangeFormData?.({ status, formData, ...result });
 
-    // todo 当使用 formdata
-    // todo type === MODIFY_VERSION 且需要外部传递函数，使用 onOkFormData
+    // todo when using formdata
+    // todo type === MODIFY_VERSION and an external operation function is passed，use onOkFormData
     if (type === 'MODIFY_VERSION' && status === 'success') {
       const uploadData = {
         versionID: versionID || result.versionID,
