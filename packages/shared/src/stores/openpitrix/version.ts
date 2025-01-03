@@ -93,6 +93,23 @@ export async function updateVersion<T>(
   return request.post(url, data);
 }
 
+export async function updateVersionFormData<T>(
+  { appName, versionID, workspace }: BaseUrlParams,
+  data: T,
+  formData: FormData,
+): Promise<any> {
+  const url = getBaseUrl({ appName, versionID, workspace }, resourceName);
+
+  const jsonData = JSON.stringify(data);
+  formData.append('jsonData', jsonData);
+
+  return request.post(url, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+}
+
 export function handleVersion({ appName, versionID }: BaseUrlParams, data: any): Promise<any> {
   const url = getBaseUrl({ appName, versionID, name: 'action' }, resourceName);
 

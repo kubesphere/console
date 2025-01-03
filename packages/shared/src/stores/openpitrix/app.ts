@@ -14,6 +14,7 @@ import {
   request,
   addCreateAppUrl,
   getCreateAppParams,
+  getCreateAppParamsFormData,
 } from '../../utils';
 
 import { BaseUrlParams, defaultUrl, getBaseUrl, useBaseList } from './base';
@@ -92,6 +93,19 @@ export function createApp({ workspace }: BaseUrlParams, data: any): Promise<any>
   const url = getBaseUrl({ workspace }, resourceName);
 
   return request.post(addCreateAppUrl(url), getCreateAppParams(data));
+}
+
+export function createAppFormData({ workspace }: BaseUrlParams, data: any, formData: FormData) {
+  const url = getBaseUrl({ workspace }, resourceName);
+  const requestData = getCreateAppParamsFormData(data);
+  const jsonData = JSON.stringify(requestData);
+  formData.append('jsonData', jsonData);
+
+  return request.post(addCreateAppUrl(url), formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 }
 
 export function EditApp({ workspace, appName }: BaseUrlParams, params: any): Promise<any> {
