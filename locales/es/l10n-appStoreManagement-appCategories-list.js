@@ -15,6 +15,8 @@ module.exports = {
   ENTER_CATEGORY_NAME_TIP: 'Por favor, introduzca un nombre de categoría.',
   CATEGORY_NAME_DESC:
     'El nombre puede contener cualquier carácter y el largo máximo es de 20 caracteres.',
+  APP_CATEGORY_NAME_DESC:
+    'El nombre debe consistir en caracteres alfanuméricos en minúsculas, (-) o (.) y debe comenzar y terminar con un carácter alfanumérico.',
   // All Categories > Eit
   // All Categories > Delete
   DELETE_CATEGORY_DESC: '¿Está seguro que desea eliminar la categoría <b>{name}</b>?',

@@ -14,7 +14,9 @@ module.exports = {
   // All Categories > Add
   ENTER_CATEGORY_NAME_TIP: '请输入分类名称。',
   CATEGORY_NAME_DESC: '名称可包含任意字符，最长 20 个字符。',
-  // All Categories > Eit
+  APP_CATEGORY_NAME_DESC:
+    '名称只能包含小写字母、数字、连字符（-）和句点（.），必须以小写字母或数字开头及结尾，最长 20 个字符',
+  // All Categories > Eikt
   // All Categories > Delete
   DELETE_CATEGORY_DESC: '您确定要删除分类 <b>{name}</b> 吗?',
   // List
