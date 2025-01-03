@@ -13,6 +13,8 @@ module.exports = {
   // All Categories > Add
   ENTER_CATEGORY_NAME_TIP: '請輸入類別名稱。',
   CATEGORY_NAME_DESC: '名稱可包含任意字元，最長 20 個字元。',
+  APP_CATEGORY_NAME_DESC:
+    '名稱只能包含小寫字母、數字、隔符號（-）和點（.），必須以小寫字母或數字開頭及結尾，最長 20 個字元。',
   // All Categories > Eit
   // All Categories > Delete
   DELETE_CATEGORY_DESC: '您確定要刪除類別 <b>{name}</b> 嗎?',

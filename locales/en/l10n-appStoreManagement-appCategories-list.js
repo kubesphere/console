@@ -15,6 +15,8 @@ module.exports = {
   ENTER_CATEGORY_NAME_TIP: 'Please enter a category name.',
   CATEGORY_NAME_DESC:
     'The name can contain any characters and the maximum length is 20 characters.',
+  APP_CATEGORY_NAME_DESC:
+    'The name must consist of lower case alphanumeric characters, (-) or (.) and must start and end with an alphanumeric character.',
   // All Categories > Eit
   // All Categories > Delete
   DELETE_CATEGORY_DESC: 'Are you sure you want to delete the category <b>{name}</b>?',
