@@ -29,7 +29,11 @@ type Props = {
   appName?: string;
   type?: string;
   onOk?: (data: PackageInfo) => void;
+  onOkFormData?: (data: any, formData: FormData) => void;
   onCheckStatusChange?: (status: any) => void;
+  onCheckStatusChangeFormData?: (status: any) => void;
+  initCheckedStatus?: () => void;
+  initCheckedStatusFormData?: () => void;
   hasPackage?: boolean;
   canCreate?: boolean;
   canEdit?: boolean;
@@ -56,7 +60,11 @@ export function PackageUpload({
   versionID,
   type = 'CREATE_APP',
   onOk,
+  onOkFormData,
   onCheckStatusChange,
+  onCheckStatusChangeFormData,
+  initCheckedStatus,
+  initCheckedStatusFormData,
   updateTime = '',
   packageName,
   className,
@@ -64,7 +72,16 @@ export function PackageUpload({
   appType,
   disabledUpload,
 }: Props): JSX.Element {
-  const { checkFile, handleFileByBase64Str, validatePackage, uploadPackage } = fileStore;
+  const {
+    checkFile,
+    checkFileFormData,
+    handleFileByBase64Str,
+    handleFileFormData,
+    validatePackage,
+    validatePackageFormData,
+    uploadPackage,
+    uploadPackageFormData,
+  } = fileStore;
   const state: Record<string, any> = {};
   const { workspace = ws } = useParams();
   const [errorInfo, setErrorInfo] = useState<any>('');
@@ -108,16 +125,58 @@ export function PackageUpload({
     }
   }
 
+  async function packageValidatorFormData(formData: FormData): Promise<any> {
+    const result = await validatePackageFormData({
+      formData,
+      appName,
+      workspace,
+    });
+    const status = result.error ? 'error' : 'success';
+    setMissFile(result.missFile);
+    setErrorInfo(result.error);
+    setUploadStatus(status);
+    onCheckStatusChangeFormData?.({ status, formData, ...result });
+
+    // todo when using formdata
+    // todo type === MODIFY_VERSION and an external operation function is passed，use onOkFormData
+    if (type === 'MODIFY_VERSION' && status === 'success') {
+      const uploadData = {
+        versionID: versionID || result.versionID,
+        appName: appName,
+        workspace,
+        name: result.versionName,
+        // package: result.base64Str || base64Str,
+      };
+      uploadPackageFormData(type, uploadData, formData, (data: any, form: FormData) => {
+        onOkFormData?.(data, form);
+      });
+      setUploadStatus('init');
+    }
+  }
+
   async function checkPackage(file: File): Promise<void> {
+    initCheckedStatusFormData?.();
+    initCheckedStatus?.();
+
     setUploadStatus('uploading');
     setFileName(file.name);
 
-    const result = checkFile?.(file, 'package');
-    if (!result) {
-      return handleFileByBase64Str?.(file, packageValidator);
+    if (onCheckStatusChangeFormData || onOkFormData) {
+      const result = checkFileFormData?.(file, 'package');
+      if (!result) {
+        return handleFileFormData?.(file, packageValidatorFormData);
+      }
+
+      setErrorInfo(result);
+    } else {
+      const result = checkFile?.(file, 'package');
+      if (!result) {
+        return handleFileByBase64Str?.(file, packageValidator);
+      }
+
+      setErrorInfo(result);
     }
 
-    setErrorInfo(result);
     setUploadStatus('error');
     return Promise.reject();
   }
