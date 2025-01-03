@@ -47,4 +47,5 @@ module.exports = {
   TCP_PORT: 'Comprobación de puerto TCP',
   // List > Create > Storage Settings
   MOUNT_PATH_IN_USE: 'El punto de montaje ya está en uso',
+  GRPC_PORT: 'Comprobación de puerto GRPC',
 };
