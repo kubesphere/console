@@ -209,7 +209,9 @@ function Extensions() {
           return (
             <ExtensionField
               value={
-                <Link to={EXTENSIONS_PAGE_PATHS.manager.getDetail(name)}>{localeDisplayName}</Link>
+                <Link to={EXTENSIONS_PAGE_PATHS.management.getDetail(name)}>
+                  {localeDisplayName}
+                </Link>
               }
               label={localeDescription}
               avatar={<Icon src={displayIcon} alt={localeDisplayName} />}

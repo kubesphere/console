@@ -9,8 +9,8 @@ import type { RouteObject } from 'react-router-dom';
 import { EXTENSIONS_PAGE_PATHS } from '../../../constants/extension';
 import ExtensionsMarketplace from '../Marketplace';
 import ExtensionsMarketplaceDetail from '../Marketplace/Detail';
-import ExtensionsManager from '../Manager';
-import ExtensionsManagerDetail from '../Manager/Detail';
+import { ExtensionsManagement } from '../Management';
+import { ExtensionsManagementDetail } from '../Management/Detail';
 
 const routes: RouteObject[] = [
   {
@@ -26,16 +26,16 @@ const routes: RouteObject[] = [
     element: <ExtensionsMarketplaceDetail />,
   },
   {
-    path: EXTENSIONS_PAGE_PATHS.manager.index,
-    element: <ExtensionsManager />,
+    path: EXTENSIONS_PAGE_PATHS.management.index,
+    element: <ExtensionsManagement />,
   },
   {
-    path: EXTENSIONS_PAGE_PATHS.manager.getDetail(':name'),
-    element: <ExtensionsManagerDetail />,
+    path: EXTENSIONS_PAGE_PATHS.management.getDetail(':name'),
+    element: <ExtensionsManagementDetail />,
   },
   {
-    path: EXTENSIONS_PAGE_PATHS.manager.getDetail(':name', { version: ':version' }),
-    element: <ExtensionsManagerDetail />,
+    path: EXTENSIONS_PAGE_PATHS.management.getDetail(':name', { version: ':version' }),
+    element: <ExtensionsManagementDetail />,
   },
 ];
 
