@@ -58,7 +58,7 @@ function ActionButtons({ page, formattedExtension, formattedMarketplaceConfig }:
     }
   };
 
-  const handleManageButtonClick = () => navigate(EXTENSIONS_PAGE_PATHS.manager.getDetail(name));
+  const handleManageButtonClick = () => navigate(EXTENSIONS_PAGE_PATHS.management.getDetail(name));
 
   if (actionType === 'subscribe') {
     return (
@@ -82,7 +82,7 @@ function ActionButtons({ page, formattedExtension, formattedMarketplaceConfig }:
           visible={modal.isOpen}
           title={t('BIND_MARKETPLACE_ACCOUNT')}
           okText={t('GO')}
-          onOk={() => navigate(EXTENSIONS_PAGE_PATHS.manager.index)}
+          onOk={() => navigate(EXTENSIONS_PAGE_PATHS.management.index)}
           onCancel={modal.close}
         >
           <ConfirmModalContent>{t('BIND_MARKETPLACE_ACCOUNT_DESCRIPTION')}</ConfirmModalContent>

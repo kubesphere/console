@@ -10,7 +10,7 @@ import { PlugCircle } from '@kubed/icons';
 import { Extensions } from './components/Extensions';
 import { Wrapper } from './styles';
 
-export default function ExtensionsManager() {
+export function ExtensionsManagement() {
   return (
     <Wrapper>
       <Banner
