@@ -25,11 +25,6 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   column-gap: 4px;
-
-  svg.kubed-icon {
-    color: rgba(255, 255, 255, 0.9);
-    fill: ${({ theme }) => theme.palette.colors.blue[2]};
-  }
 `;
 
 export const Title = styled.h5`

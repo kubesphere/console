@@ -23,6 +23,7 @@ export { default as Pagination } from './Pagination';
 export { default as Avatar } from './Avatar';
 export { default as StatusReason } from './StatusReason';
 
+export * from './Modals/Confirm';
 export * from './Modals/EnterLicense';
 export * from './Modals/FullScreenModal';
 export * from './Modals/KubeCtl';
