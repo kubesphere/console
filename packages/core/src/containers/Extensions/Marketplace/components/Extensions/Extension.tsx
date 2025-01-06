@@ -39,7 +39,7 @@ function Extension({ formattedExtension, formattedMarketplaceConfig }: Extension
   const localeProviderName = localeProvider?.name;
   // const isSubscribed = marketplace?.isSubscribed;
   // const detailPath =
-  // EXTENSIONS_PAGE_PATHS[isSubscribed ? 'manager' : 'marketplace'].getDetail(name);
+  // EXTENSIONS_PAGE_PATHS[isSubscribed ? 'management' : 'marketplace'].getDetail(name);
   const detailPath = EXTENSIONS_PAGE_PATHS.marketplace.getDetail(name);
 
   const ref = useRef<HTMLParagraphElement>(null);

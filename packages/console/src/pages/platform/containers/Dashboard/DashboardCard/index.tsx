@@ -76,7 +76,7 @@ const DashboardCard = () => {
       title: 'EXTENSIONS_CENTER',
       desc: 'EXTENSION_DESC',
       name: 'INSTALLED_COMPONENT',
-      link: '/extensions/manager',
+      link: '/extensions/management',
       metric: 'platform_installplan_count',
       label: 'Powered by LuBan',
       hide: hideExtensions,

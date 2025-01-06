@@ -40,7 +40,7 @@ function ExternalDependency({
   const localeDescription = dependencyFormattedExtension?.localeDescription;
 
   const nameContent = isExtensionExists ? (
-    <Link to={EXTENSIONS_PAGE_PATHS.manager.getDetail(name)}>{dependencyLocaleDisplayName}</Link>
+    <Link to={EXTENSIONS_PAGE_PATHS.management.getDetail(name)}>{dependencyLocaleDisplayName}</Link>
   ) : (
     <ExtensionNotExistsNameWrapper>
       <span>{dependencyLocaleDisplayName}</span>

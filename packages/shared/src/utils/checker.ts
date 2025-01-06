@@ -62,8 +62,8 @@ export const isExtensionsMarketplacePage = (path = location.pathname, isIndex?: 
   return path === indexPage || path.startsWith(`${indexPage}/`);
 };
 
-const isExtensionsManagerDetailPage = (path = location.pathname) => {
-  const indexPage = '/extensions/manager';
+const isExtensionsManagementDetailPage = (path = location.pathname) => {
+  const indexPage = '/extensions/management';
 
   return path.startsWith(`${indexPage}/`);
 };
@@ -73,7 +73,7 @@ export const isDarkHeader = (path = location.pathname) => {
 };
 
 export const isTransparentHeader = (path = location.pathname) => {
-  return isExtensionsMarketplacePage(path) || isExtensionsManagerDetailPage(path);
+  return isExtensionsMarketplacePage(path) || isExtensionsManagementDetailPage(path);
 };
 
 export const isMemberClusterPage = (path = location.pathname, message: string) => {
