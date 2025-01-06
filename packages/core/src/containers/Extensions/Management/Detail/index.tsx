@@ -30,7 +30,7 @@ import { DetailActionButtons } from '../components/DetailActionButtons';
 import { InstalledVersionWrapper } from './styles';
 import { useMarketplaceConfigQuery } from '../../../../stores/marketplace';
 
-export default function ExtensionsManagerDetail() {
+export function ExtensionsManagementDetail() {
   const navigate = useNavigate();
   const { name: extensionName = '', version: pathVersion } = useParams();
   const {
@@ -257,11 +257,11 @@ export default function ExtensionsManagerDetail() {
       isShowInstalledClusters={Boolean(isInstalled && isMultiClusterInstallation)}
       onVersionChange={(selectedVersion: string) =>
         navigate(
-          EXTENSIONS_PAGE_PATHS.manager.getDetail(extensionName, { version: selectedVersion }),
+          EXTENSIONS_PAGE_PATHS.management.getDetail(extensionName, { version: selectedVersion }),
           { replace: true },
         )
       }
-      onBackButtonClick={() => navigate(EXTENSIONS_PAGE_PATHS.manager.index)}
+      onBackButtonClick={() => navigate(EXTENSIONS_PAGE_PATHS.management.index)}
     />
   );
 }
