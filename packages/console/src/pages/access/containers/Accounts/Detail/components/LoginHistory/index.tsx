@@ -59,7 +59,6 @@ export default function LoginHistory() {
       columns={columns}
       format={data => formatUserLoginRecord(data as OriginalUserLoginRecord)}
       showToolbar={false}
-      showFooter="only-multi-page"
       serverDataFormat={formatServerData}
       header={<Header>{t('LOGIN_HISTORY')}</Header>}
     />
