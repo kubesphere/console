@@ -4,13 +4,12 @@
  */
 
 import React from 'react';
-import type { ModalProps } from '@kubed/components';
-import { Question } from '@kubed/icons';
 
-import { StyledModal, Header, Title, Description } from './ResetDefaultConfigConfirmModal.styles';
+import type { ConfirmModalProps } from '@ks-console/shared';
+import { ConfirmModal } from '@ks-console/shared';
 
 type ResetDefaultConfigConfirmModalProps = Pick<
-  ModalProps,
+  ConfirmModalProps,
   'visible' | 'confirmLoading' | 'onCancel' | 'onOk'
 >;
 
@@ -21,19 +20,14 @@ export function ResetDefaultConfigConfirmModal({
   onOk,
 }: ResetDefaultConfigConfirmModalProps) {
   return (
-    <StyledModal
+    <ConfirmModal
       visible={visible}
-      header={null}
-      closable={false}
+      titleIconProps={{ type: 'info' }}
+      title={t('RESET_DEFAULT_CONFIGURATION_TITLE')}
+      description={t('RESET_DEFAULT_CONFIGURATION_CONFIRM_DESCRIPTION')}
       confirmLoading={confirmLoading}
       onCancel={onCancel}
       onOk={onOk}
-    >
-      <Header>
-        <Question size={20} />
-        <Title>{t('RESET_DEFAULT_CONFIGURATION_TITLE')}</Title>
-      </Header>
-      <Description>{t('RESET_DEFAULT_CONFIGURATION_CONFIRM_DESCRIPTION')}</Description>
-    </StyledModal>
+    />
   );
 }
