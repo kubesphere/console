@@ -111,14 +111,24 @@ const pickUrlSearchParams = (params: URLSearchParams | string, pickKeys: string[
   return newParams;
 };
 
-export const useUrlSearchParamsStatus = (omitKeys: string[] = []) => {
+export const useUrlSearchParamsStatus = (
+  omitKeys: string[] = [],
+): {
+  state: Partial<TableState>;
+  setState: (state: Partial<TableState>, type: keyof TableState) => void;
+  params: URLSearchParams;
+  setParams: (params: URLSearchParams) => void;
+} => {
   const [params, setParams] = useSearchParams();
   const paramsRef = React.useRef(params.toString());
   const [state, setState] = React.useState<Partial<TableState>>(
     urlParams2Status(omitUrlSearchParams(params, omitKeys)),
   );
 
-  const handleState = React.useCallback((_state: Partial<TableState>) => {
+  const handleState = React.useCallback((_state: Partial<TableState>, type: keyof TableState) => {
+    if (type === 'columnFilters') {
+      set(_state, 'pagination.pageIndex', 0);
+    }
     const newParams = status2UrlParams(_state, pickUrlSearchParams(paramsRef.current, omitKeys));
     setState(_state);
     paramsRef.current = newParams.toString();
