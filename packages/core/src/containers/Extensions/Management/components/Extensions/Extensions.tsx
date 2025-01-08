@@ -156,7 +156,6 @@ export function Extensions() {
       {
         accessorKey: 'q',
         header: t('NAME'),
-        size: 100,
         cell: ({ row }) => {
           const formattedExtension = row.original;
           const { name, displayIcon, localeDisplayName, localeDescription } = formattedExtension;
@@ -225,6 +224,46 @@ export function Extensions() {
           return displayInstallTime ?? '-';
         },
       },
+      /* {
+        id: 'more',
+        field: 'name',
+        title: '',
+        render: (value, row) => {
+          const formattedExtension = row as FormattedExtension;
+
+          return (
+            <ListActionButtons
+              formattedExtension={formattedExtension as FormattedExtension}
+              onInstallButtonClick={() => {
+                setCurrentExtensionName(value);
+                extensionInstallModal.open();
+              }}
+              onUninstallButtonClick={() => {
+                setCurrentExtensionName(value);
+                extensionUninstallConfirmModal.open();
+              }}
+              onForceUninstallButtonClick={() => {
+                setCurrentExtensionName(value);
+                extensionForceUninstallConfirmModal.open();
+              }}
+              onEnabledButtonClick={() =>
+                updateInstallPlanEnabled({
+                  formattedExtension,
+                  enabled: true,
+                  mutate: updateInstallPlanEnabledMutation.mutate,
+                })
+              }
+              onDisabledButtonClick={() =>
+                updateInstallPlanEnabled({
+                  formattedExtension,
+                  enabled: false,
+                  mutate: updateInstallPlanEnabledMutation.mutate,
+                })
+              }
+            />
+          );
+        },
+      }, */
     ],
     [getLocalExtensionStatusItem],
   );
