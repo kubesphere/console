@@ -14,11 +14,14 @@ export const LoadingWrapper = styled.div`
   background-color: #fff;
 `;
 
-export const TableWrapper = styled(Card)`
-  position: relative;
-
-  & > div {
-    padding: 0;
+export const StyledCard = styled(Card)`
+  .kube-table-wrapper {
+    td.table-cell {
+      .field-label {
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+      }
+    }
   }
 `;
 

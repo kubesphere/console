@@ -9,16 +9,20 @@ import { Card } from '@kubed/components';
 
 import { StyledEmpty, LinkButton } from './ExtensionsEmpty.styles';
 
-interface ExtensionsEmptyProps {
+interface GetExtensionsEmptyPropsOptions {
   hasFilters: boolean;
-  onRefresh: () => void;
-  onFiltersClear: () => void;
+  onRefresh?: () => void;
+  onFiltersClear?: () => void;
 }
 
-function ExtensionsEmpty({ hasFilters, onRefresh, onFiltersClear }: ExtensionsEmptyProps) {
-  const refreshButton = <LinkButton onClick={onRefresh}>{t('REFRESH_PAGE')}</LinkButton>;
+export function getExtensionsEmptyProps({
+  hasFilters,
+  onRefresh,
+  onFiltersClear,
+}: GetExtensionsEmptyPropsOptions) {
+  const refreshButton = <LinkButton onClick={() => onRefresh?.()}>{t('REFRESH_PAGE')}</LinkButton>;
   const clearFiltersButton = (
-    <LinkButton onClick={() => onFiltersClear()}>{t('CLEAR_SEARCH_CONDITIONS')}</LinkButton>
+    <LinkButton onClick={() => onFiltersClear?.()}>{t('CLEAR_SEARCH_CONDITIONS')}</LinkButton>
   );
   const imageSize = 48;
 
@@ -42,16 +46,17 @@ function ExtensionsEmpty({ hasFilters, onRefresh, onFiltersClear }: ExtensionsEm
     imageClassName = '';
   }
 
+  return { title, description, image, imageClassName };
+}
+
+type ExtensionsEmptyProps = Required<GetExtensionsEmptyPropsOptions>;
+
+export function ExtensionsEmpty({ hasFilters, onRefresh, onFiltersClear }: ExtensionsEmptyProps) {
+  const props = getExtensionsEmptyProps({ hasFilters, onRefresh, onFiltersClear });
+
   return (
     <Card>
-      <StyledEmpty
-        title={title}
-        description={description}
-        image={image}
-        imageClassName={imageClassName}
-      />
+      <StyledEmpty {...props} />
     </Card>
   );
 }
-
-export { ExtensionsEmpty };
