@@ -309,7 +309,10 @@ export function Extensions() {
           if (!hasFilters) {
             return getExtensionsEmptyProps();
           }
-          return { title: getExtensionsEmptyPropsWithFilters({ hasFilters }).title };
+          return {
+            style: { height: 252 },
+            title: getExtensionsEmptyPropsWithFilters({ hasFilters }).title,
+          };
         },
         toolbar: () => ({ toolbarRight: renderToolbarRight() }),
         filters: () => ({
