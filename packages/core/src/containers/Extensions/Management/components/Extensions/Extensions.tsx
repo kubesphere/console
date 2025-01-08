@@ -156,6 +156,11 @@ export function Extensions() {
       {
         accessorKey: 'q',
         header: t('NAME'),
+        meta: {
+          th: {
+            width: '50%',
+          },
+        },
         cell: ({ row }) => {
           const formattedExtension = row.original;
           const { name, displayIcon, localeDisplayName, localeDescription } = formattedExtension;
@@ -175,6 +180,11 @@ export function Extensions() {
       {
         accessorKey: 'status',
         header: t('INSTALLATION_STATUS'),
+        meta: {
+          th: {
+            width: '10%',
+          },
+        },
         enableHiding: true,
         cell: ({ row }) => {
           const formattedExtension = row.original;
@@ -193,6 +203,11 @@ export function Extensions() {
       {
         accessorKey: 'installedVersion',
         header: t('VERSION'),
+        meta: {
+          th: {
+            width: '10%',
+          },
+        },
         enableHiding: true,
         cell: ({ getValue }) => {
           const value = getValue();
@@ -202,6 +217,11 @@ export function Extensions() {
       {
         accessorKey: 'enabled',
         header: t('ENABLED_STATE'),
+        meta: {
+          th: {
+            width: '10%',
+          },
+        },
         enableHiding: true,
         cell: ({ row }) => {
           const formattedExtension = row.original;
