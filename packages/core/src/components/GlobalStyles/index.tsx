@@ -156,6 +156,30 @@ const GlobalStyles = createGlobalStyle`
       }
      }
   }
+
+  .kube-table-wrapper {
+    padding: 0 12px 12px;
+    table.kube-table {
+      width: 100%;
+    }
+    table.kube-table--max-context {
+      width: max-content;
+    }
+    td.table-cell {
+      .field-content {
+        word-break: break-word;
+      }
+      .field-label {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        white-space: unset;
+      }
+    }
+  }
 `;
 
 export default GlobalStyles;
