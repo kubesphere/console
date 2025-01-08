@@ -7,13 +7,15 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { debounce, find } from 'lodash';
 import { useDeepCompareEffect } from 'react-use';
+import type { ColumnDef } from '@tanstack/react-table';
 import { useDisclosure } from '@kubed/hooks';
-import { LoadingOverlay, Loading } from '@kubed/components';
+import { LoadingOverlay, Loading, Card, DataTable } from '@kubed/components';
 
 import type { Column } from '@ks-console/shared';
 import {
   transformRequestParams,
   useDataTable,
+  useUrlSearchParamsStatus,
   TableWithoutHook,
   TableToolbar,
   TableFooter,
@@ -48,7 +50,13 @@ import { MarketplaceAccount } from './MarketplaceAccount';
 import { ExtensionStatus } from './ExtensionStatus';
 // import { ListActionButtons } from './ListActionButtons';
 import { InstallModal } from '../InstallModal';
-import { LoadingWrapper, TableWrapper, ExtensionField, Icon } from './Extensions.styles';
+import {
+  LoadingWrapper,
+  TableWrapper,
+  ExtensionField,
+  Icon,
+  StyledCard,
+} from './Extensions.styles';
 
 function Extensions() {
   const [kExtensionsQueryParams, setKExtensionsQueryParams] = useState<
@@ -57,6 +65,8 @@ function Extensions() {
       'limit' | 'page' | 'q' | 'status' | 'enabled' | 'sortBy' | 'ascending'
     >
   >(K_EXTENSIONS_QUERY_INITIAL_PARAMS);
+
+  const { state, setState } = useUrlSearchParamsStatus(['']);
 
   const {
     isLoading: isMarketplaceConfigQueryLoading,
@@ -90,6 +100,7 @@ function Extensions() {
   );
   const {
     isLoading: isExtensionsQueryLoading,
+    isFetching: isExtensionsQueryFetching,
     isRefetching,
     totalCount,
     pageCount,
@@ -198,13 +209,13 @@ function Extensions() {
     },
   ];
 
-  const columns: Column[] = useMemo(
+  const columns: ColumnDef<FormattedExtension, any>[] = useMemo(
     () => [
       {
-        title: t('NAME'),
-        field: 'q',
-        render: (value: string, row) => {
-          const formattedExtension = row as FormattedExtension;
+        accessorKey: 'q',
+        header: t('NAME'),
+        cell: ({ row }) => {
+          const formattedExtension = row.original;
           const { name, displayIcon, localeDisplayName, localeDescription } = formattedExtension;
           return (
             <ExtensionField
@@ -220,11 +231,12 @@ function Extensions() {
         },
       },
       {
-        title: t('INSTALLATION_STATUS'),
-        field: 'status',
+        accessorKey: 'status',
+        header: t('INSTALLATION_STATUS'),
         filterOptions: suggestions.find(({ key }) => key === 'status')?.options,
         canHide: true,
-        render: (value, formattedExtension) => {
+        cell: ({ row }) => {
+          const formattedExtension = row.original;
           const { name } = formattedExtension;
           const localExtensionsStatus = getLocalExtensionStatusItem({
             extensionName: name,
@@ -238,18 +250,22 @@ function Extensions() {
         },
       },
       {
-        title: t('VERSION'),
-        field: 'installedVersion',
+        accessorKey: 'installedVersion',
+        header: t('VERSION'),
         canHide: true,
-        render: value => value ?? '-',
+        cell: ({ getValue }) => {
+          const value = getValue();
+          return value ?? '-';
+        },
       },
       {
-        title: t('ENABLED_STATE'),
-        field: 'enabled',
+        accessorKey: 'enabled',
+        header: t('ENABLED_STATE'),
         filterOptions: suggestions.find(({ key }) => key === 'enabled')?.options,
         canHide: true,
-        render: (value, row) => {
-          const { isEnabled, isDisabled } = row as FormattedExtension;
+        cell: ({ row }) => {
+          const formattedExtension = row.original;
+          const { isEnabled, isDisabled } = formattedExtension;
           if (isEnabled) {
             return <StatusIndicator type="success">{t('ENABLED')}</StatusIndicator>;
           }
@@ -260,59 +276,20 @@ function Extensions() {
         },
       },
       {
-        title: t('INSTALLATION_TIME'),
-        field: 'installTimestamp',
-        render: (value: string, row) => {
-          const { displayInstallTime } = row as FormattedExtension;
+        accessorKey: 'installTimestamp',
+        header: t('INSTALLATION_TIME'),
+        cell: ({ row }) => {
+          const formattedExtension = row.original;
+          const { displayInstallTime } = formattedExtension;
           return displayInstallTime ?? '-';
         },
       },
-      /* {
-        id: 'more',
-        field: 'name',
-        title: '',
-        render: (value, row) => {
-          const formattedExtension = row as FormattedExtension;
-
-          return (
-            <ListActionButtons
-              formattedExtension={formattedExtension as FormattedExtension}
-              onInstallButtonClick={() => {
-                setCurrentExtensionName(value);
-                extensionInstallModal.open();
-              }}
-              onUninstallButtonClick={() => {
-                setCurrentExtensionName(value);
-                extensionUninstallConfirmModal.open();
-              }}
-              onForceUninstallButtonClick={() => {
-                setCurrentExtensionName(value);
-                extensionForceUninstallConfirmModal.open();
-              }}
-              onEnabledButtonClick={() =>
-                updateInstallPlanEnabled({
-                  formattedExtension,
-                  enabled: true,
-                  mutate: updateInstallPlanEnabledMutation.mutate,
-                })
-              }
-              onDisabledButtonClick={() =>
-                updateInstallPlanEnabled({
-                  formattedExtension,
-                  enabled: false,
-                  mutate: updateInstallPlanEnabledMutation.mutate,
-                })
-              }
-            />
-          );
-        },
-      }, */
     ],
-    [currentExtensionName, localExtensionStatusItems],
+    [getLocalExtensionStatusItem, suggestions],
   );
 
   const tableData = useMemo(() => formattedExtensions, [JSON.stringify(formattedExtensions)]);
-  const { instance } = useDataTable({
+  /* const { instance } = useDataTable({
     columns,
     data: tableData,
     manualFilters: true,
@@ -320,11 +297,44 @@ function Extensions() {
     manualPagination: true,
     initialState: EXTENSIONS_TABLE_INITIAL_STATE,
     pageCount,
-  });
-  const tableState = instance.state;
-  const { pageSize, pageIndex, filters, sortBy } = tableState;
+  }); */
+  // const tableState = instance.state;
+  // const { pageSize, pageIndex, filters, sortBy } = tableState;
 
-  useDeepCompareEffect(() => {
+  const [baseConfig] = useState(() =>
+    DataTable.getDefaultTableOptions<FormattedExtension>({
+      tableName: 'extensions.management',
+      manual: true,
+    }),
+  );
+  const table = DataTable.useTable<FormattedExtension>({
+    ...baseConfig,
+    columns,
+    loading: isExtensionsQueryFetching,
+    data: tableData,
+    // rowCount: totalCount,
+    state,
+    autoResetPageIndex: true,
+    meta: {
+      ...baseConfig.meta,
+      refetch: refetchExtensions,
+      getProps: {
+        filters: () => ({
+          simpleMode: false,
+          suggestions: suggestions,
+        }),
+      },
+      registerHandlers: [
+        {
+          handlerName: 'onParamsChange',
+          stateKeys: ['pagination', 'columnFilters', 'sorting'],
+        },
+      ],
+    },
+    onParamsChange: setState,
+  });
+
+  /* useDeepCompareEffect(() => {
     const params = transformRequestParams({
       pageSize,
       pageIndex,
@@ -333,7 +343,7 @@ function Extensions() {
       sortBy,
     });
     setKExtensionsQueryParams(params);
-  }, [tableState.pageSize, tableState.pageIndex, tableState.filters, tableState.sortBy]);
+  }, [tableState.pageSize, tableState.pageIndex, tableState.filters, tableState.sortBy]); */
 
   if (isMarketplaceConfigQueryLoading) {
     return (
@@ -353,7 +363,10 @@ function Extensions() {
 
   return (
     <>
-      <TableWrapper>
+      <StyledCard padding={0}>
+        <DataTable.DataTable table={table} />
+      </StyledCard>
+      {/* <TableWrapper>
         <TableToolbar
           instance={instance}
           suggestions={suggestions}
@@ -391,7 +404,7 @@ function Extensions() {
         />
         <TableFooter instance={instance} totalCount={totalCount} />
         <LoadingOverlay visible={isRefetching && isManualRefetch} />
-      </TableWrapper>
+      </TableWrapper> */}
       {extensionInstallModal.isOpen && currentFormattedExtension && (
         <InstallModal
           visible={extensionInstallModal.isOpen}
