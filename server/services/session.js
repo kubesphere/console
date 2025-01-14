@@ -252,7 +252,7 @@ const getWorkspaces = async (token, clusterRole) => {
 
   const backendVersion = await sendGatewayRequest({
     method: 'GET',
-    url: `/kapis/version`,
+    url: `/version`,
     token,
   });
   if (backendVersion) {
