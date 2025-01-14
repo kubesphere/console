@@ -3,7 +3,7 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import React, { useRef, useMemo, useCallback } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { Success } from '@kubed/icons';
@@ -11,10 +11,7 @@ import type { DescriptionsProps } from '@kubed/components';
 import { StatusDot } from '@kubed/components';
 
 import { EXTENSIONS_PAGE_PATHS } from '../../../../constants/extension';
-import type {
-  FormattedInstallPlan,
-  UseWatchInstallPlanOptions,
-} from '../../../../stores/extension';
+import type { UseWatchInstallPlanOptions } from '../../../../stores/extension';
 import {
   useExtensionQuery,
   useExtensionVersionQuery,
