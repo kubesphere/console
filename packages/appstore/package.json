@@ -16,10 +16,10 @@
   },
   "peerDependencies": {
     "@ks-console/shared": "^4.1.1",
-    "@kubed/code-editor": "^0.2.21",
-    "@kubed/components": "^0.2.21",
-    "@kubed/hooks": "^0.2.21",
-    "@kubed/icons": "^0.2.21",
+    "@kubed/code-editor": "^0.2.31",
+    "@kubed/components": "^0.2.31",
+    "@kubed/hooks": "^0.2.31",
+    "@kubed/icons": "^0.2.31",
     "react-markdown": "^7.1.1"
   },
   "gitHead": "6380079918d574a833739b35ee51b0d2f72985ee"
