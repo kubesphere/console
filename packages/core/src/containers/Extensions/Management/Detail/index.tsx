@@ -10,7 +10,7 @@ import { Success } from '@kubed/icons';
 import type { DescriptionsProps } from '@kubed/components';
 import { StatusDot } from '@kubed/components';
 
-import { EXTENSIONS_PAGE_PATHS, ExtensionStatusState } from '../../../../constants/extension';
+import { EXTENSIONS_PAGE_PATHS } from '../../../../constants/extension';
 import type { UseWatchInstallPlanOptions } from '../../../../stores/extension';
 import {
   useExtensionQuery,
@@ -192,12 +192,7 @@ export function ExtensionsManagementDetail() {
       }
 
       const currentStatusState = formattedItem.statusState;
-      if (
-        currentStatusState !== formattedInstallPlanRef.current?.statusState &&
-        [ExtensionStatusState.Installed, ExtensionStatusState.Uninstalled].includes(
-          currentStatusState,
-        )
-      ) {
+      if (currentStatusState !== formattedInstallPlanRef.current?.statusState) {
         const localeDisplayName = formattedExtension?.localeDisplayName ?? t('EXTENSION');
         const statusState = formattedItem.statusState;
         const options = { localeDisplayName, statusState };
