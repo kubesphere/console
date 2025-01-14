@@ -36,12 +36,12 @@
     "@ks-console/appstore": "^4.1.1",
     "@ks-console/console": "^4.1.1",
     "@ks-console/shared": "^4.1.1",
-    "@kubed/charts": "^0.2.21",
-    "@kubed/code-editor": "^0.2.21",
-    "@kubed/components": "^0.2.21",
-    "@kubed/hooks": "^0.2.21",
-    "@kubed/icons": "^0.2.21",
-    "@kubed/log-viewer": "^0.2.21"
+    "@kubed/charts": "^0.2.31",
+    "@kubed/code-editor": "^0.2.31",
+    "@kubed/components": "^0.2.31",
+    "@kubed/hooks": "^0.2.31",
+    "@kubed/icons": "^0.2.31",
+    "@kubed/log-viewer": "^0.2.31"
   },
   "gitHead": "f5ad04cf99d7ae5229f4ff770a24af2182d38ab8"
 }
