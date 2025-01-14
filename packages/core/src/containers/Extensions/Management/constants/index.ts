@@ -3,7 +3,7 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-export const DEBOUNCE_WAIT = 1000;
+export const DEBOUNCE_WAIT = 500;
 
 export enum InstallModalActionType {
   ExtensionInstall = 'extension.install',

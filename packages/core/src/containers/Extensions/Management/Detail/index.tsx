@@ -37,8 +37,6 @@ export function ExtensionsManagementDetail() {
   const navigate = useNavigate();
   const { name: extensionName = '', version: pathVersion } = useParams();
 
-  const firstInstallPlanResourceVersionRef = useRef<string | null>(null);
-  const isInstallPlanWatchedRef = useRef(false);
   const currentUseWatchInstallPlanOptionsRef = useRef<PartialUseWatchInstallPlanOptions | null>(
     null,
   );
@@ -120,10 +118,6 @@ export function ExtensionsManagementDetail() {
     extensionName,
     isIgnoreErrorNotify: true,
     onSuccess: ({ resourceVersion, statusState, statusConditions }) => {
-      if (firstInstallPlanResourceVersionRef.current === null) {
-        firstInstallPlanResourceVersionRef.current = resourceVersion;
-      }
-
       if (isLocalInstalling || isLocalUpgrading) {
         onFetchSuccess({
           statusState,
@@ -157,8 +151,8 @@ export function ExtensionsManagementDetail() {
 
   const debouncedRefetchInstallPlan = debounce(refetchInstallPlan, DEBOUNCE_WAIT);
   const partialUseWatchInstallPlanOptions: PartialUseWatchInstallPlanOptions = useMemo(() => {
-    if (isInstallPlanWatchedRef.current) {
-      return currentUseWatchInstallPlanOptionsRef.current ?? {};
+    if (currentUseWatchInstallPlanOptionsRef.current?.enabled) {
+      return currentUseWatchInstallPlanOptionsRef.current;
     }
 
     if (!isExtensionQueryFetched) {
@@ -180,28 +174,30 @@ export function ExtensionsManagementDetail() {
     isInstallPlanQueryFetched,
     formattedInstallPlan?.resourceVersion,
   ]);
+  console.log('out', formattedInstallPlan?.statusState);
   currentUseWatchInstallPlanOptionsRef.current = partialUseWatchInstallPlanOptions;
   useWatchInstallPlan({
     ...partialUseWatchInstallPlanOptions,
     extensionName,
     onMessage: data => {
-      debouncedRefetchExtension();
-
       const { formattedItem } = data.message;
+
+      console.log('in', formattedInstallPlan?.statusState);
 
       if (!formattedItem) {
         return;
       }
 
+      debouncedRefetchExtension();
       debouncedRefetchInstallPlan();
 
-      const localeDisplayName = formattedExtension?.localeDisplayName ?? t('EXTENSION');
-      const statusState = formattedItem.statusState;
-      const options = { localeDisplayName, statusState };
-      if (formattedItem.statusState !== formattedExtension?.statusState) {
+      if (formattedItem.statusState !== formattedInstallPlan?.statusState) {
+        const localeDisplayName = formattedExtension?.localeDisplayName ?? t('EXTENSION');
+        const statusState = formattedItem.statusState;
+        const options = { localeDisplayName, statusState };
         handleInstalled(options);
+        handleUninstalled(options);
       }
-      handleUninstalled(options);
     },
   });
 
