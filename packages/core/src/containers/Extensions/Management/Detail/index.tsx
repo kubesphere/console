@@ -117,7 +117,7 @@ export function ExtensionsManagementDetail() {
     enabled: enabledInstallPlanQuery,
     extensionName,
     isIgnoreErrorNotify: true,
-    onSuccess: ({ resourceVersion, statusState, statusConditions }) => {
+    onSuccess: ({ statusState, statusConditions }) => {
       if (isLocalInstalling || isLocalUpgrading) {
         onFetchSuccess({
           statusState,
