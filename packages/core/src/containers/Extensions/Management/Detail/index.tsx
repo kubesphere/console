@@ -3,7 +3,7 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { Success } from '@kubed/icons';
@@ -11,7 +11,10 @@ import type { DescriptionsProps } from '@kubed/components';
 import { StatusDot } from '@kubed/components';
 
 import { EXTENSIONS_PAGE_PATHS } from '../../../../constants/extension';
-import type { UseWatchInstallPlanOptions } from '../../../../stores/extension';
+import type {
+  FormattedInstallPlan,
+  UseWatchInstallPlanOptions,
+} from '../../../../stores/extension';
 import {
   useExtensionQuery,
   useExtensionVersionQuery,
@@ -127,6 +130,8 @@ export function ExtensionsManagementDetail() {
       }
     },
   });
+  const formattedInstallPlanRef = useRef(formattedInstallPlan);
+  formattedInstallPlanRef.current = formattedInstallPlan;
 
   const debouncedRefetchExtension = debounce(refetchExtension, DEBOUNCE_WAIT);
 
@@ -175,16 +180,12 @@ export function ExtensionsManagementDetail() {
     formattedInstallPlan?.resourceVersion,
   ]);
 
-  console.log('out', formattedInstallPlan?.statusState);
-
   currentUseWatchInstallPlanOptionsRef.current = partialUseWatchInstallPlanOptions;
   useWatchInstallPlan({
     ...partialUseWatchInstallPlanOptions,
     extensionName,
     onMessage: data => {
       const { formattedItem } = data.message;
-
-      console.log('in', formattedInstallPlan?.statusState);
 
       if (!formattedItem) {
         return;
@@ -193,7 +194,7 @@ export function ExtensionsManagementDetail() {
       debouncedRefetchExtension();
       debouncedRefetchInstallPlan();
 
-      if (formattedItem.statusState !== formattedInstallPlan?.statusState) {
+      if (formattedItem.statusState !== formattedInstallPlanRef.current?.statusState) {
         const localeDisplayName = formattedExtension?.localeDisplayName ?? t('EXTENSION');
         const statusState = formattedItem.statusState;
         const options = { localeDisplayName, statusState };
