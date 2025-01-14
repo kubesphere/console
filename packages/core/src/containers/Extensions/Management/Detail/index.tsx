@@ -17,7 +17,6 @@ import {
   useExtensionVersionQuery,
   useInstallPlanQuery,
   useWatchInstallPlan,
-  useWatchExtension,
 } from '../../../../stores/extension';
 import { getExtensionBasicInfo } from '../../utils/extension';
 import { ExtensionDetail } from '../../components/ExtensionDetail';
@@ -94,7 +93,6 @@ export function ExtensionsManagementDetail() {
   const isUpgrading = formattedExtension?.isUpgrading;
   const isUninstalling = formattedExtension?.isUninstalling;
   const isEnabled = formattedExtension?.isEnabled;
-  const extensionResourceVersion = formattedExtension?.resourceVersion;
 
   const enabledInstalledExtensionVersionQuery = Boolean(
     extensionName && installedVersion && (isUpgrading || isUninstalling || isInstalled),
@@ -131,25 +129,6 @@ export function ExtensionsManagementDetail() {
   formattedInstallPlanRef.current = formattedInstallPlan;
 
   const debouncedRefetchExtension = debounce(refetchExtension, DEBOUNCE_WAIT);
-
-  // delete later
-  useWatchExtension({
-    enabled: false,
-    extensionName,
-    params: {
-      resourceVersion: extensionResourceVersion,
-    },
-    onMessage: data => {
-      debouncedRefetchExtension();
-      const { formattedItem } = data.message;
-      if (formattedItem) {
-        if (formattedItem.statusState !== formattedExtension?.statusState) {
-          handleInstalled(formattedItem);
-        }
-        handleUninstalled(formattedItem);
-      }
-    },
-  });
 
   const debouncedRefetchInstallPlan = debounce(refetchInstallPlan, DEBOUNCE_WAIT);
   const partialUseWatchInstallPlanOptions: PartialUseWatchInstallPlanOptions = useMemo(() => {
