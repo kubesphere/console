@@ -174,7 +174,9 @@ export function ExtensionsManagementDetail() {
     isInstallPlanQueryFetched,
     formattedInstallPlan?.resourceVersion,
   ]);
+
   console.log('out', formattedInstallPlan?.statusState);
+
   currentUseWatchInstallPlanOptionsRef.current = partialUseWatchInstallPlanOptions;
   useWatchInstallPlan({
     ...partialUseWatchInstallPlanOptions,
