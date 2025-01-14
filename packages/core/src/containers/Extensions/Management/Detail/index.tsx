@@ -3,7 +3,7 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import React from 'react';
+import React, { useRef, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { Success } from '@kubed/icons';
@@ -11,6 +11,7 @@ import type { DescriptionsProps } from '@kubed/components';
 import { StatusDot } from '@kubed/components';
 
 import { EXTENSIONS_PAGE_PATHS } from '../../../../constants/extension';
+import type { UseWatchInstallPlanOptions } from '../../../../stores/extension';
 import {
   useExtensionQuery,
   useExtensionVersionQuery,
@@ -30,9 +31,18 @@ import { DetailActionButtons } from '../components/DetailActionButtons';
 import { InstalledVersionWrapper } from './styles';
 import { useMarketplaceConfigQuery } from '../../../../stores/marketplace';
 
+type PartialUseWatchInstallPlanOptions = Pick<UseWatchInstallPlanOptions, 'enabled' | 'params'>;
+
 export function ExtensionsManagementDetail() {
   const navigate = useNavigate();
   const { name: extensionName = '', version: pathVersion } = useParams();
+
+  const firstInstallPlanResourceVersionRef = useRef<string | null>(null);
+  const isInstallPlanWatchedRef = useRef(false);
+  const currentUseWatchInstallPlanOptionsRef = useRef<PartialUseWatchInstallPlanOptions | null>(
+    null,
+  );
+
   const {
     getLocalExtensionStatusItem,
     setLocalExtensionStatusItem,
@@ -62,6 +72,7 @@ export function ExtensionsManagementDetail() {
   };
 
   const {
+    isFetched: isExtensionQueryFetched,
     isLoading: isExtensionQueryLoading,
     formattedExtension,
     refetch: refetchExtension,
@@ -77,6 +88,7 @@ export function ExtensionsManagementDetail() {
       }
     },
   });
+
   const displayVersion = formattedExtension?.displayVersion ?? '';
   const plannedInstallVersion = formattedExtension?.plannedInstallVersion;
   const installedVersion = formattedExtension?.installedVersion ?? '';
@@ -99,11 +111,19 @@ export function ExtensionsManagementDetail() {
     !!formattedInstalledExtensionVersion?.isMultiClusterInstallation;
 
   const enabledInstallPlanQuery = Boolean(extensionName && plannedInstallVersion);
-  const { formattedInstallPlan, refetch: refetchInstallPlan } = useInstallPlanQuery({
+  const {
+    isFetched: isInstallPlanQueryFetched,
+    formattedInstallPlan,
+    refetch: refetchInstallPlan,
+  } = useInstallPlanQuery({
     enabled: enabledInstallPlanQuery,
     extensionName,
     isIgnoreErrorNotify: true,
-    onSuccess: ({ statusState, statusConditions }) => {
+    onSuccess: ({ resourceVersion, statusState, statusConditions }) => {
+      if (firstInstallPlanResourceVersionRef.current === null) {
+        firstInstallPlanResourceVersionRef.current = resourceVersion;
+      }
+
       if (isLocalInstalling || isLocalUpgrading) {
         onFetchSuccess({
           statusState,
@@ -113,11 +133,12 @@ export function ExtensionsManagementDetail() {
       }
     },
   });
-  const installPlanResourceVersion = formattedInstallPlan?.resourceVersion;
 
   const debouncedRefetchExtension = debounce(refetchExtension, DEBOUNCE_WAIT);
+
+  // delete later
   useWatchExtension({
-    enabled: !!extensionResourceVersion,
+    enabled: false,
     extensionName,
     params: {
       resourceVersion: extensionResourceVersion,
@@ -135,19 +156,52 @@ export function ExtensionsManagementDetail() {
   });
 
   const debouncedRefetchInstallPlan = debounce(refetchInstallPlan, DEBOUNCE_WAIT);
+  const partialUseWatchInstallPlanOptions: PartialUseWatchInstallPlanOptions = useMemo(() => {
+    if (isInstallPlanWatchedRef.current) {
+      return currentUseWatchInstallPlanOptionsRef.current ?? {};
+    }
+
+    if (!isExtensionQueryFetched) {
+      return { enabled: false };
+    }
+
+    if (!enabledInstallPlanQuery) {
+      return { enabled: true };
+    }
+
+    if (!isInstallPlanQueryFetched) {
+      return { enabled: false };
+    }
+
+    return { enabled: true, params: { resourceVersion: formattedInstallPlan?.resourceVersion } };
+  }, [
+    isExtensionQueryFetched,
+    enabledInstallPlanQuery,
+    isInstallPlanQueryFetched,
+    formattedInstallPlan?.resourceVersion,
+  ]);
+  currentUseWatchInstallPlanOptionsRef.current = partialUseWatchInstallPlanOptions;
   useWatchInstallPlan({
-    enabled: enabledInstallPlanQuery,
+    ...partialUseWatchInstallPlanOptions,
     extensionName,
-    params: installPlanResourceVersion
-      ? {
-          resourceVersion: installPlanResourceVersion,
-        }
-      : null,
     onMessage: data => {
+      debouncedRefetchExtension();
+
       const { formattedItem } = data.message;
-      if (formattedItem) {
-        debouncedRefetchInstallPlan();
+
+      if (!formattedItem) {
+        return;
       }
+
+      debouncedRefetchInstallPlan();
+
+      const localeDisplayName = formattedExtension?.localeDisplayName ?? t('EXTENSION');
+      const statusState = formattedItem.statusState;
+      const options = { localeDisplayName, statusState };
+      if (formattedItem.statusState !== formattedExtension?.statusState) {
+        handleInstalled(options);
+      }
+      handleUninstalled(options);
     },
   });
 
