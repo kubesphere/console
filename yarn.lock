@@ -1867,19 +1867,19 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@kubed/charts@^0.2.21":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@kubed/charts/-/charts-0.2.21.tgz#a83951357aba9fdf68fd0437d31831f13e5c3e40"
-  integrity sha512-k70PIrHVTRpQKTPlk9vkxkAkgW2A6G8w1Z72ZjUHggNdKaq2sK1XsusgcXYx+wCEP5sU194aDqt6WvLqXc7gog==
+"@kubed/charts@^0.2.31":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@kubed/charts/-/charts-0.2.31.tgz#07b68cd031575cba6e7d9c46079ed00e21d1cad5"
+  integrity sha512-1AnU/+DWqyfbmbPRUAQdH9KzP95SSV+LI9ZFaPkKKQFMZvDj3Hnhkjvo/5VQUlRvS1LGvmp+UjH4nVQlh5Butw==
   dependencies:
     lodash "^4.17.21"
     recharts "^2.3.2"
     styled-components "^5.3.0"
 
-"@kubed/code-editor@^0.2.21":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@kubed/code-editor/-/code-editor-0.2.21.tgz#94be3f1079bb64d945218f63f31cb39289eb0bff"
-  integrity sha512-8uVUhnCLuYrY25n1eTpdxkY2EuGA6EPBV90ELwRZ3pgHb4j80NnUobxqbS3WRvmUMXls7t1BR/fJPCvKPjXyig==
+"@kubed/code-editor@^0.2.31":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@kubed/code-editor/-/code-editor-0.2.31.tgz#baf6956395b49ad93a38ccb185d212aa4781217d"
+  integrity sha512-Xxr2+PJJrodUsMQL9omSg9sRj6DIc4MC4GTFVq3L007gAoaxgQ5QNOn0vOtKTT6JUgRSx+kokDuR/W8Ecp6WhA==
   dependencies:
     ace-builds "^1.12.5"
     file-saver "^2.0.5"
@@ -1888,10 +1888,10 @@
     react-file-reader "^1.1.4"
     styled-components "^5.3.0"
 
-"@kubed/components@^0.2.21":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@kubed/components/-/components-0.2.21.tgz#5db9dccdd08dde8d3ea9408ac79e76ae9c24f3bc"
-  integrity sha512-PE3rKuFhmN0UyNwGU00ga7DOgtNdkb0LbSw5UR2htFMkSD2GLxNZrroADI9iID9WzLJtVJzKX9CPgoqGIDXTeQ==
+"@kubed/components@^0.2.31":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@kubed/components/-/components-0.2.31.tgz#9fd5e463c52d05421e1d2c513fbb43690bcf71d9"
+  integrity sha512-JEpxQvXkq9GPBpwYSdW8kdAVnQSGsSn+01zgbEdKd3Py1QkBLsvn+46YOcWBaRGs2Cg8fvxLNt8I3FAdK2JpLQ==
   dependencies:
     "@radix-ui/react-dialog" "^1.1.1"
     "@tanstack/react-table" "^8.17.3"
@@ -1915,30 +1915,30 @@
     styled-components "^5.3.0"
     tippy.js "^6.3.7"
 
-"@kubed/diff-viewer@^0.2.21":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@kubed/diff-viewer/-/diff-viewer-0.2.21.tgz#522eeb7f3d24e41081e785a5b0f03c3d89b5944d"
-  integrity sha512-N0YI2EbcjVOn7H/HLmNtMU6IbnC7tQBFAcDMjtSNV5UFaZiIDMzBYuGNct9HYVirr7vU0fB6wTb4WStKTSZCZA==
+"@kubed/diff-viewer@^0.2.31":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@kubed/diff-viewer/-/diff-viewer-0.2.31.tgz#556b782811481b957dbece170e885be9819837ff"
+  integrity sha512-QLV3t7McFzhnN11H6DrmZRe3ZTVfCYh1GhZPkRlOgBQYFoGv4hJuUZmLzcmzi7sIzQWEYIH4M1VEoM+/sBll9Q==
   dependencies:
     diff "^5.1.0"
     diff2html "^3.4.22"
     lodash "^4.17.21"
     styled-components "^5.3.0"
 
-"@kubed/hooks@^0.2.21":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@kubed/hooks/-/hooks-0.2.21.tgz#f659e8568807efa160c0274250ad14b5d3faa413"
-  integrity sha512-DMZ+xpDgGorHYPnoZn7UPzRJhrErkuNnZrSwSV14uWvQdXK307S/LjSUWVmaWGZUmzvN9dRHnNApHx3Nkdo5BA==
+"@kubed/hooks@^0.2.31":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@kubed/hooks/-/hooks-0.2.31.tgz#a35f737ab4e00461f7a915e65e3b90858e775b7b"
+  integrity sha512-XfUzOaDdjB1RGNkF4AEqkEjqLdJmMIPrHlCjq/F9e3UDaQPq9jMCGuw0BB0EkvHkPs7c8XPgu7r1fGnryRQiXw==
 
-"@kubed/icons@^0.2.21":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@kubed/icons/-/icons-0.2.21.tgz#5abd2c71050f7de6d9249446f278fbd625ef7854"
-  integrity sha512-t/ZIEN/nla53SwB92JMIIxWJssS6MvaV8fykeIfJh+IoO/xNyYbb0AarNY82w7RQA7KXyFbp91vgFjDnAX3xmQ==
+"@kubed/icons@^0.2.31":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@kubed/icons/-/icons-0.2.31.tgz#d0b759351d132c6c81bdd6b39fc996567a134b85"
+  integrity sha512-k3B0GGzYGMPbKMx5AdAmODU4MvM84zr2R2i5zrJMPV+p0enAoiGGC6zfk5eF7Gkf4bn040VWE5ZtnEzIk0j0SQ==
 
-"@kubed/log-viewer@^0.2.21":
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/@kubed/log-viewer/-/log-viewer-0.2.21.tgz#6a3cabfb82a22fd13a086ba46583f2ef135e5c83"
-  integrity sha512-4yejylhoZct49B6baCrVDVkeCnYaRC8XbR+mSIdemI/pBTvsEJWWMxmb9Q3MaZZ9OkbQ9YHW/bhoh0ZMxE2o+g==
+"@kubed/log-viewer@^0.2.31":
+  version "0.2.31"
+  resolved "https://registry.yarnpkg.com/@kubed/log-viewer/-/log-viewer-0.2.31.tgz#61771f7eba77aa615cce57d341ede5e0483ccf59"
+  integrity sha512-CKBu+LeBsMM+fOQqvwIvs159211O5iMBWOgekZkCHcehPeFzxOjAoxhzcKhy4tntDGN6onxPFqkfbTwnHBYCDA==
   dependencies:
     anser "^2.1.1"
     escape-carriage "^1.3.0"
