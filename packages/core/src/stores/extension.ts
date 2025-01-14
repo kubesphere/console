@@ -1094,6 +1094,7 @@ export type {
   FormattedExtensionVersion,
   FormattedExtensionVersionFile,
   FormattedInstallPlan,
+  UseWatchInstallPlanOptions,
 };
 export {
   formatStatusState,
