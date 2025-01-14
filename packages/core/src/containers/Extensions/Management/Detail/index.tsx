@@ -129,7 +129,6 @@ export function ExtensionsManagementDetail() {
   formattedInstallPlanRef.current = formattedInstallPlan;
 
   const debouncedRefetchExtension = debounce(refetchExtension, DEBOUNCE_WAIT);
-
   const debouncedRefetchInstallPlan = debounce(refetchInstallPlan, DEBOUNCE_WAIT);
   const partialUseWatchInstallPlanOptions: PartialUseWatchInstallPlanOptions = useMemo(() => {
     if (currentUseWatchInstallPlanOptionsRef.current?.enabled) {
@@ -155,7 +154,6 @@ export function ExtensionsManagementDetail() {
     isInstallPlanQueryFetched,
     formattedInstallPlan?.resourceVersion,
   ]);
-
   currentUseWatchInstallPlanOptionsRef.current = partialUseWatchInstallPlanOptions;
   useWatchInstallPlan({
     ...partialUseWatchInstallPlanOptions,
