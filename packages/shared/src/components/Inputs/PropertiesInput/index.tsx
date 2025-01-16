@@ -154,7 +154,7 @@ function PropertiesInput({
       ))}
       {arrayValues.map((item, index) => (
         <PropertyItem
-          key={`array-${item.key}`}
+          key={`array-${index}-${arrayValues.length}`}
           index={index}
           value={item || {}}
           defaultValue={item || {}}
