@@ -6,13 +6,13 @@
 import { get, isEmpty } from 'lodash';
 
 import { useUrl } from '../hooks';
-import { getOriginData, parser, getRoleBaseInfo, request } from '../utils';
-import type { PathParams, FormattedRole, OriginalRole, RoleKind } from '../types';
+import { getOriginData, parser, getBaseInfo, request } from '../utils';
+import type { PathParams, FormattedRole, OriginalRole } from '../types';
 import baseStore from './store';
 
-function mapper(item: OriginalRole, kind: RoleKind): FormattedRole {
+function mapper(item: OriginalRole): FormattedRole {
   return {
-    ...getRoleBaseInfo<OriginalRole>(item, kind),
+    ...getBaseInfo<OriginalRole>(item),
     labels: get(item, 'metadata.labels', {}) as FormattedRole['labels'],
     namespace: get(item, 'metadata.namespace'),
     annotations: get(item, 'metadata.annotations', {}) as FormattedRole['annotations'],
@@ -27,6 +27,7 @@ function mapper(item: OriginalRole, kind: RoleKind): FormattedRole {
 }
 
 const store = (module = 'roles') => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const { getPath } = useUrl({ module });
 
   const apiVersion = 'kapis/iam.kubesphere.io/v1beta1';
@@ -78,12 +79,12 @@ const store = (module = 'roles') => {
           }`,
       },
     });
-    return res?.items?.map((item: OriginalRole) => mapper(item, `${tempModule}roles`));
+    return res?.items?.map((item: OriginalRole) => mapper(item));
   };
 
   const BaseStore = baseStore<FormattedRole>({
     module,
-    mapper: (item: OriginalRole) => mapper(item, module),
+    mapper: (item: OriginalRole) => mapper(item),
     getResourceUrlFn,
     getListUrlFn: getResourceUrlFn,
   });
