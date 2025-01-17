@@ -28,10 +28,15 @@ export function AppVersionSelector({
   selectedVersionChange,
 }: Props): JSX.Element {
   const [selectedVersion, setSelectedVersion] = useState<string>('');
-  const { data: versions = [] } = useAppVersionList({
-    workspace,
-    appName: appDetail.metadata.name,
-  });
+  const { data: versions = [] } = useAppVersionList(
+    {
+      workspace,
+      appName: appDetail.metadata.name,
+    },
+    {
+      order: 'versionName',
+    },
+  );
   const versionOptions = useMemo(() => {
     return versions?.map(({ metadata, spec }) => ({
       label: spec.versionName,
