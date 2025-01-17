@@ -105,7 +105,7 @@ export function CreateYamlApp(props: Props) {
               <Input autoComplete="off" maxLength={63} />
             </FormItem>
             <FormItem label={t('DESCRIPTION')} name={['description']} help={t('DESCRIPTION_DESC')}>
-              <Textarea />
+              <Textarea maxLength={256} />
             </FormItem>
           </FlexBox>
           <FormItem
