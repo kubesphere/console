@@ -45,7 +45,10 @@ export function BasicInfoForm({
 }: Props): JSX.Element {
   const { workspace } = useParams();
   const [initData, setInitData] = useState<Partial<AppBasicInfoFormData>>();
-  const { data: versions } = useAppVersionList({ appName }, { status: versionStatus });
+  const { data: versions } = useAppVersionList(
+    { appName },
+    { status: versionStatus, order: 'versionName' },
+  );
   const sortedVersions = useMemo(
     () =>
       (versions || [])
