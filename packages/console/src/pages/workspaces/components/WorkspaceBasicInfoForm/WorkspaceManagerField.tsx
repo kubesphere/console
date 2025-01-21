@@ -8,7 +8,7 @@ import type { UIEvent } from 'react';
 import { debounce } from 'lodash';
 import { FormItem, Input, Select } from '@kubed/components';
 
-import { userStore } from '@ks-console/shared';
+import { hasPermission, userStore } from '@ks-console/shared';
 
 const { useInfiniteUserList } = userStore;
 
@@ -21,6 +21,11 @@ function WorkspaceManagerField({ manager, setManagerName }: WorkspaceManagerFiel
   const [requestParams, setRequestParams] = useState({
     name: '',
     annotation: 'kubesphere.io/creator',
+  });
+
+  const canEditManager = hasPermission({
+    module: 'workspaces',
+    action: 'manage',
   });
 
   const { data = [], fetchNextPage: nextPage, hasNextPage } = useInfiniteUserList(requestParams);
@@ -72,6 +77,7 @@ function WorkspaceManagerField({ manager, setManagerName }: WorkspaceManagerFiel
           options={options}
           onPopupScroll={debounce(onScroll, 500)}
           onSearch={onSearch}
+          disabled={!canEditManager}
           onSelect={handleSelect}
         />
       </FormItem>
