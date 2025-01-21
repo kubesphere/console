@@ -15,5 +15,12 @@ export const StyledForm = styled(Form)`
       width: 100%;
       max-width: 455px;
     }
+    .kubed-select-disabled {
+      cursor: not-allowed;
+      .kubed-select-selector {
+        background-color: #eff4f9;
+        border-color: #abb4be;
+      }
+    }
   }
 `;
