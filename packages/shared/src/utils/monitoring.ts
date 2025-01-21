@@ -64,7 +64,7 @@ export const fillEmptyMetrics = (params: Record<string, any>, result: FormattedS
   }
 
   const format = (num: number) => String(num).replace(/\..*$/, '');
-  const step = Math.floor((params.end - params.start) / params.times);
+  const step = parseFloat(params.step.replace(/s$/, ''));
   const correctCount = params.times + 1;
 
   Object.values(result).forEach(item => {
