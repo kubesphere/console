@@ -6,10 +6,14 @@ import { openpitrixStore } from '../../../stores';
 
 const GuideWrapper = styled.div`
   margin-bottom: 12px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const GuideContent = styled.div`
-  padding: 12px 20px;
+  padding: 0 20px 12px;
 `;
 
 const StepList = styled.div`
@@ -41,7 +45,7 @@ const Step = styled.div`
   .step-icon {
     width: 40px;
     height: 40px;
-    margin-right: 8px;
+    margin-right: 12px;
   }
 
   .step-content {
