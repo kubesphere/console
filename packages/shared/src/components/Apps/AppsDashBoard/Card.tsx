@@ -6,15 +6,7 @@ const CardWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
-  @media (max-width: 768px) {
-    padding-left: 0;
-  }
-
-  @media (min-width: 1164px) {
-    padding-left: 117px;
-  }
+  width: 1258px;
 `;
 
 const CardHeader = styled.div`
@@ -27,13 +19,18 @@ const CardHeader = styled.div`
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: #242e42;
   }
 `;
 
-const CardContent = styled.div``;
+const CardOperations = styled.div`
+  display: inline-flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+`;
 
 interface CardProps {
   title: React.ReactNode;
@@ -46,9 +43,9 @@ export const Card: React.FC<CardProps> = ({ title, operations, children }) => {
     <CardWrapper>
       <CardHeader>
         <div className="title">{title}</div>
-        {operations && <div className="operations">{operations}</div>}
+        {operations && <CardOperations>{operations}</CardOperations>}
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <div>{children}</div>
     </CardWrapper>
   );
 };
