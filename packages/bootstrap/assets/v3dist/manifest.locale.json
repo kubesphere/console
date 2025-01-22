@@ -2,27 +2,27 @@
   "entrypoints": {
     "locale-en": {
       "json": [
-        "locale-en.130524bfb16a7a7ed7bc.json"
+        "locale-en.c21859a6442028350fd7.json"
       ]
     },
     "locale-es": {
       "json": [
-        "locale-es.c3574889b03a2943a93e.json"
+        "locale-es.b3a673cda96e9676b381.json"
       ]
     },
     "locale-tc": {
       "json": [
-        "locale-tc.816558da144253270a07.json"
+        "locale-tc.adcd7e53265271d49fd9.json"
       ]
     },
     "locale-zh": {
       "json": [
-        "locale-zh.0436a6a35dce64d2ad61.json"
+        "locale-zh.f97e569ce0708179fc03.json"
       ]
     }
   },
-  "locale-en.json": "locale-en.130524bfb16a7a7ed7bc.json",
-  "locale-es.json": "locale-es.c3574889b03a2943a93e.json",
-  "locale-tc.json": "locale-tc.816558da144253270a07.json",
-  "locale-zh.json": "locale-zh.0436a6a35dce64d2ad61.json"
+  "locale-en.json": "locale-en.c21859a6442028350fd7.json",
+  "locale-es.json": "locale-es.b3a673cda96e9676b381.json",
+  "locale-tc.json": "locale-tc.adcd7e53265271d49fd9.json",
+  "locale-zh.json": "locale-zh.f97e569ce0708179fc03.json"
 }
