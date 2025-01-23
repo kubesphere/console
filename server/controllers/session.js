@@ -357,7 +357,8 @@ const handleLogout = async ctx => {
     oAuthLoginInfo.endSessionURL
   ) {
     const url = `${oAuthLoginInfo.endSessionURL}`;
-    ctx.body = { data: { url }, success: true };
+    // ctx.body = { data: { url }, success: true };
+    ctx.redirect(url);
   } else {
     const { origin = '', referer = '' } = ctx.headers;
     const refererPath = referer.replace(origin, '');
