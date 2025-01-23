@@ -26,7 +26,7 @@
     "create:ext": "ksc create:ext",
     "dev": "concurrently -k --raw 'yarn dev:client' 'yarn dev:server'",
     "dev:client": "NODE_ENV=development ksc dev -s true",
-    "dev:client:full": "yarn clean ; yarn build:dll ; yarn build:locales ; NODE_ENV=development ksc dev -s true",
+    "dev:client:full": "yarn clean ; yarn build:dll ; yarn build:locales ; yarn dev:client",
     "dev:full": "concurrently -k --raw 'yarn dev:client:full' 'yarn dev:server:full'",
     "dev:server": "NODE_ENV=development ksc-server",
     "dev:server:full": "lsof -ti :8000 | xargs kill -9 ; yarn dev:server",
