@@ -25,7 +25,7 @@
     "clean": "rimraf packages/*/{esm,cjs,lib,dist} packages/**/*.tsbuildinfo locales/dist dist **/.DS_Store",
     "create:ext": "ksc create:ext",
     "dev": "concurrently -k --raw 'yarn dev:client' 'yarn dev:server'",
-    "dev:client": "NODE_ENV=development ksc dev -s true",
+    "dev:client": "yarn run clean ; yarn run build:dll ; yarn run build:locales ; NODE_ENV=development ksc dev -s true",
     "dev:server": "NODE_ENV=development ksc-server",
     "kubed:bump": "esno scripts/kubed-bump.ts",
     "lint-all": "concurrently --group --timings --prefix-colors=auto \"yarn:lint:*(!:fix)\"",
