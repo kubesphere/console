@@ -25,7 +25,7 @@ const {
   oauthProxy,
 } = require('./proxy');
 
-const { handleSampleData, handleDockerhubProxy, handleHarborProxy } = require('./controllers/api');
+const { handleSampleData } = require('./controllers/api');
 
 const {
   handleLogin,
@@ -57,8 +57,6 @@ const router = new Router();
 router
   .use(proxy('/devops_webhook/(.*)', devopsWebhookProxy))
   .use(proxy('/b2i_download/(.*)', b2iFileProxy))
-  .post('/dockerhub/(.*)', parseBody, handleDockerhubProxy)
-  .post('/harbor/(.*)', parseBody, handleHarborProxy)
   .get('/blank_md', renderMarkdown)
 
   .all('/proxy-api/(.*)', checkToken, checkIfExist)
