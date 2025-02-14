@@ -15,16 +15,6 @@ const methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
 const omitErrorPath = ['/configs/theme'];
 
 /**
- * enable dnscache
- */
-// eslint-disable-next-line no-unused-vars,@typescript-eslint/no-unused-vars
-const dnscache = require('dnscache')({
-  enable: true,
-  ttl: 300, // ttl in seconds for cache-entries
-  cachesize: 1000, // number of cache entries, defaults to 1000
-});
-
-/**
  * Decide what to do with the response
  * @param response
  * @returns {Promise}
