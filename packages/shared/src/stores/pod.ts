@@ -300,49 +300,22 @@ type UsePodsList = {
 };
 
 export function usePodsList({ params, queryOptions, webSocketOptions }: UsePodsList) {
-  const { message } = useWatchPodsList({
-    url: webSocketOptions.url,
-  });
-
   const { formattedPods, reFetch, page, pageSize, total, prevPage, nextPage, isLoading, refresh } =
     usePodsListQuery(params, queryOptions);
 
-  const data = useMemo(() => {
-    if (message?.object?.kind === 'Pod') {
-      const result = {
-        cluster: params.cluster,
-        ...formatPod(message.object),
-      };
+  useWatchPodsList({
+    url: webSocketOptions.url,
+    onMessage: message => {
+      console.log(message, 'message');
 
-      if (result.uid) {
-        const index = formattedPods.findIndex(
-          item => item.uid === result.uid || item.name === result.name,
-        );
-
-        switch (message.type) {
-          case 'MODIFIED':
-            if (index >= 0) {
-              formattedPods[index] = result;
-            }
-            break;
-          case 'ADDED':
-            if (index < 0) {
-              formattedPods.splice(0, 0, result);
-            }
-            break;
-          case 'DELETED':
-            if (index >= 0) {
-              formattedPods.splice(index, 1);
-            }
-        }
+      if (message?.kind === 'Pod') {
+        refresh();
       }
-    }
-
-    return [...formattedPods];
-  }, [message, formattedPods]);
+    },
+  });
 
   return {
-    data,
+    data: formattedPods,
     page,
     pageSize,
     total,
