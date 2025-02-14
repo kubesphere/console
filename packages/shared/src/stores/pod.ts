@@ -306,8 +306,6 @@ export function usePodsList({ params, queryOptions, webSocketOptions }: UsePodsL
   useWatchPodsList({
     url: webSocketOptions.url,
     onMessage: message => {
-      console.log(message, 'message');
-
       if (message?.kind === 'Pod') {
         refresh();
       }
