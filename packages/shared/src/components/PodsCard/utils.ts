@@ -14,6 +14,7 @@ export interface ParamsType {
   nodeName?: string;
   labelSelector?: string;
   ownerKind?: string;
+  ownerReference?: string;
 }
 
 // TODO: type
@@ -24,9 +25,8 @@ export const getParams = (
   isFederated?: boolean,
 ): ParamsType => {
   const curDetail = isFederated ? details[cluster] : detail;
-  const { name, namespace, kind: curKind, selector } = curDetail || {};
+  const { name, namespace, kind: curKind, selector, uid } = curDetail || {};
   const kind = curKind || get(curDetail._originData, 'kind', '');
-
   let result: ParamsType = {};
 
   if (cluster) {
@@ -53,6 +53,7 @@ export const getParams = (
       break;
     default:
       result.ownerKind = kind === 'Deployment' ? 'ReplicaSet' : kind;
+      result.ownerReference = uid;
       result.labelSelector = joinSelector(selector);
   }
 
