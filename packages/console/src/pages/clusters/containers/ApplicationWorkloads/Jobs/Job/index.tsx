@@ -52,7 +52,7 @@ const Deployment = () => {
 
   const { mutate: mutateReRun } = useReRunMutation({
     onSuccess: callback('success'),
-    onError: callback('error'),
+    // onError: callback('error'),
   });
 
   const { editBaseInfo, del } = useCommonActions({
