@@ -130,7 +130,6 @@ client:
       - name: overview
         title: OVERVIEW
         icon: dashboard
-        skipAuth: true
         showInDisable: true
       - name: nodes
         title: NODE_PL
@@ -232,7 +231,7 @@ client:
         icon: cogwheel
         showInDisable: true
         children:
-          - { name: base-info, title: BASIC_INFORMATION, skipAuth: true, showInDisable: true }
+          - { name: base-info, title: BASIC_INFORMATION, showInDisable: true }
           - {
               name: visibility,
               title: CLUSTER_VISIBILITY,
