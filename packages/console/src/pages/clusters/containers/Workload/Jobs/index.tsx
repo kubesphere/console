@@ -69,8 +69,22 @@ const Deployment = () => {
         });
       },
     });
+
+  const refetch = () => {
+    tableRef?.current?.refetch();
+  };
+  const callback = (type: 'success' | 'error') => () => {
+    if (type === 'success') {
+      notify.success(t('OPERATION_SUCCESS'));
+    } else {
+      notify.error(t('OPERATION_FAILED'));
+    }
+    refetch();
+  };
+
   const { mutate: mutateReRun } = useReRunMutation({
-    onSuccess: () => {},
+    onSuccess: callback('success'),
+    onError: callback('error'),
   });
 
   const { mutate: mutateDeleteOpt, isLoading: deleteIsLoading } = useDeleteDeploymentMutation({
