@@ -24,6 +24,8 @@ module.exports = {
   // List > Edit Information
   // List > Rerun
   RERUN: '重新运行',
+  OPERATION_SUCCESS: '操作成功',
+  OPERATION_FAILED: '操作失败',
   // List > Delete
   JOB: '任务',
   JOB_LOW: '任务',

@@ -5,7 +5,7 @@
 
 import React, { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Field } from '@kubed/components';
+import { Field, notify } from '@kubed/components';
 import {
   Icon,
   Column,
@@ -41,8 +41,18 @@ const Deployment = () => {
     tableRef?.current?.refetch();
   };
 
+  const callback = (type: 'success' | 'error') => () => {
+    if (type === 'success') {
+      notify.success(t('OPERATION_SUCCESS'));
+    } else {
+      notify.error(t('OPERATION_FAILED'));
+    }
+    refetch();
+  };
+
   const { mutate: mutateReRun } = useReRunMutation({
-    onSuccess: () => {},
+    onSuccess: callback('success'),
+    // onError: callback('error'),
   });
 
   const { editBaseInfo, del } = useCommonActions({
