@@ -2,12 +2,10 @@
  * Please refer to the LICENSE file in the root directory of the project.
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
-
 module.exports = {
   // Banner
   JOB_PL: 'Jobs',
-  JOB_DESC:
-    'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
+  JOB_DESC: 'Jobs are used to perform short-lived, one-off tasks. A Job creates one or more Pods and ensures that a specific number of Pods successfully terminate.',
   // List
   JOB_EMPTY_DESC: 'Please create a Job.',
   JOB_COMPLETED: '已完成',
@@ -24,9 +22,9 @@ module.exports = {
   // List > Edit Information
   // List > Rerun
   RERUN: '重新執行',
-  OPERATION_SUCCESS: '操作成功',
-  OPERATION_FAILED: '操作失敗',
+  OPERATION_SUCCESS: 'Operation successful',
+  OPERATION_FAILED: 'Operation failed',
   // List > Delete
   JOB: '任務',
-  JOB_LOW: 'Job',
+  JOB_LOW: 'Job'
 };
