@@ -2,12 +2,10 @@
  * Please refer to the LICENSE file in the root directory of the project.
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
-
 module.exports = {
   // Banner
   JOB_PL: '任务',
-  JOB_DESC:
-    '任务（Job）用于运行短暂的一次性任务。任务会创建一个或多个容器组，并保证指定数量的容器组成功结束。',
+  JOB_DESC: '任务（Job）用于运行短暂的一次性任务。任务会创建一个或多个容器组，并保证指定数量的容器组成功结束。',
   // List
   JOB_EMPTY_DESC: '请创建一个任务。',
   JOB_COMPLETED: '已完成',
@@ -24,9 +22,9 @@ module.exports = {
   // List > Edit Information
   // List > Rerun
   RERUN: '重新运行',
-  OPERATION_SUCCESS: '操作成功',
-  OPERATION_FAILED: '操作失败',
+  OPERATION_SUCCESS: 'Operation successful',
+  OPERATION_FAILED: 'Operation failed',
   // List > Delete
   JOB: '任务',
-  JOB_LOW: '任务',
+  JOB_LOW: '任务'
 };
