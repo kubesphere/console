@@ -25,7 +25,7 @@ module.exports = {
   // List > Rerun
   RERUN: 'Rerun',
   OPERATION_SUCCESS: 'Operation successful',
-  OPERATION_FAILED: 'Operation failed',
+  OPERATION_FAILED: 'Operation failed', // test
   // List > Delete
   JOB: 'Job',
   JOB_LOW: 'job',
