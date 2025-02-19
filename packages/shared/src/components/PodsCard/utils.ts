@@ -52,7 +52,6 @@ export const getParams = (
       result.labelSelector = joinSelector(selector);
       break;
     default:
-      result.ownerKind = kind === 'Deployment' ? 'ReplicaSet' : kind;
       result.ownerReference = uid;
       result.labelSelector = joinSelector(selector);
   }
