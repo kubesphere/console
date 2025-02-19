@@ -6,7 +6,7 @@
 import { isEmpty, get } from 'lodash';
 import React, { useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Loading } from '@kubed/components';
+import { Loading, notify } from '@kubed/components';
 import { useCacheStore as useStore } from '@ks-console/shared';
 
 import {
@@ -164,9 +164,14 @@ const DaemonSetDetail = () => {
         text: t('RERUN'),
         action: 'edit',
         onClick: () => {
-          reRun(detail).then(() => {
-            refetch();
-          });
+          reRun(detail)
+            .then(() => {
+              refetch();
+              notify.success(t('OPERATION_SUCCESS'));
+            })
+            .catch(() => {
+              notify.error(t('OPERATION_FAILED'));
+            });
         },
       },
       {

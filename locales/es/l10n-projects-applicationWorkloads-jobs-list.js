@@ -25,6 +25,8 @@ module.exports = {
   // List > Edit Information
   // List > Rerun
   RERUN: 'Repetición',
+  OPERATION_SUCCESS: 'Operación exitosa',
+  OPERATION_FAILED: 'Operación fallida',
   // List > Delete
   JOB: 'Trabajo',
   JOB_LOW: 'Job',
