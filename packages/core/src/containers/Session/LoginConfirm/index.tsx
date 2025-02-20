@@ -51,7 +51,7 @@ const LoginConfirm = () => {
         <img src={logo} alt="logo" />
       </LoginHeader>
       <Card className="login-box" contentClassName="login-card">
-        <WelcomeTitle>{t('Please confirm your account info')}</WelcomeTitle>
+        <WelcomeTitle>{t('PLEASE_CONFIRM_YOUR_ACCOUNT_INFO')}</WelcomeTitle>
         <LoginDivider />
         <Form className="login-form" size="md" onFinish={loginMutation.mutate}>
           <FormItem
@@ -77,7 +77,7 @@ const LoginConfirm = () => {
             help={t('USERNAME_DESC')}
             defaultValue={get(globals, 'user.username')}
             rules={[
-              { required: true, message: t('Please input username') },
+              { required: true, message: t('PLEASE_INPUT_USERNAME') },
               { pattern: Pattern.PATTERN_USER_NAME, message: t('USERNAME_INVALID') },
               { validator: nameValidator, message: t('USERNAME_EXISTS') },
             ]}
@@ -86,7 +86,7 @@ const LoginConfirm = () => {
           </FormItem>
           <LoginButton>
             <Button color="secondary" block shadow radius="xl" loading={loginMutation.isLoading}>
-              {t('Log In')}
+              {t('LOG_IN')}
             </Button>
           </LoginButton>
         </Form>
