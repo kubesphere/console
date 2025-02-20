@@ -3,7 +3,7 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { debounce } from 'lodash';
 import { Success } from '@kubed/icons';
@@ -11,7 +11,7 @@ import type { DescriptionsProps } from '@kubed/components';
 import { StatusDot } from '@kubed/components';
 
 import { EXTENSIONS_PAGE_PATHS } from '../../../../constants/extension';
-import type { UseWatchInstallPlanOptions } from '../../../../stores/extension';
+import type { FormattedInstallPlan } from '../../../../stores/extension';
 import {
   useExtensionQuery,
   useExtensionVersionQuery,
@@ -30,15 +30,12 @@ import { DetailActionButtons } from '../components/DetailActionButtons';
 import { InstalledVersionWrapper } from './styles';
 import { useMarketplaceConfigQuery } from '../../../../stores/marketplace';
 
-type PartialUseWatchInstallPlanOptions = Pick<UseWatchInstallPlanOptions, 'enabled' | 'params'>;
-
 export function ExtensionsManagementDetail() {
   const navigate = useNavigate();
   const { name: extensionName = '', version: pathVersion } = useParams();
 
-  const currentUseWatchInstallPlanOptionsRef = useRef<PartialUseWatchInstallPlanOptions | null>(
-    null,
-  );
+  const formattedInstallPlanRef = useRef<FormattedInstallPlan>();
+  const watchInstallPlanOnMessageCountRef = useRef(0);
 
   const {
     getLocalExtensionStatusItem,
@@ -69,7 +66,6 @@ export function ExtensionsManagementDetail() {
   };
 
   const {
-    isFetched: isExtensionQueryFetched,
     isLoading: isExtensionQueryLoading,
     formattedExtension,
     refetch: refetchExtension,
@@ -107,11 +103,7 @@ export function ExtensionsManagementDetail() {
     !!formattedInstalledExtensionVersion?.isMultiClusterInstallation;
 
   const enabledInstallPlanQuery = Boolean(extensionName && plannedInstallVersion);
-  const {
-    isFetched: isInstallPlanQueryFetched,
-    formattedInstallPlan,
-    refetch: refetchInstallPlan,
-  } = useInstallPlanQuery({
+  const { formattedInstallPlan, refetch: refetchInstallPlan } = useInstallPlanQuery({
     enabled: enabledInstallPlanQuery,
     extensionName,
     isIgnoreErrorNotify: true,
@@ -125,44 +117,26 @@ export function ExtensionsManagementDetail() {
       }
     },
   });
-  const formattedInstallPlanRef = useRef(formattedInstallPlan);
   formattedInstallPlanRef.current = formattedInstallPlan;
 
   const debouncedRefetchExtension = debounce(refetchExtension, DEBOUNCE_WAIT);
   const debouncedRefetchInstallPlan = debounce(refetchInstallPlan, DEBOUNCE_WAIT);
-  const partialUseWatchInstallPlanOptions: PartialUseWatchInstallPlanOptions = useMemo(() => {
-    if (currentUseWatchInstallPlanOptionsRef.current?.enabled) {
-      return currentUseWatchInstallPlanOptionsRef.current;
-    }
 
-    if (!isExtensionQueryFetched) {
-      return { enabled: false };
-    }
-
-    if (!enabledInstallPlanQuery) {
-      return { enabled: true };
-    }
-
-    if (!isInstallPlanQueryFetched) {
-      return { enabled: false };
-    }
-
-    return { enabled: true, params: { resourceVersion: formattedInstallPlan?.resourceVersion } };
-  }, [
-    isExtensionQueryFetched,
-    enabledInstallPlanQuery,
-    isInstallPlanQueryFetched,
-    formattedInstallPlan?.resourceVersion,
-  ]);
-  currentUseWatchInstallPlanOptionsRef.current = partialUseWatchInstallPlanOptions;
   useWatchInstallPlan({
-    ...partialUseWatchInstallPlanOptions,
     extensionName,
     onMessage: data => {
+      watchInstallPlanOnMessageCountRef.current += 1;
+
       debouncedRefetchExtension();
       debouncedRefetchInstallPlan();
 
-      const { formattedItem } = data.message;
+      const { type, formattedItem } = data.message;
+
+      // https://kubernetes.io/docs/reference/using-api/api-concepts/#semantics-for-watch
+      // Start a watch at the most recent resource version, which must be consistent (in detail: served from etcd via a quorum read). To establish initial state, the watch begins with synthetic "Added" events of all resources instances that exist at the starting resource version. All following watch events are for all changes that occurred after the resource version the watch started at.
+      if (watchInstallPlanOnMessageCountRef.current === 1 && type === 'ADDED') {
+        return;
+      }
 
       if (!formattedItem) {
         return;
