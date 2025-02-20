@@ -33,4 +33,6 @@ module.exports = {
   SET_EMAIL_AND_USERNAME: 'Set Email and Username',
   PASSWORD_CHARACTERS:
     'Contain at least 1 special character (~!@#$%^&*()-_=+\\|[{}];:\'",<.>/? or space).',
+  PLEASE_CONFIRM_YOUR_ACCOUNT_INFO: 'Please confirm your account info',
+  PLEASE_INPUT_USERNAME: 'Please input username',
 };
