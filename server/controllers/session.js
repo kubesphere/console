@@ -412,10 +412,7 @@ const handleOAuthLogin = async ctx => {
     const extraname = safeBase64.safeBtoa(user.extraname);
     ctx.cookies.set('defaultUser', extraname);
     ctx.cookies.set('defaultEmail', user.email);
-    ctx.body = {
-      success: true,
-      redirect: '/login/confirm',
-    };
+    ctx.redirect('/login/confirm');
     return;
   }
 
