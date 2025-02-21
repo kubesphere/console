@@ -42,4 +42,5 @@ module.exports = {
   TCP_PORT: 'TCP 端口檢查',
   // List > Create > Storage Settings
   MOUNT_PATH_IN_USE: '掛載路徑已使用，請輸入其他掛載路徑。',
+  GRPC_PORT: 'GRPC 端口檢查',
 };
