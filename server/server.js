@@ -5,6 +5,7 @@
 
 const Koa = require('koa');
 const path = require('path');
+const chalk = require('chalk');
 
 Koa.prototype.apply = function (module, ...rest) {
   module(this, ...rest);
@@ -39,7 +40,38 @@ app.server = app.listen(global.PORT, err => {
     return console.error(err);
   }
   /* eslint-disable no-console */
-  console.log(`Dashboard app running at port ${global.PORT}`);
+  console.log(chalk.green.bold(`Dashboard app running at port ${global.PORT}`));
 });
 
 app.apply(wsProxy);
+
+const shutdown = () => {
+  console.log('Received shutdown signal. Starting graceful shutdown...');
+
+  // waiting for the server to shut down
+  app.server.close(err => {
+    if (err) {
+      console.error('Error during server shutdown:', err);
+      process.exit(1);
+    }
+    console.log('Server closed successfully.');
+    process.exit(0);
+  });
+
+  // If shutdown times out, force quit
+  setTimeout(() => {
+    console.log('Force quitting due to shutdown timeout.');
+    process.exit(1);
+  }, 5000);
+};
+
+// Capture Ctrl+C
+process.on('SIGINT', () => {
+  console.log('\nSIGINT signal received.');
+  shutdown();
+});
+// Capturing the termination signal
+process.on('SIGTERM', () => {
+  console.log('SIGTERM signal received.');
+  shutdown();
+});
