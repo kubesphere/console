@@ -12,6 +12,7 @@ const webpackExtensionConfig = require('../webpack/webpack.extension.conf');
 const path = require('path');
 const fs = require('fs-extra');
 const npmCheck = require('npm-checky');
+const chalk = require('chalk');
 const interactiveUpdate = require('npm-checky/lib/out/interactive-update');
 
 const resolve = dir => path.resolve(process.cwd(), dir);
@@ -75,7 +76,10 @@ async function devServer(setAlias, checkUpgrade) {
   const server = new wds(devServerOptions, compiler);
 
   server.startCallback(() => {
-    console.log('Successfully started server on http://localhost:8000');
+    console.log(
+      chalk.green.bold('Successfully started server on ') +
+        chalk.blue.bold.underline('http://localhost:8000'),
+    );
   });
 }
 
