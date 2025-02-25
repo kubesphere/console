@@ -2,7 +2,6 @@
  * Please refer to the LICENSE file in the root directory of the project.
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
-
 module.exports = {
   // Banner
   // List
@@ -30,8 +29,7 @@ module.exports = {
   INITIAL_DELAY_DESC: '容器启动后探针启动前的延迟时间。',
   TIMEOUT_PERIOD_DESC: '探针超时时间。探针超时后，检查将被视为失败。取值必须为整数，最小值为 0。',
   CHECK_INTERVAL_DESC: '执行检查的时间间隔。取值必须为整数，最小值为 1。',
-  SUCCESS_THRESHOLD_DESC:
-    '检查失败后再次被视为成功所需的最小连续成功次数。最小值为 1。对于存活探针和启动探针，此参数值必须为 1。',
+  SUCCESS_THRESHOLD_DESC: '检查失败后再次被视为成功所需的最小连续成功次数。最小值为 1。对于存活探针和启动探针，此参数值必须为 1。',
   FAILURE_THRESHOLD_DESC: '检查成功后再次被视为失败所需的最小连续失败次数。最小值为 1。',
   // List > Create > Pod Settings > Add Container > Health Check > Liveness Check > Command
   PROBE_COMMAND_EMPTY: '请输入至少一条命令。',
@@ -39,5 +37,10 @@ module.exports = {
   TCP_PORT: 'TCP 端口',
   // List > Create > Storage Settings
   MOUNT_PATH_IN_USE: '挂载路径已被使用，请输入其他挂载路径。',
-  GRPC_PORT: 'GRPC 端口',
+  // List > Create > Advanced Settings
+  // List > Edit Information
+  // List > Edit YAML
+  // List > Re-create
+  // List > Delete
+  GRPC_PORT: 'GRPC Port'
 };
