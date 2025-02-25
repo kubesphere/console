@@ -210,7 +210,7 @@ function DetailInfo(): JSX.Element {
         cardProps={{
           name: getDisplayName(detail),
           desc: detail?.description,
-          authKey: 'applications',
+          authKey: 'app-releases',
           icon: (
             <Image
               iconSize={32}
@@ -221,7 +221,7 @@ function DetailInfo(): JSX.Element {
           ),
           attrs: getAttrs(),
           actions: getActions(),
-          params: { workspace },
+          params: { cluster, workspace, namespace },
           actionOptions: { theme: 'dark' },
           breadcrumbs: {
             label: t('APP_PL'),
