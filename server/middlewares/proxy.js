@@ -17,7 +17,7 @@ module.exports = (context, options) => (ctx, next) => {
 
   if (!regex.test(ctx.path)) return next();
 
-  ctx.req.token = ctx.cookies.get('token');
+  ctx.req.token = ctx.req.token || ctx.cookies.get('token');
 
   const { events, ...httpProxyOpts } = options;
 

@@ -15,7 +15,7 @@ module.exports = async (ctx, next) => {
         ctx.cookies.set('token', data.token);
         ctx.cookies.set('expire', data.expire);
         ctx.cookies.set('refreshToken', data.refreshToken);
-        return ctx.redirect(ctx.headers.referer || '/');
+        ctx.req.token = data.token;
       }
     }
   }
