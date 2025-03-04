@@ -66,13 +66,16 @@ const shutdown = () => {
     process.exit(1);
   }, 5000);
 };
+const isProduction = process.env.NODE_ENV === 'production';
 
-process.on('SIGINT', () => {
-  console.log('\nSIGINT signal received.');
-  shutdown();
-});
-// Capturing the termination signal
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received.');
-  shutdown();
-});
+if (!isProduction) {
+  process.on('SIGINT', () => {
+    console.log('\nSIGINT signal received.');
+    shutdown();
+  });
+  // Capturing the termination signal
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM signal received.');
+    shutdown();
+  });
+}
