@@ -18,4 +18,9 @@ nodemon({
   },
   watch: ['../'],
   ext: 'js,yaml',
+}).on('message', function (message) {
+    console.log('Message from Child process : ' + message);
+    setTimeout(() => {
+      process.exit(1); 
+    }, 2000);
 });

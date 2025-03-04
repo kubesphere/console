@@ -43,3 +43,36 @@ app.server = app.listen(global.PORT, err => {
 });
 
 app.apply(wsProxy);
+
+const shutdown = () => {
+  console.log('Received shutdown signal. Starting graceful shutdown...');
+
+  // waiting for the server to shut down
+  app.server.close(err => {
+    if (err) {
+      console.error('Error during server shutdown:', err);
+      process.send('quit');
+      process.exit(1);
+    }
+    console.log('Server closed successfully.');
+    process.send('quit');
+    process.exit(0);
+  });
+
+  // If shutdown times out, force quit
+  setTimeout(() => {
+    console.log('Force quitting due to shutdown timeout.');
+    process.send('quit');
+    process.exit(1);
+  }, 5000);
+};
+
+process.on('SIGINT', () => {
+  console.log('\nSIGINT signal received.');
+  shutdown();
+});
+// Capturing the termination signal
+process.on('SIGTERM', () => {
+  console.log('SIGTERM signal received.');
+  shutdown();
+});
