@@ -75,14 +75,14 @@ const LoginConfirm = () => {
             label={t('Username')}
             name="username"
             help={t('USERNAME_DESC')}
-            defaultValue={get(globals, 'user.username')}
+            initialValue={get(globals, 'user.username')}
             rules={[
               { required: true, message: t('PLEASE_INPUT_USERNAME') },
               { pattern: Pattern.PATTERN_USER_NAME, message: t('USERNAME_INVALID') },
               { validator: nameValidator, message: t('USERNAME_EXISTS') },
             ]}
           >
-            <Input name="username" placeholder="user@example.com" maxLength={32} />
+            <Input name="username" placeholder="username" maxLength={32} />
           </FormItem>
           <LoginButton>
             <Button color="secondary" block shadow radius="xl" loading={loginMutation.isLoading}>
