@@ -63,12 +63,7 @@ function Pages() {
     });
   }, [setRoutes]);
 
-  return useRoutes([
-    {
-      path: '*',
-      element: <Loading className="page-loading" />,
-    },
-  ]);
+  return <Loading className="page-loading" />;
 }
 
 export default function () {
