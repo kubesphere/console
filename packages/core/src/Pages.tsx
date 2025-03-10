@@ -3,20 +3,20 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import React, { useState, useEffect } from 'react';
-import type { RouteObject } from 'react-router-dom';
-import { useRoutes, Navigate } from 'react-router-dom';
 import { Loading } from '@kubed/components';
+import { default as React, useEffect } from 'react';
+import type { RouteObject } from 'react-router-dom';
+import { Navigate, useRoutes } from 'react-router-dom';
+import { create } from 'zustand';
 
-import { registerRemoteExtensions } from './utils/extensions.remote';
+import BaseLayout from './components/Layouts/BaseLayout';
+import extensionsRoutes from './containers/Extensions/routes';
+import marketplaceRoutes from './containers/Marketplace/routes';
 import Login from './containers/Session/Login';
 import LoginConfirm from './containers/Session/LoginConfirm';
 import PasswordConfirm from './containers/Session/PasswordConfirm';
-import BaseLayout from './components/Layouts/BaseLayout';
-
-import extensionsRoutes from './containers/Extensions/routes';
-import marketplaceRoutes from './containers/Marketplace/routes';
 import { routes as supportRoutes } from './containers/Support';
+import { registerRemoteExtensions } from './utils/extensions.remote';
 
 const baseRoutes: RouteObject[] = [
   { path: '/login', element: <Login /> },
@@ -26,40 +26,63 @@ const baseRoutes: RouteObject[] = [
 
 const homePage = globals.config.homePage || '/dashboard';
 
-function usePages() {
-  const [isRemoteExtensionLoading, setIsRemoteExtensionLoading] = useState(true);
+const useRouterStore = create<{
+  data: { hasInit: Boolean; routes: RouteObject[] };
+  setRoutes: (routes: RouteObject[]) => void;
+}>(set => ({
+  data: {
+    hasInit: false,
+    routes: baseRoutes,
+  },
+  setRoutes: routes => {
+    set({ data: { hasInit: true, routes } });
+  },
+}));
 
+function Pages() {
+  const setRoutes = useRouterStore(state => state.setRoutes);
   useEffect(() => {
-    setIsRemoteExtensionLoading(true);
-    registerRemoteExtensions()?.finally(() => setIsRemoteExtensionLoading(false));
-  }, []);
+    registerRemoteExtensions()?.finally(() => {
+      const pages = {
+        path: '/',
+        element: <BaseLayout />,
+        children: [
+          ...globals.context.routes,
+          ...extensionsRoutes,
+          ...marketplaceRoutes,
+          ...supportRoutes,
+          {
+            index: true,
+            element: <Navigate to={homePage} replace />,
+          },
+        ],
+      };
 
-  if (isRemoteExtensionLoading) {
-    return [{ path: '*', element: <Loading className="page-loading" /> }];
-  }
+      const routes = [pages, ...baseRoutes];
+      setRoutes(routes);
+    });
+  }, [setRoutes]);
 
-  const pages = {
-    path: '/',
-    element: <BaseLayout />,
-    children: [
-      ...globals.context.routes,
-      ...extensionsRoutes,
-      ...marketplaceRoutes,
-      ...supportRoutes,
-      {
-        index: true,
-        element: <Navigate to={homePage} replace />,
-      },
-    ],
-  };
-
-  const routes = [pages, ...baseRoutes];
-
-  return routes;
+  return <Loading className="page-loading" />;
 }
 
-export default function Pages() {
-  const routes = usePages();
-
-  return useRoutes(routes);
+export default function () {
+  const data = useRouterStore(state => state.data);
+  const router = React.useMemo(() => {
+    if (!data.hasInit) {
+      return useRoutes(
+        [
+          ...data.routes,
+          {
+            path: '*',
+            Component: Pages,
+          },
+        ],
+        {},
+      );
+    } else {
+      return useRoutes(data.routes);
+    }
+  }, [data]);
+  return router;
 }
