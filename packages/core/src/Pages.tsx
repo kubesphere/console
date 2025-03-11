@@ -70,19 +70,16 @@ export default function () {
   const data = useRouterStore(state => state.data);
   const router = React.useMemo(() => {
     if (!data.hasInit) {
-      return useRoutes(
-        [
-          ...data.routes,
-          {
-            path: '*',
-            Component: Pages,
-          },
-        ],
-        {},
-      );
+      return [
+        ...data.routes,
+        {
+          path: '*',
+          Component: Pages,
+        },
+      ];
     } else {
-      return useRoutes(data.routes);
+      return data.routes;
     }
   }, [data]);
-  return router;
+  return useRoutes(router);
 }
