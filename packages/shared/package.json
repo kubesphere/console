@@ -24,7 +24,7 @@
     "react-table": "^7.7.0",
     "remark-gfm": "^3.0.1",
     "semver": "^7.6.0",
-    "wujie-react": "^1.0.6",
+    "wujie-react": "^1.0.22",
     "xterm": "^5.1.0",
     "xterm-addon-fit": "^0.7.0",
     "yet-another-react-lightbox": "^3.12.0",
