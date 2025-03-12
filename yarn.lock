@@ -15427,6 +15427,11 @@ use-sync-external-store@1.2.0:
   resolved "https://registry.npmmirror.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
 
+use-sync-external-store@^1.2.2:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.4.0.tgz#adbc795d8eeb47029963016cefdf89dc799fcebc"
+  integrity sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==
+
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
@@ -15965,18 +15970,18 @@ ws@^8.1.0:
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.2.3.tgz#63a56456db1b04367d0b721a0b80cae6d8becbba"
   integrity sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==
 
-wujie-react@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/wujie-react/-/wujie-react-1.0.6.tgz#db6468d60448f071f956264b09ebe01699a1426d"
-  integrity sha512-3bR7Aiij7bByCg6zQ45lr3QY5hN39DRb/ANy/7Qj7ow2PQueGgJHQJpVqo5S8AjybzmOOMNQD8dl1/2rQoi/xw==
+wujie-react@^1.0.22:
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/wujie-react/-/wujie-react-1.0.25.tgz#91d6658fd3e8949cdf2dd4e97b7ba618030fb1e0"
+  integrity sha512-lZH5DinWTAAhe+lausxr/24vWaBzfLr2qpnAxn9VlfBEFKxXee2wiMRzq+o1scLlrGDGwfVB2FyjwEdqTL7awg==
   dependencies:
     prop-types "^15.8.1"
-    wujie "1.0.6"
+    wujie "1.0.25"
 
-wujie@1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/wujie/-/wujie-1.0.6.tgz#2687b15f0a1f08421f6872b32e019cfa7c82b7d5"
-  integrity sha512-fwj/juMiSjQn7SwQzkNQyDqZSds51Hi2ZM6xK2B8tCLLEaribvKFimtdsa0Wsg6CceWoZRkRx+hgEN9dQeiluA==
+wujie@1.0.25:
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/wujie/-/wujie-1.0.25.tgz#cf29404a67a99276be32f8bd257d67428e04df8c"
+  integrity sha512-V9UtKYqs5Dop8ZgxYAySkavwC9Sc15EvzlbSD8N96VFwOD0vct0N1j0S1SLXkzruhooYEeAzlPNyt8gCBPcMKA==
   dependencies:
     "@babel/runtime" "^7.18.6"
 
@@ -16105,6 +16110,13 @@ zustand@^4.5.1:
   integrity sha512-XlauQmH64xXSC1qGYNv00ODaQ3B+tNPoy22jv2diYiP4eoDKr9LA+Bh5Bc3gplTrFdb6JVI+N4kc1DZ/tbtfPg==
   dependencies:
     use-sync-external-store "1.2.0"
+
+zustand@^4.5.5:
+  version "4.5.6"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.5.6.tgz#6857d52af44874a79fb3408c9473f78367255c96"
+  integrity sha512-ibr/n1hBzLLj5Y+yUcU7dYw8p6WnIVzdJbnX+1YpaScvZVF2ziugqHs+LAmHw4lWO9c/zRj+K1ncgWDQuthEdQ==
+  dependencies:
+    use-sync-external-store "^1.2.2"
 
 zwitch@^2.0.0:
   version "2.0.2"
