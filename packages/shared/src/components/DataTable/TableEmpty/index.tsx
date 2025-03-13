@@ -15,6 +15,7 @@ export type TableEmptyProps = PropsWithChildren<EmptyProps & CreateButtonProps>;
 
 export function TableEmpty({
   createButton,
+  createButtonText,
   clickCreateButtonFn,
   children,
   ...emptyProps
@@ -23,7 +24,11 @@ export function TableEmpty({
     <StyledEmpty {...emptyProps}>
       {createButton && (
         <ButtonWrapper>
-          <CreateButton createButton={createButton} clickCreateButtonFn={clickCreateButtonFn} />
+          <CreateButton
+            createButton={createButton}
+            createButtonText={createButtonText}
+            clickCreateButtonFn={clickCreateButtonFn}
+          />
         </ButtonWrapper>
       )}
       {children}
