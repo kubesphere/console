@@ -6,6 +6,7 @@
 import { useMutation, useQuery } from 'react-query';
 import { get, isEmpty, set } from 'lodash';
 import { request } from '../utils';
+import { getPaginationInfo } from '../utils/request.helper';
 import { useUrl } from '../hooks';
 
 import { LIST_DEFAULT_ORDER } from '../constants/common';
@@ -51,54 +52,6 @@ export default function BaseStore<T extends PathParams>({
     return result;
   };
 
-  const getTotalCount = (options?: {
-    totalItems?: number;
-    totalCount?: number;
-    total_count?: number;
-    remainingItemCount?: number;
-    limit?: number;
-    page?: number;
-    defaultLimit?: number;
-    defaultPage?: number;
-    currentPageData?: unknown[];
-  }) => {
-    if (options?.totalItems) {
-      return options.totalItems;
-    }
-
-    if (options?.totalCount) {
-      return options.totalCount;
-    }
-
-    if (options?.total_count) {
-      return options.total_count;
-    }
-
-    const currentPageData = options?.currentPageData ?? [];
-    const currentPageCount = currentPageData.length ?? 0;
-
-    const remainingItemCount = options?.remainingItemCount;
-    if (remainingItemCount) {
-      const defaultLimit = Number(options?.defaultLimit) ?? 10;
-      const defaultPage = Number(options?.defaultPage) ?? 1;
-      const limit = Number(options?.limit) || defaultLimit;
-      const page = Number(options?.page) || defaultPage;
-
-      if ([Infinity, -1].includes(limit)) {
-        return currentPageCount;
-      }
-
-      const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
-      return currentSum + remainingItemCount;
-    }
-
-    if (currentPageCount) {
-      return currentPageCount;
-    }
-
-    return 0;
-  };
-
   const fetchList = async (
     { cluster, workspace, namespace, devops, ...params } = {} as PathParams & FilterParams,
   ): Promise<any> => {
@@ -125,7 +78,7 @@ export default function BaseStore<T extends PathParams>({
 
     const limit = Number(params.limit) || 10;
     const page = Number(params.page) || 1;
-    const total = getTotalCount({
+    const { total } = getPaginationInfo({
       ...result,
       remainingItemCount: result.metadata?.remainingItemCount,
       limit,
@@ -290,7 +243,6 @@ export default function BaseStore<T extends PathParams>({
     getDetailUrl,
     getWatchUrl,
     getWatchListUrl,
-    getTotalCount,
     fetchList,
     fetchListByK8s,
     fetchDetail,
