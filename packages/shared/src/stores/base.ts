@@ -83,6 +83,11 @@ export default function BaseStore<T extends PathParams>({
       const defaultPage = Number(options?.defaultPage) ?? 1;
       const limit = Number(options?.limit) || defaultLimit;
       const page = Number(options?.page) || defaultPage;
+
+      if ([Infinity, -1].includes(limit)) {
+        return currentPageCount;
+      }
+
       const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
       return currentSum + remainingItemCount;
     }
