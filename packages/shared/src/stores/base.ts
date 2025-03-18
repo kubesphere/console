@@ -51,6 +51,49 @@ export default function BaseStore<T extends PathParams>({
     return result;
   };
 
+  const getTotalCount = (options?: {
+    totalItems?: number;
+    totalCount?: number;
+    total_count?: number;
+    remainingItemCount?: number;
+    limit?: number;
+    page?: number;
+    defaultLimit?: number;
+    defaultPage?: number;
+    currentPageData?: unknown[];
+  }) => {
+    if (options?.totalItems) {
+      return options.totalItems;
+    }
+
+    if (options?.totalCount) {
+      return options.totalCount;
+    }
+
+    if (options?.total_count) {
+      return options.total_count;
+    }
+
+    const currentPageData = options?.currentPageData ?? [];
+    const currentPageCount = currentPageData.length ?? 0;
+
+    const remainingItemCount = options?.remainingItemCount;
+    if (remainingItemCount) {
+      const defaultLimit = Number(options?.defaultLimit) ?? 10;
+      const defaultPage = Number(options?.defaultPage) ?? 1;
+      const limit = Number(options?.limit) || defaultLimit;
+      const page = Number(options?.page) || defaultPage;
+      const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
+      return currentSum + remainingItemCount;
+    }
+
+    if (currentPageCount) {
+      return currentPageCount;
+    }
+
+    return 0;
+  };
+
   const fetchList = async (
     { cluster, workspace, namespace, devops, ...params } = {} as PathParams & FilterParams,
   ): Promise<any> => {
@@ -75,12 +118,22 @@ export default function BaseStore<T extends PathParams>({
       ...formatFn(item),
     }));
 
+    const limit = Number(params.limit) || 10;
+    const page = Number(params.page) || 1;
+    const total = getTotalCount({
+      ...result,
+      remainingItemCount: result.metadata?.remainingItemCount,
+      limit,
+      page,
+      currentPageData: data,
+    });
+
     return {
       data: data,
-      total: result.totalItems || result.totalCount || result.total_count || data.length || 0,
+      total,
       ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
+      limit,
+      page,
     };
   };
 
@@ -232,6 +285,7 @@ export default function BaseStore<T extends PathParams>({
     getDetailUrl,
     getWatchUrl,
     getWatchListUrl,
+    getTotalCount,
     fetchList,
     fetchListByK8s,
     fetchDetail,
