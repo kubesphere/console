@@ -8,7 +8,8 @@ import { get, isEmpty, merge, set } from 'lodash';
 
 import { useUrl } from '../hooks';
 import type { PathParams } from '../types';
-import { FetchListParams, formatFetchListParams, getApiVersion, request } from '../utils';
+import { FetchListParams, formatFetchListParams, request } from '../utils';
+import { getPaginationInfo } from '../utils/request.helper';
 
 type MutationFnParams = {
   params?: PathParams;
@@ -81,12 +82,22 @@ export default function BaseStore<T extends PathParams>({
       ...formatFn(item),
     }));
 
+    const limit = Number(params.limit) || 10;
+    const page = Number(params.page) || 1;
+    const { total } = getPaginationInfo({
+      ...result,
+      remainingItemCount: result.metadata?.remainingItemCount,
+      limit,
+      page,
+      currentPageData: data,
+    });
+
     return {
       data: data,
-      total: result.totalItems || result.totalCount || result.total_count || data.length || 0,
+      total,
       ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
+      limit,
+      page,
     };
   };
 
