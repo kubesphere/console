@@ -3,6 +3,8 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
+import { isNumber } from 'lodash';
+
 function getIsLicenseError({ status, message = '' }: { status: number; message?: string }) {
   const targetStatus = 403;
   const targetMessage = 'forbidden: invalid license';
@@ -36,7 +38,7 @@ function getPaginationInfo(options?: {
   const currentPageCount = currentPageData.length ?? 0;
 
   const remainingItemCount = options?.remainingItemCount;
-  if (remainingItemCount) {
+  if (isNumber(remainingItemCount)) {
     const defaultLimit = Number(options?.defaultLimit) ?? 10;
     const defaultPage = Number(options?.defaultPage) ?? 1;
     const limit = Number(options?.limit) || defaultLimit;
