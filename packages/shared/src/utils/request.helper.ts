@@ -22,16 +22,35 @@ function getPaginationInfo(options?: {
   defaultPage?: number;
   currentPageData?: unknown[];
 }) {
+  const defaultLimit = Number(options?.defaultLimit) ?? 10;
+  const defaultPage = Number(options?.defaultPage) ?? 1;
+  const limit = Number(options?.limit) ?? defaultLimit;
+  const page = Number(options?.page) ?? defaultPage;
+  const isPagination = ![Infinity, -1].includes(limit);
+
+  const getTotalPageCount = (totalItemCount: number) => {
+    if (!isPagination) {
+      return 1;
+    }
+    return Math.ceil(totalItemCount / limit);
+  };
+
   if (options?.totalItems) {
-    return { totalItemCount: options.totalItems };
+    const totalItemCount = options.totalItems;
+    const totalPageCount = getTotalPageCount(totalItemCount);
+    return { totalItemCount, totalPageCount };
   }
 
   if (options?.totalCount) {
-    return { total: options.totalCount };
+    const totalItemCount = options.totalCount;
+    const totalPageCount = getTotalPageCount(totalItemCount);
+    return { totalItemCount, totalPageCount };
   }
 
   if (options?.total_count) {
-    return { total: options.total_count };
+    const totalItemCount = options.total_count;
+    const totalPageCount = getTotalPageCount(totalItemCount);
+    return { totalItemCount, totalPageCount };
   }
 
   const currentPageData = options?.currentPageData ?? [];
@@ -39,24 +58,23 @@ function getPaginationInfo(options?: {
 
   const remainingItemCount = options?.remainingItemCount;
   if (isNumber(remainingItemCount)) {
-    const defaultLimit = Number(options?.defaultLimit) ?? 10;
-    const defaultPage = Number(options?.defaultPage) ?? 1;
-    const limit = Number(options?.limit) || defaultLimit;
-    const page = Number(options?.page) || defaultPage;
-
-    if ([Infinity, -1].includes(limit)) {
-      return { total: currentPageCount };
+    let totalItemCount = 0;
+    if (isPagination) {
+      totalItemCount = currentPageCount;
+    } else {
+      const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
+      totalItemCount = currentSum + remainingItemCount;
     }
+    const totalPageCount = getTotalPageCount(totalItemCount);
 
-    const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
-    return { total: currentSum + remainingItemCount };
+    return { totalItemCount, totalPageCount };
   }
 
   if (currentPageCount) {
-    return { total: currentPageCount };
+    return { totalItemCount: currentPageCount, totalPageCount: 1 };
   }
 
-  return { total: 0 };
+  return { totalItemCount: 0, totalPageCount: 0 };
 }
 
 export { getIsLicenseError, getPaginationInfo };
