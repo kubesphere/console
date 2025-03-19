@@ -3,8 +3,6 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import { isNumber } from 'lodash';
-
 function getIsLicenseError({ status, message = '' }: { status: number; message?: string }) {
   const targetStatus = 403;
   const targetMessage = 'forbidden: invalid license';
@@ -22,48 +20,49 @@ function getPaginationInfo(options?: {
   defaultPage?: number;
   currentPageData?: unknown[];
 }) {
-  const defaultLimit = Number(options?.defaultLimit) ?? 10;
-  const defaultPage = Number(options?.defaultPage) ?? 1;
-  const limit = Number(options?.limit) ?? defaultLimit;
-  const page = Number(options?.page) ?? defaultPage;
+  const defaultLimit = Number(options?.defaultLimit ?? 10);
+  const defaultPage = Number(options?.defaultPage ?? 1);
+  const limit = Number(options?.limit ?? defaultLimit);
+  const page = Number(options?.page ?? defaultPage);
   const isPagination = ![Infinity, -1].includes(limit);
 
   const getTotalPageCount = (totalItemCount: number) => {
     if (!isPagination) {
       return 1;
     }
+
     return Math.ceil(totalItemCount / limit);
   };
 
-  if (options?.totalItems) {
+  if (options?.totalItems !== undefined) {
     const totalItemCount = options.totalItems;
     const totalPageCount = getTotalPageCount(totalItemCount);
     return { totalItemCount, totalPageCount };
   }
 
-  if (options?.totalCount) {
+  if (options?.totalCount !== undefined) {
     const totalItemCount = options.totalCount;
     const totalPageCount = getTotalPageCount(totalItemCount);
     return { totalItemCount, totalPageCount };
   }
 
-  if (options?.total_count) {
+  if (options?.total_count !== undefined) {
     const totalItemCount = options.total_count;
     const totalPageCount = getTotalPageCount(totalItemCount);
     return { totalItemCount, totalPageCount };
   }
 
   const currentPageData = options?.currentPageData ?? [];
-  const currentPageCount = currentPageData.length ?? 0;
+  const currentPageCount = currentPageData.length;
 
   const remainingItemCount = options?.remainingItemCount;
-  if (isNumber(remainingItemCount)) {
+  if (remainingItemCount !== undefined) {
     let totalItemCount = 0;
     if (isPagination) {
-      totalItemCount = currentPageCount;
-    } else {
       const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
       totalItemCount = currentSum + remainingItemCount;
+    } else {
+      totalItemCount = currentPageCount;
     }
     const totalPageCount = getTotalPageCount(totalItemCount);
 
