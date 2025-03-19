@@ -34,22 +34,10 @@ function getPaginationInfo(options?: {
     return Math.ceil(totalItemCount / limit);
   };
 
-  if (options?.totalItems !== undefined) {
-    const totalItemCount = options.totalItems;
-    const totalPageCount = getTotalPageCount(totalItemCount);
-    return { totalItemCount, totalPageCount };
-  }
-
-  if (options?.totalCount !== undefined) {
-    const totalItemCount = options.totalCount;
-    const totalPageCount = getTotalPageCount(totalItemCount);
-    return { totalItemCount, totalPageCount };
-  }
-
-  if (options?.total_count !== undefined) {
-    const totalItemCount = options.total_count;
-    const totalPageCount = getTotalPageCount(totalItemCount);
-    return { totalItemCount, totalPageCount };
+  const normalTotalItemCount = options?.totalItems ?? options?.totalCount ?? options?.total_count;
+  if (normalTotalItemCount !== undefined) {
+    const totalPageCount = getTotalPageCount(normalTotalItemCount);
+    return { totalItemCount: normalTotalItemCount, totalPageCount };
   }
 
   const currentPageData = options?.currentPageData ?? [];
