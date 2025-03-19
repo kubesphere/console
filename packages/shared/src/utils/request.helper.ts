@@ -24,10 +24,10 @@ function getPaginationInfo(options?: {
   const defaultPage = Number(options?.defaultPage ?? 1);
   const limit = Number(options?.limit ?? defaultLimit);
   const page = Number(options?.page ?? defaultPage);
-  const isPagination = ![Infinity, -1].includes(limit);
+  const isPaginated = ![Infinity, -1].includes(limit);
 
   const getTotalPageCount = (totalItemCount: number) => {
-    if (!isPagination) {
+    if (!isPaginated) {
       return 1;
     }
 
@@ -46,7 +46,7 @@ function getPaginationInfo(options?: {
   const remainingItemCount = options?.remainingItemCount;
   if (remainingItemCount !== undefined) {
     let totalItemCount = 0;
-    if (isPagination) {
+    if (isPaginated) {
       const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
       totalItemCount = currentSum + remainingItemCount;
     } else {
