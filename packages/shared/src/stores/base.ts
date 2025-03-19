@@ -6,6 +6,7 @@
 import { useMutation, useQuery } from 'react-query';
 import { get, isEmpty, set } from 'lodash';
 import { request } from '../utils';
+import { getPaginationInfo } from '../utils/request.helper';
 import { useUrl } from '../hooks';
 
 import { LIST_DEFAULT_ORDER } from '../constants/common';
@@ -75,12 +76,22 @@ export default function BaseStore<T extends PathParams>({
       ...formatFn(item),
     }));
 
+    const limit = Number(params.limit) || 10;
+    const page = Number(params.page) || 1;
+    const { total } = getPaginationInfo({
+      ...result,
+      remainingItemCount: result.metadata?.remainingItemCount,
+      limit,
+      page,
+      currentPageData: data,
+    });
+
     return {
       data: data,
-      total: result.totalItems || result.totalCount || result.total_count || data.length || 0,
+      total,
       ...params,
-      limit: Number(params.limit) || 10,
-      page: Number(params.page) || 1,
+      limit,
+      page,
     };
   };
 
