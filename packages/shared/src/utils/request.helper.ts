@@ -3,8 +3,6 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import { isNumber } from 'lodash';
-
 function getIsLicenseError({ status, message = '' }: { status: number; message?: string }) {
   const targetStatus = 403;
   const targetMessage = 'forbidden: invalid license';
@@ -22,41 +20,48 @@ function getPaginationInfo(options?: {
   defaultPage?: number;
   currentPageData?: unknown[];
 }) {
-  if (options?.totalItems) {
-    return { totalItemCount: options.totalItems };
-  }
+  const defaultLimit = Number(options?.defaultLimit ?? 10);
+  const defaultPage = Number(options?.defaultPage ?? 1);
+  const limit = Number(options?.limit ?? defaultLimit);
+  const page = Number(options?.page ?? defaultPage);
+  const isPaginated = ![Infinity, -1].includes(limit);
 
-  if (options?.totalCount) {
-    return { total: options.totalCount };
-  }
+  const getTotalPageCount = (totalItemCount: number) => {
+    if (!isPaginated) {
+      return 1;
+    }
 
-  if (options?.total_count) {
-    return { total: options.total_count };
+    return Math.ceil(totalItemCount / limit);
+  };
+
+  const normalTotalItemCount = options?.totalItems ?? options?.totalCount ?? options?.total_count;
+  if (normalTotalItemCount !== undefined) {
+    const totalPageCount = getTotalPageCount(normalTotalItemCount);
+    return { totalItemCount: normalTotalItemCount, totalPageCount };
   }
 
   const currentPageData = options?.currentPageData ?? [];
-  const currentPageCount = currentPageData.length ?? 0;
+  const currentPageCount = currentPageData.length;
 
   const remainingItemCount = options?.remainingItemCount;
-  if (isNumber(remainingItemCount)) {
-    const defaultLimit = Number(options?.defaultLimit) ?? 10;
-    const defaultPage = Number(options?.defaultPage) ?? 1;
-    const limit = Number(options?.limit) || defaultLimit;
-    const page = Number(options?.page) || defaultPage;
-
-    if ([Infinity, -1].includes(limit)) {
-      return { total: currentPageCount };
+  if (remainingItemCount !== undefined) {
+    let totalItemCount = 0;
+    if (isPaginated) {
+      const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
+      totalItemCount = currentSum + remainingItemCount;
+    } else {
+      totalItemCount = currentPageCount;
     }
+    const totalPageCount = getTotalPageCount(totalItemCount);
 
-    const currentSum = limit * (page > 0 ? page - 1 : 0) + currentPageCount;
-    return { total: currentSum + remainingItemCount };
+    return { totalItemCount, totalPageCount };
   }
 
   if (currentPageCount) {
-    return { total: currentPageCount };
+    return { totalItemCount: currentPageCount, totalPageCount: 1 };
   }
 
-  return { total: 0 };
+  return { totalItemCount: 0, totalPageCount: 0 };
 }
 
 export { getIsLicenseError, getPaginationInfo };

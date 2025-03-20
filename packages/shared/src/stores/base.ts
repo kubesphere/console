@@ -78,7 +78,7 @@ export default function BaseStore<T extends PathParams>({
 
     const limit = Number(params.limit) || 10;
     const page = Number(params.page) || 1;
-    const { total } = getPaginationInfo({
+    const { totalItemCount } = getPaginationInfo({
       ...result,
       remainingItemCount: result.metadata?.remainingItemCount,
       limit,
@@ -88,7 +88,7 @@ export default function BaseStore<T extends PathParams>({
 
     return {
       data: data,
-      total,
+      total: totalItemCount,
       ...params,
       limit,
       page,
