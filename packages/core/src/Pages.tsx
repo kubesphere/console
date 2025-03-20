@@ -10,19 +10,14 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import { create } from 'zustand';
 
 import BaseLayout from './components/Layouts/BaseLayout';
+import { sessionRoutes } from './containers/Session/routes';
+import { errorRoutes } from './containers/Errors/routes';
 import extensionsRoutes from './containers/Extensions/routes';
 import marketplaceRoutes from './containers/Marketplace/routes';
-import Login from './containers/Session/Login';
-import LoginConfirm from './containers/Session/LoginConfirm';
-import PasswordConfirm from './containers/Session/PasswordConfirm';
 import { routes as supportRoutes } from './containers/Support';
 import { registerRemoteExtensions } from './utils/extensions.remote';
 
-const baseRoutes: RouteObject[] = [
-  { path: '/login', element: <Login /> },
-  { path: '/login/confirm', element: <LoginConfirm /> },
-  { path: '/password/confirm', element: <PasswordConfirm /> },
-];
+const baseRoutes: RouteObject[] = [...sessionRoutes];
 
 const homePage = globals.config.homePage || '/dashboard';
 
@@ -51,6 +46,7 @@ function Pages() {
           ...extensionsRoutes,
           ...marketplaceRoutes,
           ...supportRoutes,
+          ...errorRoutes,
           {
             index: true,
             element: <Navigate to={homePage} replace />,

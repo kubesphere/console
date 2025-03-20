@@ -11,6 +11,7 @@ const bodyParser = require('koa-bodyparser');
 const proxy = require('./middlewares/proxy');
 const checkToken = require('./middlewares/checkToken');
 const checkIfExist = require('./middlewares/checkIfExist');
+const checkForbiddenError = require('./middlewares/checkForbiddenError');
 
 const { getServerConfig } = require('./libs/utils');
 
@@ -59,8 +60,8 @@ router
   .use(proxy('/b2i_download/(.*)', b2iFileProxy))
   .get('/blank_md', renderMarkdown)
 
-  .all('/proxy-api/(.*)', checkToken, checkIfExist)
-  .all('(/clusters/[^/]*)?/(k?)api(s?)/(.*)', checkToken, checkIfExist)
+  .all('/proxy-api/(.*)', checkToken, checkForbiddenError, checkIfExist)
+  .all('(/clusters/[^/]*)?/(k?)api(s?)/(.*)', checkToken, checkForbiddenError, checkIfExist)
   .use(proxy('/apis/marketplace/(.*)', marketplaceApiProxy))
   .use(proxy('(/clusters/[^/]*)?/(k?)api(s?)/(.*)', k8sResourceProxy))
   .use(proxy('/proxy/(.*)', k8sResourceProxy))
