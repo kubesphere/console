@@ -22,6 +22,7 @@ import { useMarketplaceConfigQuery } from '../../../../../stores/marketplace';
 import { getExtensionsEmptyProps as getExtensionsEmptyPropsWithFilters } from '../../../components/ExtensionsEmpty';
 import {
   DEBOUNCE_WAIT,
+  DEFAULT_PAGE_SIZE,
   InstallModalActionType,
   EXTENSIONS_EVALUATION_PAGE_LINK,
 } from '../../constants';
@@ -71,11 +72,11 @@ export function Extensions() {
   const hasFilters = Boolean(queryParams.q ?? queryParams.status ?? queryParams.enabled);
   const {
     isFetching: isExtensionsQueryFetching,
-    totalCount,
+    totalItemCount,
     formattedExtensions,
     refetch: refetchExtensions,
   } = useKExtensionsQuery({
-    params: { isAvailable: true, ...queryParams },
+    params: { isAvailable: true, limit: DEFAULT_PAGE_SIZE, ...queryParams },
     onSuccess: data => {
       const innerLocalExtensionStatusItems = data.map(({ name, statusState, statusConditions }) => {
         const localExtensionsStatus = getLocalExtensionStatusItem({
@@ -318,7 +319,7 @@ export function Extensions() {
     columns,
     loading: isExtensionsQueryFetching,
     data: tableData,
-    rowCount: totalCount,
+    rowCount: totalItemCount,
     state,
     // autoResetPageIndex: true,
     meta: {
