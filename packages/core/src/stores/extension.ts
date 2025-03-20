@@ -14,6 +14,7 @@ import {
   getBaseInfo,
   getOriginData,
   request,
+  requestHelper,
   useWebSocket,
   podStore,
   safeAtob,
@@ -502,20 +503,14 @@ function useKExtensionsQuery(options?: UseKExtensionsQueryOptions) {
   const page = options?.params?.page ?? 1;
   const result = useBaseExtensionsQuery({ url, getRequestParams, ...options });
 
-  const remainingItemCount = result.data?.metadata?.remainingItemCount ?? 0;
-  const currentPageCount = result.formattedExtensions.length;
+  const { totalItemCount } = requestHelper.getPaginationInfo({
+    limit,
+    page,
+    remainingItemCount: result.data?.metadata?.remainingItemCount,
+    currentPageData: result.formattedExtensions,
+  });
 
-  let [totalCount, pageCount] = [0, 0];
-
-  if (limit === undefined || limit === -1) {
-    totalCount = currentPageCount;
-    pageCount = 1;
-  } else {
-    totalCount = limit * (page - 1) + currentPageCount + remainingItemCount;
-    pageCount = Math.ceil(totalCount / limit);
-  }
-
-  return { totalCount, pageCount, ...result };
+  return { totalItemCount, ...result };
 }
 
 interface UseExtensionQueryOptions {
