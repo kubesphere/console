@@ -168,7 +168,7 @@
     "postcss-loader": "^3.0.0",
     "prettier": "^3.3.3",
     "prop-types": "^15.7.2",
-    "qs": "^6.10.1",
+    "qs": "^6.10.3",
     "react-refresh": "^0.10.0",
     "rehype-raw": "^7.0.0",
     "rollup": "^2.73.0",
