@@ -71,7 +71,7 @@ function PlacementConfigForm(
           return {
             ...prev,
             workspace: patchWorkspaces?.[0]?.name || workspace,
-            placement: { ...prev.placement, workspace: patchWorkspaces?.[0].name || workspace },
+            placement: { ...prev.placement, workspace: patchWorkspaces?.[0]?.name || workspace },
           };
         });
       }
