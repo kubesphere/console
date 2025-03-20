@@ -5,6 +5,8 @@
 
 export const DEBOUNCE_WAIT = 1000;
 
+export const DEFAULT_PAGE_SIZE = 10;
+
 export enum InstallModalActionType {
   ExtensionInstall = 'extension.install',
   ExtensionUpdate = 'extension.update',
