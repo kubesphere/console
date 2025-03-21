@@ -5,6 +5,5 @@
 
 module.exports = {
   'ERRORS.FORBIDDEN.TITLE': 'No access permission at the moment',
-  'ERRORS.FORBIDDEN.DESCRIPTION':
-    'Sorry, you do not have permission to access this page at the moment.',
+  'ERRORS.FORBIDDEN.DESCRIPTION': 'Sorry, you do not have permission to access this page at the moment.',
 };
