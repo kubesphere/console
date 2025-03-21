@@ -3,6 +3,22 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
+function getIsApiForbiddenError({
+  method,
+  code,
+  reason,
+}: {
+  method: string;
+  code?: number;
+  reason?: string;
+}) {
+  const targetMethod = 'GET';
+  const targetCode = 403;
+  const targetReason = 'Forbidden';
+
+  return method.toUpperCase() === targetMethod && code === targetCode && reason === targetReason;
+}
+
 function getIsLicenseError({ status, message = '' }: { status: number; message?: string }) {
   const targetStatus = 403;
   const targetMessage = 'forbidden: invalid license';
@@ -64,4 +80,4 @@ function getPaginationInfo(options?: {
   return { totalItemCount: 0, totalPageCount: 0 };
 }
 
-export { getIsLicenseError, getPaginationInfo };
+export { getIsApiForbiddenError, getIsLicenseError, getPaginationInfo };
