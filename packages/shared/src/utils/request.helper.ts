@@ -12,11 +12,11 @@ function getIsApiForbiddenError({
   code?: number;
   reason?: string;
 }) {
-  const targetMethod = 'get';
+  const targetMethod = 'GET';
   const targetCode = 403;
   const targetReason = 'Forbidden';
 
-  return method.toLowerCase() === targetMethod && code === targetCode && reason === targetReason;
+  return method.toUpperCase() === targetMethod && code === targetCode && reason === targetReason;
 }
 
 function getIsLicenseError({ status, message = '' }: { status: number; message?: string }) {
