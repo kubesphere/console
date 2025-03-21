@@ -154,12 +154,7 @@ const Login = () => {
             {t(errorMessage)}
           </Alert>
         )}
-        <Form
-          className="login-form"
-          size="md"
-          initialValues={{ username: 'an', password: 'P@88w0rd' }}
-          onFinish={loginMutation.mutate}
-        >
+        <Form className="login-form" size="md" onFinish={loginMutation.mutate}>
           <FormItem
             label={
               isRegularLogin
