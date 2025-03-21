@@ -1,5 +1,15 @@
 import React from 'react';
 
+import { Root, Container, Illustration, Title, Description } from './styles';
+
 export function Forbidden() {
-  return <h1>403 Forbidden</h1>;
+  return (
+    <Root>
+      <Container>
+        <Illustration />
+        <Title>{t('ERRORS.FORBIDDEN.TITLE')}</Title>
+        <Description>{t('ERRORS.FORBIDDEN.DESCRIPTION')}</Description>
+      </Container>
+    </Root>
+  );
 }
