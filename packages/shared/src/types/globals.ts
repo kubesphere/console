@@ -3,10 +3,13 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
+import type { AxiosResponse } from 'axios';
+
 export type GlobalMessage = {
   status: number;
   reason: string;
   message?: string;
+  response?: AxiosResponse;
 };
 
 export type PathParams = {
