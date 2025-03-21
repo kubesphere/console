@@ -11,7 +11,6 @@ const bodyParser = require('koa-bodyparser');
 const proxy = require('./middlewares/proxy');
 const checkToken = require('./middlewares/checkToken');
 const checkIfExist = require('./middlewares/checkIfExist');
-const checkForbidden = require('./middlewares/checkForbidden');
 
 const { getServerConfig } = require('./libs/utils');
 
@@ -61,7 +60,7 @@ router
   .get('/blank_md', renderMarkdown)
 
   .all('/proxy-api/(.*)', checkToken, checkIfExist)
-  .all('(/clusters/[^/]*)?/(k?)api(s?)/(.*)', checkToken, checkForbidden, checkIfExist)
+  .all('(/clusters/[^/]*)?/(k?)api(s?)/(.*)', checkToken, checkIfExist)
   .use(proxy('/apis/marketplace/(.*)', marketplaceApiProxy))
   .use(proxy('(/clusters/[^/]*)?/(k?)api(s?)/(.*)', k8sResourceProxy))
   .use(proxy('/proxy/(.*)', k8sResourceProxy))

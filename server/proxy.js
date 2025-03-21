@@ -23,27 +23,6 @@ const k8sResourceProxy = {
 
       NEED_OMIT_HEADERS.forEach(key => proxyReq.removeHeader(key));
     },
-    proxyRes(proxyRes, req) {
-      const contentType = proxyRes.headers['content-type'];
-
-      let chunks = [];
-
-      proxyRes.on('data', chunk => chunks.push(chunk));
-
-      proxyRes.on('end', () => {
-        const body = Buffer.concat(chunks).toString();
-
-        try {
-          if (contentType?.includes('application/json')) {
-            const data = JSON.parse(body);
-            const code = data?.code;
-            const reason = data?.reason;
-
-            req.customResponse = { body: { code, reason } };
-          }
-        } catch {}
-      });
-    },
   },
 };
 
