@@ -15,15 +15,17 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100%;
-  padding: 140px;
+  padding: 140px 20px 20px 20px;
   background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(36, 46, 66, 0.06);
 `;
 
 export const Illustration = styled.div`
   width: 320px;
   height: 180px;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 100% 100%;
   background-image: url('/assets/403.svg');
 `;
 
