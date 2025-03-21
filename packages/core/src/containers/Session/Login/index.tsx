@@ -114,9 +114,6 @@ const Login = () => {
       }
     },
   });
-  useEffect(() => {
-    loginMutation.mutate({ username: 'an', password: 'P@88w0rd' });
-  }, []);
 
   const handleBack = () => {
     setErrorMessage('');
