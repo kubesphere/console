@@ -4,6 +4,6 @@
  */
 
 module.exports = {
-  'ERRORS.FORBIDDEN.TITLE': '拒绝访问',
-  'ERRORS.FORBIDDEN.DESCRIPTION': '抱歉，你暂时无权访问此页面。',
+  'ERRORS.FORBIDDEN.TITLE': 'Access Denied',
+  'ERRORS.FORBIDDEN.DESCRIPTION': 'Sorry, you do not have permission to access this page at the moment.',
 };
