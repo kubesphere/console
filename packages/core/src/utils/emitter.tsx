@@ -5,12 +5,8 @@
 
 import React from 'react';
 import { notify, Notify } from '@kubed/components';
-import {
-  GlobalMessage,
-  checker,
-  useEventEmitter as eventEmitter,
-  requestHelper,
-} from '@ks-console/shared';
+import type { GlobalMessage } from '@ks-console/shared';
+import { checker, useEventEmitter as eventEmitter, requestHelper } from '@ks-console/shared';
 
 const { enableErrorNotify } = globals.config;
 const { isAppsPage, isMemberClusterPage } = checker;
