@@ -3,8 +3,8 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-import { PathParams, Text } from '@ks-console/shared';
-import { Tab, Tabs } from '@kubed/components';
+import { hasClusterModule, PathParams, Text } from '@ks-console/shared';
+import { Tab } from '@kubed/components';
 import * as React from 'react';
 
 import { get } from 'lodash';
@@ -13,6 +13,7 @@ import FormPortal from '../../FormPortal';
 import StorageLinkResourceQuota from './StorageLinkResourceQuota';
 import StorageResourceQuotaFormItems from './StorageResourceQuotaFormItems';
 import { Card, Description, Wrapper, TabsWrapper } from './styles';
+import { useQuery } from 'react-query';
 
 export const StorageResourceQuotaWrapper = ({ children, version }: any) => {
   return (
@@ -29,7 +30,7 @@ export const StorageResourceQuotaWrapper = ({ children, version }: any) => {
   );
 };
 
-const { useQueryList } = storageClassStore;
+const { fetchStorageClasses } = storageClassStore;
 
 interface Props {
   value?: Record<string, any>;
@@ -74,8 +75,18 @@ const StorageResourceQuota = (props: Props) => {
     });
   };
 
-  const { data: storageList } = useQueryList(
-    { cluster, namespace, limit: -1, headers: { 'x-ignore-error-notify': 'true' } },
+  const { data: storageList } = useQuery(
+    ['storage-class-list'],
+    async () => {
+      const result = await fetchStorageClasses({
+        cluster,
+        limit: -1,
+        headers: { 'x-ignore-error-notify': 'true' },
+        ksApi: hasClusterModule(cluster!, 'storage-utils'),
+        allowedNamespace: namespace,
+      });
+      return result;
+    },
     {
       enabled: !!cluster,
     },
