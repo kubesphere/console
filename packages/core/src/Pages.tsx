@@ -12,6 +12,7 @@ import { create } from 'zustand';
 import BaseLayout from './components/Layouts/BaseLayout';
 import { sessionRoutes } from './containers/Session/routes';
 import { errorRoutes } from './containers/Errors/routes';
+import { NotFound } from './containers/Errors/404';
 import extensionsRoutes from './containers/Extensions/routes';
 import marketplaceRoutes from './containers/Marketplace/routes';
 import { routes as supportRoutes } from './containers/Support';
@@ -50,6 +51,10 @@ function Pages() {
           {
             index: true,
             element: <Navigate to={homePage} replace />,
+          },
+          {
+            path: '*',
+            element: <NotFound />,
           },
         ],
       };
