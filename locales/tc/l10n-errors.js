@@ -6,8 +6,7 @@
 module.exports = {
   // 403
   'ERRORS.FORBIDDEN.TITLE': 'Access Denied',
-  'ERRORS.FORBIDDEN.DESCRIPTION':
-    'Sorry, you do not have permission to access this page at the moment.',
+  'ERRORS.FORBIDDEN.DESCRIPTION': 'Sorry, you do not have permission to access this page at the moment.',
   // 404
   'ERRORS.NOT_FOUND.TITLE': 'Not Found',
   'ERRORS.NOT_FOUND.DESCRIPTION':
