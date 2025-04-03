@@ -8,7 +8,7 @@ import { debounce } from 'lodash';
 import { notify } from '@kubed/components';
 
 import type {
-  ExtensionStatusState as ExtensionStatusStateType,
+  ExtensionStatusState,
   OriginalInstallPlan,
   OriginalInstallPlanClusterSchedulingPlacement,
   FormattedInstallPlanClusterSchedulingOverrides,
@@ -16,7 +16,7 @@ import type {
   DeleteInstallPlanMutationVariables,
 } from '../../../../types/extension';
 import type { FormattedExtension } from '../../../../stores/extension';
-import { ExtensionStatusState } from '../../../../constants/extension';
+import { EXTENSION_STATUS_STATE_MAP } from '../../../../constants/extension';
 import { DEBOUNCE_WAIT } from '../constants';
 
 const debouncedNotifySuccess = debounce(notify.success, DEBOUNCE_WAIT);
@@ -149,11 +149,11 @@ export const forceDeleteInstallPlan = deleteInstallPlan;
 
 interface HandleInstalledOptions {
   localeDisplayName: string;
-  statusState?: ExtensionStatusStateType;
+  statusState?: ExtensionStatusState;
 }
 
 export function handleInstalled({ localeDisplayName, statusState }: HandleInstalledOptions) {
-  if (statusState === ExtensionStatusState.Installed) {
+  if (statusState === EXTENSION_STATUS_STATE_MAP.installed) {
     debouncedNotifySuccess(
       t('EXTENSION_INSTALLED', { extensionLocaleDisplayName: localeDisplayName }),
     );
@@ -163,7 +163,7 @@ export function handleInstalled({ localeDisplayName, statusState }: HandleInstal
 type HandleUninstalledOptions = HandleInstalledOptions;
 
 export function handleUninstalled({ localeDisplayName, statusState }: HandleUninstalledOptions) {
-  if (statusState === ExtensionStatusState.Uninstalled) {
+  if (statusState === EXTENSION_STATUS_STATE_MAP.uninstalled) {
     debouncedNotifySuccess(
       t('EXTENSION_UNINSTALLED', { extensionLocaleDisplayName: localeDisplayName }),
     );
