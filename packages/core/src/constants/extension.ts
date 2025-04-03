@@ -65,16 +65,21 @@ const EXTENSIONS_PAGE_PATHS = {
   },
 };
 
-enum ExtensionStatusState {
-  Preparing = 'Preparing',
-  Installing = 'Installing',
-  Upgrading = 'Upgrading',
-  Uninstalling = 'Uninstalling',
-  Installed = 'Installed',
-  Uninstalled = 'Uninstalled',
-  InstallFailed = 'InstallFailed',
-  UpgradeFailed = 'UpgradeFailed',
-  UninstallFailed = 'UninstallFailed',
-}
+const EXTENSION_STATUS_STATE_MAP = {
+  preparing: 'Preparing',
+  installing: 'Installing',
+  upgrading: 'Upgrading',
+  uninstalling: 'Uninstalling',
+  installed: 'Installed',
+  uninstalled: 'Uninstalled',
+  installFailed: 'InstallFailed',
+  upgradeFailed: 'UpgradeFailed',
+  uninstallFailed: 'UninstallFailed',
+} as const;
 
-export { EMPTY_ORIGINAL_EXTENSION, DEFAULT_LANGUAGE, EXTENSIONS_PAGE_PATHS, ExtensionStatusState };
+export {
+  EMPTY_ORIGINAL_EXTENSION,
+  DEFAULT_LANGUAGE,
+  EXTENSIONS_PAGE_PATHS,
+  EXTENSION_STATUS_STATE_MAP,
+};
