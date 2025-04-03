@@ -25,7 +25,7 @@ import type {
   OriginalCategoryList,
   FetchExtensionsRequestParams,
   FetchKExtensionsRequestParams,
-  ExtensionStatusState as ExtensionStatusStateType,
+  ExtensionStatusState,
   ExtensionStatusCondition,
   OriginalExtension,
   OriginalExtensionList,
@@ -41,7 +41,7 @@ import type {
   DeleteInstallPlanMutationVariables,
 } from '../types/extension';
 import { PodStatusPhase } from '../constants/pod';
-import { ExtensionStatusState } from '../constants/extension';
+import { EXTENSION_STATUS_STATE_MAP } from '../constants/extension';
 import { getLocaleValue } from '../utils/extension';
 import { useClustersQuery } from './cluster';
 
@@ -100,16 +100,16 @@ function useCategoriesQuery(options?: UseCategoriesQueryOptions) {
   };
 }
 
-function formatStatusState({ statusState }: { statusState: ExtensionStatusStateType | undefined }) {
-  const isPreparing = statusState === ExtensionStatusState.Preparing;
-  const isInstalling = statusState === ExtensionStatusState.Installing;
-  const isUpgrading = statusState === ExtensionStatusState.Upgrading;
-  const isUninstalling = statusState === ExtensionStatusState.Uninstalling;
-  const isInstalled = statusState === ExtensionStatusState.Installed;
-  const isUninstalled = !statusState || statusState === ExtensionStatusState.Uninstalled;
-  const isInstallFailed = statusState === ExtensionStatusState.InstallFailed;
-  const isUpgradeFailed = statusState === ExtensionStatusState.UpgradeFailed;
-  const isUninstallFailed = statusState === ExtensionStatusState.UninstallFailed;
+function formatStatusState({ statusState }: { statusState: ExtensionStatusState | undefined }) {
+  const isPreparing = statusState === EXTENSION_STATUS_STATE_MAP.preparing;
+  const isInstalling = statusState === EXTENSION_STATUS_STATE_MAP.installing;
+  const isUpgrading = statusState === EXTENSION_STATUS_STATE_MAP.upgrading;
+  const isUninstalling = statusState === EXTENSION_STATUS_STATE_MAP.uninstalling;
+  const isInstalled = statusState === EXTENSION_STATUS_STATE_MAP.installed;
+  const isUninstalled = !statusState || statusState === EXTENSION_STATUS_STATE_MAP.uninstalled;
+  const isInstallFailed = statusState === EXTENSION_STATUS_STATE_MAP.installFailed;
+  const isUpgradeFailed = statusState === EXTENSION_STATUS_STATE_MAP.upgradeFailed;
+  const isUninstallFailed = statusState === EXTENSION_STATUS_STATE_MAP.uninstallFailed;
 
   const isResetLocalExtensionStatusByInstallOrUpgrade =
     isPreparing || isInstalling || isUpgrading || isInstalled || isInstallFailed || isUpgradeFailed;
@@ -177,7 +177,7 @@ function formatExtensionInstallStatus({
   statusState,
   statusConditions,
 }: {
-  statusState: ExtensionStatusStateType | undefined;
+  statusState: ExtensionStatusState | undefined;
   statusConditions: ExtensionStatusCondition[] | undefined;
 }) {
   const formattedStatusState = formatStatusState({ statusState });
@@ -204,7 +204,7 @@ function formatStatusEnabled({
   statusState,
   statusEnabled,
 }: {
-  statusState: ExtensionStatusStateType | undefined;
+  statusState: ExtensionStatusState | undefined;
   statusEnabled: boolean | undefined;
 }) {
   const { isInstalled } = formatStatusState({ statusState });
