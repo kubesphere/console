@@ -1,8 +1,20 @@
 /*
- * Please refer to the LICENSE file in the root directory of the project.
- * https://github.com/kubesphere/console/blob/master/LICENSE
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: 'Repositorio de Código',
@@ -45,14 +57,11 @@ module.exports = {
   NOT_VALID_REPO: 'Code repo is not valid and cannot be created',
   CREATE_PIPELINE_DESC: 'Build, test and deploy with Pipelines',
   CI: 'Continuous Integration (CI)',
-  CI_DESC:
-    'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
+  CI_DESC: 'Continuous integration (CI) is the process of automatically detecting, pulling, building, and (in most cases) unit testing after source code changes.',
   CICD: 'Continuous Integration & Delivery (CI/CD)',
-  CICD_DESC:
-    "Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user's installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.",
+  CICD_DESC: 'Continuous deployment (CD) refers to the idea of automatically providing the release version in the continuous delivery pipeline to end users. According to the user\'s installation method, automatic deployment in the cloud environment, app upgrades (such as apps on mobile phones), website updates, or only the list of available versions.',
   CUSTOM_PIPELIEN: 'Custom Pipeline',
-  CUSTOM_PIPELIEN_DESC:
-    'You can select the tasks you need to customize the work content of the pipeline.',
+  CUSTOM_PIPELIEN_DESC: 'You can select the tasks you need to customize the work content of the pipeline.',
   CC: 'CC',
   CREDENTIAL_NAME: 'ID de autentificación',
   REMOTE_REPOSITORY_URL: 'URL de repositorio remoto',
@@ -82,8 +91,7 @@ module.exports = {
     (las actualizaciones continuas no son compatibles, use la implementación si desea usar actualizaciones continuas)
     </li>`,
   STAGE: 'Stage',
-  KUBERNETES_DEPLOY_DEPRECATED_TIP:
-    'This step will be deprecated in subsequent versions, and it is recommended that you consider other alternatives.',
+  KUBERNETES_DEPLOY_DEPRECATED_TIP: 'This step will be deprecated in subsequent versions, and it is recommended that you consider other alternatives.',
   ORIGINAL_IMAGE_ADDRESS: 'Original Image Address',
   NEW_IMAGE_ADDRESS: 'New Image Address',
   NEW_IMAGE_TAG: 'New Image Tag',
@@ -108,8 +116,7 @@ module.exports = {
   LAST_MESSAGE: 'Ultimo mensaje',
   RUN_ID: 'Run ID',
   STOP_PIPELINE_SUCCESSFUL: 'Parado de ejecución satisfactorio, se actualizará el estado después',
-  INVALID_JENKINSFILE_TIP:
-    'El Jenkinsfile actual no es un Jenkinsfile declarativo estándar y no se puedes mostrar gráficamente',
+  INVALID_JENKINSFILE_TIP: 'El Jenkinsfile actual no es un Jenkinsfile declarativo estándar y no se puedes mostrar gráficamente',
   PAUSED: 'Pausado',
   // Run Records > Run
   SET_PARAMETERS: 'Entrada de parámetros',
@@ -157,6 +164,71 @@ module.exports = {
   PASSED: 'Pasado',
   // Pull Requests
   PULL_REQUEST_PL: 'Pull Requests',
-  FAILED_CHECK_SCRIPT_COMPILE:
-    'The check of script compile failed, if you want to bypass the step, please click the continue button',
+  FAILED_CHECK_SCRIPT_COMPILE: 'Failed to check script compiling. If you want to skip the step, click Continue.',
+  // detail page // Create Pipeline modal // add step modal 
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
+  //Create pipeline modal -> Custom Pipeline
+  General: 'General',
+  Container: 'Container',
+  Review: 'Review',
+  URL: 'URL',
+  'Credential Name': 'ID de autentificación',
+  Branch: 'Branch',
+  'SVN URL': 'SVN URL',
+  'Credential Name': 'ID de autentificación',
+  'The message to print': 'Message to Print',
+  'Shell command line': 'Shell command line',
+  //   Recipient: 'Recipient',
+  //   CC: 'CC',
+  //   Subject: 'Subject',
+  Body: 'Body',
+  'Credential Name': 'ID de autentificación',
+  //   'Username Variable': 'Username Variable',
+  //   'Password Variable': 'Password Variable',
+  Variable: 'Variable',
+  'KeyFile Variable': 'KeyFile Variable',
+  'Passphrase Variable': 'Passphrase Variable',
+  'Artifacts Location': 'Artifacts Location',
+  Time: 'Hora',
+  Unit: 'Unit',
+  //   'Timeout after no activity in logs for this block':
+  // 'Timeout after no activity in logs for this block',
+  'Groovy script': 'Groovy script',
+  'Target Pipeline Name': 'Target Pipeline Name',
+  'Quiet Period': 'Quiet Period',
+  'Wait For Completion': 'Wait for completion',
+  'Propagate Errors': 'Propagate errors',
+  'Error Message': 'Error Message',
+  Time: 'Hora',
+  Unit: 'Unit',
+  'Test Results Location': 'Location of Test Results',
+  'Allow Empty Results': 'Allow empty results',
+  'Keep Long Output': 'Retain long output',
+  'Skip Publishing Checks': 'Skip publishing checks',
+  'Retry Count': 'Retry Times',
+  Message: 'Mensaje',
+  Submitter: 'Submitter',
+  'Config Name': 'Configuration Item',
+  'AbortPipeline if quality gate status is not green': 'Abort the pipeline if quality gate status is not green',
+  'Container Name': 'Nombre del contenedor',
+  'Continuous Deployments': 'Continuous Deployment',
+  Branch: 'Branch',
+  'Original Image Address': 'Original Image Address',
+  'New Image Address': 'New Image Address',
+  'New Image Tag': 'New Image Tag',
+  Credential: 'Autentificación',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: 'Pipeline Configurations',
+  Replay: 'Replay',
+  BRANCH_DISABLED_NOT_REPLAY: 'The branch has been disabled and cannot be replayed.',
+  // detail page // run log // task status
+  RUN_LOGS: 'Run Logs',
+  VIEW_FULL_LOG: 'View Full Logs',
+  VIEW_REAL_TIME_LOG: 'View Real-time Logs',
+  // detail page // run log // task status // pipeline log modal
+  PIPELINE_LOG: 'Pipeline Logs',
+  // detail page // Create Pipeline modal // add step modal
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
+  // detail page // parameters tab
+  NO_BUILD_PARAMETERS: 'Not found build parameters.'
 };
