@@ -1,8 +1,20 @@
 /*
- * Please refer to the LICENSE file in the root directory of the project.
- * https://github.com/kubesphere/console/blob/master/LICENSE
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   // Banner
   STORAGE_CLASS_PL: '存储类',
@@ -18,8 +30,7 @@ module.exports = {
   // List > Create > Storage System
   CHOOSE_STORAGE_SYSTEM_TIP: '选择存储系统',
   PROVISIONER_DEPENDENCE_DESC: '您需要先在存储系统中部署相关插件才能提供服务。',
-  QINGCLOUD_CSI_DESC:
-    '使用 QingCloud CSI 作为底层存储插件。<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md">了解更多</a>',
+  QINGCLOUD_CSI_DESC: '使用 QingCloud CSI 作为底层存储插件。<a href="https://github.com/yunify/qingcloud-csi/blob/master/README.md">了解更多</a>',
   CUSTOM: '自定义',
   // List > Create > > QingCloud CSI > Storage Class Settings
   VOLUME_EXPANSION: '卷扩展',
@@ -34,8 +45,7 @@ module.exports = {
   MINSIZE: '容量下限',
   STEPSIZE: '步长',
   FSTYPE: '文件系统类型',
-  QINGCLOUD_CSI_TYPE_DESC:
-    '在青云云平台中，0 代表性能型磁盘；2 代表容量型磁盘；3 代表超高性能型磁盘；5 代表企业级分布式 SAN（NeonSAN）型磁盘；100 代表基础型磁盘；200 代表 SSD 企业型磁盘。',
+  QINGCLOUD_CSI_TYPE_DESC: '在青云云平台中，0 代表性能型磁盘；2 代表容量型磁盘；3 代表超高性能型磁盘；5 代表企业级分布式 SAN（NeonSAN）型磁盘；100 代表基础型磁盘；200 代表 SSD 企业型磁盘。',
   CREATE_VOLUME_MAX_SIZE: '卷的容量上限。',
   CREATE_VOLUME_STEP_SIZE: '卷的增量值。',
   CREATE_VOLUME_MIN_SIZE: '卷的容量下限。',
@@ -51,8 +61,7 @@ module.exports = {
   GLUSTERFS_SECRET_NAME_DESC: 'Heketi 用户密钥的名称。',
   GLUSTERFS_GID_MIN_DESC: '卷的 GID 最小值。',
   GLUSTERFS_GID_MAX_DESC: '卷的 GID 最大值。',
-  GLUSTERFS_VOLUME_TYPE_DESC:
-    '卷的类型。该值可为 none，replicate:<副本数>，或 disperse:<数据>:<冗余数>。如果未设置该值，则默认卷类型为 replicate:3。',
+  GLUSTERFS_VOLUME_TYPE_DESC: '卷的类型。该值可为 none，replicate:<副本数>，或 disperse:<数据>:<冗余数>。如果未设置该值，则默认卷类型为 replicate:3。',
   RESTURL: 'REST URL',
   CLUSTER_ID: '集群 ID',
   REST_AUTH_ENABLED: '启用 REST 认证',
@@ -74,8 +83,7 @@ module.exports = {
   CEPHRBD_USER_SECRET_NAMESPACE_DESC: 'userSecret 所在的项目。',
   CEPHRBD_FS_TYPE_DESC: '卷的文件系统类型。',
   CEPHRBD_IMAGE_FORMAT_DESC: 'Ceph 卷的选项。该值可为 1 或 2 ，选择 2 后需要填写 imageFeatures。',
-  CEPHRBD_IMAGE_FEATURES_DESC:
-    'Ceph 集群的额外功能。仅当设置 imageFormat 为“2”时，才需要填写该值。',
+  CEPHRBD_IMAGE_FEATURES_DESC: 'Ceph 集群的额外功能。仅当设置 imageFormat 为“2”时，才需要填写该值。',
   CEPH_MONITOR_IP: 'IP 地址:端口号',
   // List > Create > > Custom > Storage Class Settings
   STORAGE_CLASS_SETTINGS: '存储类设置',
@@ -84,7 +92,6 @@ module.exports = {
   // List > Delete
   STORAGE_CLASS: '存储类',
   STORAGE_CLASS_LOW: '存储类',
-  STORAGE_CLASS_DELETE_DESC: '删除卷快照类可能会影响卷快照的正常使用。您确定删除卷快照类吗？',
-  STORAGE_CLASS_DELETE_DESC_PL:
-    '删除卷快照类可能会影响卷快照的正常使用。请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。',
+  STORAGE_CLASS_DELETE_DESC: '您确定要删除此存储类吗？',
+  STORAGE_CLASS_DELETE_DESC_PL: '请输入{type}名称 <strong>{resource}</strong> 以确认您了解此操作的风险。'
 };
