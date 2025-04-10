@@ -1,8 +1,20 @@
 /*
- * Please refer to the LICENSE file in the root directory of the project.
- * https://github.com/kubesphere/console/blob/master/LICENSE
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   // Attributes
   // More > Edit Settings
@@ -11,8 +23,7 @@ module.exports = {
   // More > Edit YAML
   // More > Delete
   // Resource Status
-  VOLUME_MONITORING_TIP:
-    '目前仅支持采集已挂载卷的用量数据，并且 OpenEBS、Local PV、NFS 等路径型卷的用量数据通常与实际值有一定出入。<a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">了解更多</a>',
+  VOLUME_MONITORING_TIP: '存储系统需要具备真正的卷配额控制能力，以输出真实准确的数据。基于主机路径、本地持久卷（PV）和开源 NFS 服务器构建的存储系统通常不具备这种能力。 <a href="https://github.com/kubesphere/kubesphere/issues/2921" target="_blank">了解更多</a>',
   // Mount Information
-  MOUNT_INFORMATION: '挂载信息',
+  MOUNT_INFORMATION: '挂载信息'
 };
