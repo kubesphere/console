@@ -1,8 +1,20 @@
 /*
- * Please refer to the LICENSE file in the root directory of the project.
- * https://github.com/kubesphere/console/blob/master/LICENSE
+ * This file is part of KubeSphere Console.
+ * Copyright (C) 2019 The KubeSphere Console Authors.
+ *
+ * KubeSphere Console is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * KubeSphere Console is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with KubeSphere Console.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 module.exports = {
   // Edit Information
   CODE_REPOSITORY: '代碼倉庫',
@@ -42,11 +54,9 @@ module.exports = {
   NOT_VALID_REPO: 'Code repo is not valid and cannot be created',
   CREATE_PIPELINE_DESC: '使用流水線進行構建，測試和部署',
   CI: '持續集成 (CI)',
-  CI_DESC:
-    '持續集成（CI）是在源代碼變更後自動檢測、拉取、構建和（在大多數情況下）進行單元測試的過程。 ',
+  CI_DESC: '持續集成（CI）是在源代碼變更後自動檢測、拉取、構建和（在大多數情況下）進行單元測試的過程。 ',
   CICD: '持續集成&交付 (CI/CD)',
-  CICD_DESC:
-    '持續部署（CD）是指能夠自動提供持續交付管道中發布版本給最終用戶使用的想法。根據用戶的安裝方式，在雲環境中自動部署、app 升級（如手機上的應用程序）、更新網站或只更新可用版本列表。 ',
+  CICD_DESC: '持續部署（CD）是指能夠自動提供持續交付管道中發布版本給最終用戶使用的想法。根據用戶的安裝方式，在雲環境中自動部署、app 升級（如手機上的應用程序）、更新網站或只更新可用版本列表。 ',
   CUSTOM_PIPELIEN: '自定義流水線',
   CUSTOM_PIPELIEN_DESC: '您可以選擇您需要的任務自定義流水線的工作內容',
   CC: '副本',
@@ -150,6 +160,71 @@ module.exports = {
   PASSED: '已通過',
   // Pull Requests
   PULL_REQUEST_PL: '拉取請求',
-  FAILED_CHECK_SCRIPT_COMPILE:
-    'The check of script compile failed, if you want to bypass the step, please click the continue button',
+  FAILED_CHECK_SCRIPT_COMPILE: 'Failed to check script compiling. If you want to skip the step, click Continue.',
+  // detail page // Create Pipeline modal // add step modal 
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
+  //Create pipeline modal -> Custom Pipeline
+  General: 'General',
+  Container: 'Container',
+  Review: 'Review',
+  URL: 'URL',
+  'Credential Name': '憑證 ID',
+  Branch: '分支',
+  'SVN URL': 'SVN URL',
+  'Credential Name': '憑證 ID',
+  'The message to print': 'Message to Print',
+  'Shell command line': 'Shell command line',
+  //   Recipient: 'Recipient',
+  //   CC: 'CC',
+  //   Subject: 'Subject',
+  Body: 'Body',
+  'Credential Name': '憑證 ID',
+  //   'Username Variable': 'Username Variable',
+  //   'Password Variable': 'Password Variable',
+  Variable: 'Variable',
+  'KeyFile Variable': 'KeyFile Variable',
+  'Passphrase Variable': 'Passphrase Variable',
+  'Artifacts Location': 'Artifacts Location',
+  Time: '時間',
+  Unit: 'Unit',
+  //   'Timeout after no activity in logs for this block':
+  // 'Timeout after no activity in logs for this block',
+  'Groovy script': 'Groovy script',
+  'Target Pipeline Name': 'Target Pipeline Name',
+  'Quiet Period': 'Quiet Period',
+  'Wait For Completion': 'Wait for completion',
+  'Propagate Errors': 'Propagate errors',
+  'Error Message': 'Error Message',
+  Time: '時間',
+  Unit: 'Unit',
+  'Test Results Location': 'Location of Test Results',
+  'Allow Empty Results': 'Allow empty results',
+  'Keep Long Output': 'Retain long output',
+  'Skip Publishing Checks': 'Skip publishing checks',
+  'Retry Count': 'Retry Times',
+  Message: '訊息',
+  Submitter: 'Submitter',
+  'Config Name': 'Configuration Item',
+  'AbortPipeline if quality gate status is not green': 'Abort the pipeline if quality gate status is not green',
+  'Container Name': '容器名稱',
+  'Continuous Deployments': 'Continuous Deployment',
+  Branch: '分支',
+  'Original Image Address': 'Original Image Address',
+  'New Image Address': 'New Image Address',
+  'New Image Tag': 'New Image Tag',
+  Credential: '憑證',
+  // detail page -> pipeline configuration tab
+  PIPELINE_CONFIGURATION: 'Pipeline Configurations',
+  Replay: 'Replay',
+  BRANCH_DISABLED_NOT_REPLAY: 'The branch has been disabled and cannot be replayed.',
+  // detail page // run log // task status
+  RUN_LOGS: 'Run Logs',
+  VIEW_FULL_LOG: 'View Full Logs',
+  VIEW_REAL_TIME_LOG: 'View Real-time Logs',
+  // detail page // run log // task status // pipeline log modal
+  PIPELINE_LOG: 'Pipeline Logs',
+  // detail page // Create Pipeline modal // add step modal
+  IMPORT_FROM_CODE_REPO: 'Import From Code Repository',
+  // detail page // parameters tab
+  NO_BUILD_PARAMETERS: 'Not found build parameters.'
 };
