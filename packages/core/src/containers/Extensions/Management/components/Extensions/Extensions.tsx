@@ -5,39 +5,22 @@
 
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { debounce, find } from 'lodash';
+import { debounce } from 'lodash';
 import type { ColumnDef } from '@tanstack/react-table';
-import { useDisclosure } from '@kubed/hooks';
 import { Loading, DataTable } from '@kubed/components';
 
 import { tableState2Query, useUrlSearchParamsStatus, StatusIndicator } from '@ks-console/shared';
 import { EXTENSIONS_PAGE_PATHS } from '../../../../../constants/extension';
 import type { FetchKExtensionsParams, FormattedExtension } from '../../../../../stores/extension';
-import {
-  useKExtensionsQuery,
-  useWatchExtensions,
-  // useUpdateInstallPlanMutation,
-} from '../../../../../stores/extension';
+import { useKExtensionsQuery, useWatchExtensions } from '../../../../../stores/extension';
 import { useMarketplaceConfigQuery } from '../../../../../stores/marketplace';
 import { getExtensionsEmptyProps as getExtensionsEmptyPropsWithFilters } from '../../../components/ExtensionsEmpty';
-import {
-  DEBOUNCE_WAIT,
-  DEFAULT_PAGE_SIZE,
-  InstallModalActionType,
-  EXTENSIONS_EVALUATION_PAGE_LINK,
-} from '../../constants';
-import { getIsResetLocalExtensionsStatus } from '../../utils/status';
-// import { updateInstallPlanEnabled } from '../../actions';
-import { useLocalExtensionStatusItems } from '../../hooks/useLocalExtensionStatusItems';
+import { DEBOUNCE_WAIT, DEFAULT_PAGE_SIZE } from '../../constants';
 
-import { ExtensionUninstallConfirmModal } from '../ExtensionUninstallConfirmModal';
-import { ExtensionForceUninstallConfirmModal } from '../ExtensionForceUninstallConfirmModal';
 import { MarketplaceUserEmpty } from './MarketplaceUserEmpty';
 import { getExtensionsEmptyProps } from './ExtensionsEmpty';
 import { MarketplaceAccount } from './MarketplaceAccount';
 import { ExtensionStatus } from './ExtensionStatus';
-// import { ListActionButtons } from './ListActionButtons';
-import { InstallModal } from '../InstallModal';
 import { LoadingWrapper, ExtensionField, Icon, StyledCard } from './Extensions.styles';
 
 export function Extensions() {
@@ -48,23 +31,6 @@ export function Extensions() {
     formattedMarketplaceConfig,
     refetch: refetchMarketplaceConfig,
   } = useMarketplaceConfigQuery({ isIgnoreErrorNotify: true });
-
-  const [currentExtensionName, setCurrentExtensionName] = useState<string>('');
-  const resetCurrentExtensionName = () => setCurrentExtensionName('');
-
-  const {
-    // localExtensionStatusItems,
-    setLocalExtensionStatusItems,
-    getLocalExtensionStatusItem,
-    setLocalExtensionStatusItem,
-  } = useLocalExtensionStatusItems();
-  const currentLocalExtensionsStatus = getLocalExtensionStatusItem({
-    extensionName: currentExtensionName,
-  })?.status;
-
-  const extensionInstallModal = useDisclosure();
-  const extensionUninstallConfirmModal = useDisclosure();
-  const extensionForceUninstallConfirmModal = useDisclosure();
 
   const { state, setState } = useUrlSearchParamsStatus(['']);
   const queryParams: Pick<FetchKExtensionsParams, 'limit' | 'page' | 'q' | 'status' | 'enabled'> =
@@ -77,26 +43,7 @@ export function Extensions() {
     refetch: refetchExtensions,
   } = useKExtensionsQuery({
     params: { isAvailable: true, limit: DEFAULT_PAGE_SIZE, ...queryParams },
-    onSuccess: data => {
-      const innerLocalExtensionStatusItems = data.map(({ name, statusState, statusConditions }) => {
-        const localExtensionsStatus = getLocalExtensionStatusItem({
-          extensionName: name,
-        })?.status;
-        const isResetLocalExtensionsStatus = getIsResetLocalExtensionsStatus({
-          statusState,
-          statusConditions,
-          localExtensionsStatus,
-        });
-
-        return {
-          extensionName: name,
-          status: isResetLocalExtensionsStatus ? undefined : localExtensionsStatus,
-        };
-      });
-      setLocalExtensionStatusItems(innerLocalExtensionStatusItems);
-    },
   });
-  const currentFormattedExtension = find(formattedExtensions, { name: currentExtensionName });
 
   const enabledWatchExtensions = (() => {
     if (isOnline) {
@@ -116,41 +63,6 @@ export function Extensions() {
       debouncedRefetchExtensions();
     },
   });
-
-  const handleCreateInstallPlanSuccess = () => {
-    setLocalExtensionStatusItem({
-      extensionName: currentExtensionName,
-      status: 'localInstalling',
-    });
-    refetchExtensions();
-  };
-
-  const handleDeleteInstallPlanSuccess = () => {
-    setLocalExtensionStatusItem({
-      extensionName: currentExtensionName,
-      status: 'localUninstalling',
-    });
-    refetchExtensions();
-    if (isOnline) {
-      window.open(EXTENSIONS_EVALUATION_PAGE_LINK, '_blank');
-    }
-  };
-
-  const handleForceDeleteInstallPlanSuccess = () => {
-    setLocalExtensionStatusItem({
-      extensionName: currentExtensionName,
-      status: 'localForceUninstalling',
-    });
-    refetchExtensions();
-  };
-
-  /* const handleUpdateInstallPlanEnabledSuccess = () => {
-    refetchExtensions();
-  }; */
-
-  /* const updateInstallPlanEnabledMutation = useUpdateInstallPlanMutation({
-    onSuccess: () => handleUpdateInstallPlanEnabledSuccess(),
-  }); */
 
   const columns: ColumnDef<FormattedExtension, any>[] = useMemo(
     () => [
@@ -189,16 +101,7 @@ export function Extensions() {
         enableHiding: true,
         cell: ({ row }) => {
           const formattedExtension = row.original;
-          const { name } = formattedExtension;
-          const localExtensionsStatus = getLocalExtensionStatusItem({
-            extensionName: name,
-          })?.status;
-          return (
-            <ExtensionStatus
-              formattedExtension={formattedExtension as FormattedExtension}
-              localExtensionsStatus={localExtensionsStatus}
-            />
-          );
+          return <ExtensionStatus formattedExtension={formattedExtension as FormattedExtension} />;
         },
       },
       {
@@ -245,48 +148,8 @@ export function Extensions() {
           return displayInstallTime ?? '-';
         },
       },
-      /* {
-        id: 'more',
-        field: 'name',
-        title: '',
-        render: (value, row) => {
-          const formattedExtension = row as FormattedExtension;
-
-          return (
-            <ListActionButtons
-              formattedExtension={formattedExtension as FormattedExtension}
-              onInstallButtonClick={() => {
-                setCurrentExtensionName(value);
-                extensionInstallModal.open();
-              }}
-              onUninstallButtonClick={() => {
-                setCurrentExtensionName(value);
-                extensionUninstallConfirmModal.open();
-              }}
-              onForceUninstallButtonClick={() => {
-                setCurrentExtensionName(value);
-                extensionForceUninstallConfirmModal.open();
-              }}
-              onEnabledButtonClick={() =>
-                updateInstallPlanEnabled({
-                  formattedExtension,
-                  enabled: true,
-                  mutate: updateInstallPlanEnabledMutation.mutate,
-                })
-              }
-              onDisabledButtonClick={() =>
-                updateInstallPlanEnabled({
-                  formattedExtension,
-                  enabled: false,
-                  mutate: updateInstallPlanEnabledMutation.mutate,
-                })
-              }
-            />
-          );
-        },
-      }, */
     ],
-    [getLocalExtensionStatusItem],
+    [],
   );
 
   const tableData = useMemo(() => formattedExtensions, [JSON.stringify(formattedExtensions)]);
@@ -379,45 +242,8 @@ export function Extensions() {
   }
 
   return (
-    <>
-      <StyledCard padding={0}>
-        <DataTable.DataTable table={table} />
-      </StyledCard>
-      {extensionInstallModal.isOpen && currentFormattedExtension && (
-        <InstallModal
-          visible={extensionInstallModal.isOpen}
-          actionType={InstallModalActionType.ExtensionInstall}
-          formattedExtension={currentFormattedExtension}
-          localExtensionsStatus={currentLocalExtensionsStatus}
-          onClose={() => {
-            extensionInstallModal.close();
-            resetCurrentExtensionName();
-          }}
-          onCreateInstallPlanSuccess={handleCreateInstallPlanSuccess}
-        />
-      )}
-      {extensionUninstallConfirmModal.isOpen && currentFormattedExtension && (
-        <ExtensionUninstallConfirmModal
-          visible={extensionUninstallConfirmModal.isOpen}
-          formattedExtension={currentFormattedExtension}
-          onDeleteInstallPlanSuccess={handleDeleteInstallPlanSuccess}
-          onClose={() => {
-            extensionUninstallConfirmModal.close();
-            resetCurrentExtensionName();
-          }}
-        />
-      )}
-      {extensionForceUninstallConfirmModal.isOpen && currentFormattedExtension && (
-        <ExtensionForceUninstallConfirmModal
-          visible={extensionForceUninstallConfirmModal.isOpen}
-          formattedExtension={currentFormattedExtension}
-          onForceDeleteInstallPlanSuccess={handleForceDeleteInstallPlanSuccess}
-          onClose={() => {
-            extensionForceUninstallConfirmModal.close();
-            resetCurrentExtensionName();
-          }}
-        />
-      )}
-    </>
+    <StyledCard padding={0}>
+      <DataTable.DataTable table={table} />
+    </StyledCard>
   );
 }
