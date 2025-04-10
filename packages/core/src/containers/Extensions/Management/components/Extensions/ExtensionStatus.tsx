@@ -16,7 +16,7 @@ import { Wrapper } from './ExtensionStatus.styles';
 
 interface ExtensionStatusProps {
   formattedExtension: FormattedExtension;
-  localExtensionsStatus: LocalExtensionStatus;
+  localExtensionsStatus?: LocalExtensionStatus;
 }
 
 function ExtensionStatus({ formattedExtension, localExtensionsStatus }: ExtensionStatusProps) {
