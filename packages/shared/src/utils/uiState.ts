@@ -22,7 +22,7 @@ interface UIState {
   isReadOnly?: ResolvableBoolean;
   isLoading?: ResolvableBoolean;
 
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 function resolveVisibilityState(state: UIState) {
