@@ -21,11 +21,9 @@ interface UIState {
   isDisabled?: ResolvableBoolean;
   isReadOnly?: ResolvableBoolean;
   isLoading?: ResolvableBoolean;
-
-  [key: string]: unknown;
 }
 
-function resolveVisibilityState(state: UIState) {
+function resolveVisibilityState<T extends UIState>(state: T) {
   const isVisible = resolveBoolean(state.isVisible) || resolveBoolean(state.isShown);
   const isHidden = resolveBoolean(state.isHidden);
   const isFinalVisible = isVisible && !isHidden;
@@ -34,7 +32,7 @@ function resolveVisibilityState(state: UIState) {
   return { isVisible: isFinalVisible, isHidden: isFinalHidden };
 }
 
-function resolveEnabledState(state: UIState) {
+function resolveEnabledState<T extends UIState>(state: T) {
   const isEnabled = resolveBoolean(state.isEnabled);
   const isDisabled = resolveBoolean(state.isDisabled);
   const isReadOnly = resolveBoolean(state.isReadOnly);
@@ -48,4 +46,5 @@ function resolveEnabledState(state: UIState) {
   return { isEnabled: isFinalEnabled, isDisabled: isFinalDisabled };
 }
 
+export type { UIState };
 export { resolveVisibilityState, resolveEnabledState };
