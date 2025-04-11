@@ -3,9 +3,9 @@
  * https://github.com/kubesphere/console/blob/master/LICENSE
  */
 
-type Value = boolean | undefined | (() => boolean | undefined);
+type ResolvableBoolean = boolean | undefined | (() => boolean | undefined);
 
-function resolveValue(value: Value) {
+function resolveBoolean(value: ResolvableBoolean) {
   if (typeof value === 'function') {
     return Boolean(value());
   }
@@ -14,42 +14,38 @@ function resolveValue(value: Value) {
 }
 
 interface UIState {
-  isShown?: Value;
-  isHidden?: Value;
-  isEnabled?: Value;
-  isDisabled?: Value;
-  isReadOnly?: Value;
-  isLoading?: Value;
+  isVisible?: ResolvableBoolean;
+  isShown?: ResolvableBoolean;
+  isHidden?: ResolvableBoolean;
+  isEnabled?: ResolvableBoolean;
+  isDisabled?: ResolvableBoolean;
+  isReadOnly?: ResolvableBoolean;
+  isLoading?: ResolvableBoolean;
 
   [key: string]: any;
 }
 
-function shouldDisplay(state: UIState) {
-  const isShown = resolveValue(state.isShown);
-  const isHidden = resolveValue(state.isHidden);
+function resolveVisibilityState(state: UIState) {
+  const isVisible = resolveBoolean(state.isVisible) || resolveBoolean(state.isShown);
+  const isHidden = resolveBoolean(state.isHidden);
+  const isFinalVisible = isVisible && !isHidden;
+  const isFinalHidden = !isFinalVisible;
 
-  return isShown && !isHidden;
+  return { isVisible: isFinalVisible, isHidden: isFinalHidden };
 }
 
-function getDisabledState(state: UIState) {
-  const isEnabled = resolveValue(state.isEnabled);
-  const isDisabled = resolveValue(state.isDisabled);
-  const isReadOnly = resolveValue(state.isReadOnly);
-  const isLoading = resolveValue(state.isLoading);
+function resolveEnabledState(state: UIState) {
+  const isEnabled = resolveBoolean(state.isEnabled);
+  const isDisabled = resolveBoolean(state.isDisabled);
+  const isReadOnly = resolveBoolean(state.isReadOnly);
+  const isLoading = resolveBoolean(state.isLoading);
 
-  if (isDisabled) {
-    return { isEnabled: false, isDisabled: true };
-  }
+  const isCalculatedDisabled = isDisabled || isReadOnly || isLoading;
 
-  if (isReadOnly) {
-    return { isEnabled: false, isDisabled: true };
-  }
+  const isFinalEnabled = isEnabled && !isCalculatedDisabled;
+  const isFinalDisabled = !isFinalEnabled;
 
-  if (isLoading) {
-    return { isEnabled: false, isDisabled: true };
-  }
-
-  return { isEnabled, isDisabled: !isEnabled };
+  return { isEnabled: isFinalEnabled, isDisabled: isFinalDisabled };
 }
 
-export { shouldDisplay, getDisabledState };
+export { resolveVisibilityState, resolveEnabledState };
