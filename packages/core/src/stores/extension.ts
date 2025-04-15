@@ -840,7 +840,7 @@ function useExtensionInstalledClustersQuery({
     clusterNames.includes(name),
   );
   const refetch = () => {
-    refetchInstallPlan();
+    refetchClusters();
     refetchInstallPlan();
   };
 
