@@ -162,7 +162,7 @@ export function useList<T>(options: UseListOptions<T>): UseListInstance<T> {
       ...state,
       // items: [],
       // total: 0,
-      page: 1,
+      page: params?.page || 1,
       params: { ...state.params, ...params },
     });
     fetch();
