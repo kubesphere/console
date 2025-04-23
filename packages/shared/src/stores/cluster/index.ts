@@ -4,7 +4,7 @@
  */
 
 import dayjs from 'dayjs';
-import { keyBy, get, has, cloneDeep, set, noop } from 'lodash';
+import { keyBy, get, has, cloneDeep, set, noop, omit } from 'lodash';
 import { useInfiniteQuery, useQuery, QueryFunctionContext } from 'react-query';
 
 import type {
@@ -196,7 +196,7 @@ const fetchGrantedList = (params: Record<string, any>, options = {}) => {
   };
 
   const resourceParams = {
-    ...params,
+    ...omit(params, ['roleBindingExists']),
     labelSelector: `${
       params.labelSelector ? `${params.labelSelector},` : ''
     }cluster.kubesphere.io/visibility=public`,
