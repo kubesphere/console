@@ -32,7 +32,7 @@ export interface KubeConfigModalProps
 export function KubeConfigModal({ visible, params, onCancel }: KubeConfigModalProps) {
   const [cluster, setCluster] = React.useState(params?.cluster);
   const { data: formattedClusters = [], isLoading: isClusterLoading } = fetchGrantedList(
-    { limit: -1 },
+    { limit: -1, roleBindingExists: true },
     {
       onSuccess: (data: FormattedCluster[]) => {
         if (!isEmpty(data) && !cluster) {
