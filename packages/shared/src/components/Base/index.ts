@@ -16,3 +16,4 @@ export { default as ContainerPortsCard } from './Card/Ports';
 export { default as StatusCircle } from './Card/StatusCircle';
 export { default as StatusTabs } from './Card/StatusTabs';
 export * from './Bar';
+export * from './Button';
