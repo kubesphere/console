@@ -4,12 +4,48 @@
  */
 
 import { memoryFormat } from '@ks-console/shared';
-import { cloneDeep, get, pick, set } from 'lodash';
+import { cloneDeep, get, isNil, pick, set } from 'lodash';
 import { QUOTAS_MAP } from './constants';
 import { cpuFormat } from '../EditDefaultContainerQuotas/utils';
 
+/**
+ * 1 => 1
+ * 1k => 1000
+ * 1M => 1000_000
+ * 1G => 1000_000_000
+ * 1T => 1000_000_000_000
+ */
+const unitToNumber = (unit: string) => {
+  if (!unit) {
+    return 0;
+  }
+  const units = ['K', 'M', 'G', 'T'];
+  const value = parseFloat(unit);
+  const index = units.indexOf(unit[unit.length - 1].toUpperCase());
+  return value * 1000 ** (index + 1);
+};
+
 export const getGpuType = (value: Record<string, any>) => {
   const supportGpuType: string[] = globals.config.supportGpuType;
+  if (value.requests) {
+    value = value.requests;
+  }
+
+  if (!value) {
+    return supportGpuType[0];
+  }
+  const keys = Object.keys(value);
+  const types = supportGpuType.find(item => keys.some(key => key.endsWith(item)));
+  const type = types || supportGpuType[0];
+  return type;
+};
+
+export const getNpuType = (value: Record<string, any>) => {
+  const supportGpuType: string[] =
+    globals.config.supportNpuType?.map((item: { value: string }) => item.value) || [];
+  if (value.requests) {
+    value = value.requests;
+  }
   if (!value) {
     return supportGpuType[0];
   }
@@ -33,6 +69,7 @@ export const getResourceLimit = (record: Record<string, string> = {}) => {
     set(obj, key, record[key]);
   });
   set(obj, `requests['${getGpuType(record)}']`, record[`requests.${getGpuType(record)}`]);
+  set(obj, `requests['${getNpuType(record)}']`, record[`requests.${getNpuType(record)}`]);
   return obj;
 };
 
@@ -52,6 +89,7 @@ export const resourceLimitOut = (record: Record<string, string> = {}) => {
     set(obj, `['${key}']`, map(key, get(record, key)));
   });
   set(obj, `["requests.${getGpuType(record)}"]`, get(record, `requests['${getGpuType(record)}']`));
+  set(obj, `["requests.${getNpuType(record)}"]`, get(record, `requests['${getNpuType(record)}']`));
   return obj;
 };
 
@@ -86,7 +124,12 @@ export const getStorageResourceQuota = (record: Record<string, string> = {}) => 
       },
       {} as Record<string, ValueItem>,
     );
-  let storage = record['requests.storage'] ? memoryFormat(record['requests.storage'], 'Gi')! : '';
+  let storage;
+  if (isNil(record['requests.storage'])) {
+    storage = Infinity;
+  } else {
+    storage = memoryFormat(record['requests.storage'], 'Gi')!;
+  }
   return {
     ...pick(record, ['persistentvolumeclaims']),
     linkQuota,
@@ -103,18 +146,23 @@ export const getAppResourceQuota = (record: Record<string, string> = {}) => {
     'requests.memory',
     // `requests.${getGpuType(record)}`,
   ];
-  return pick(
+  const data = pick(
     record,
     Object.values(QUOTAS_MAP)
       .map(i => i.name)
       .filter(i => !keys.includes(i)),
   );
+  const res = {};
+  Object.entries(data).forEach(([k, v]) => {
+    set(res, `['${k}']`, unitToNumber(v));
+  });
+  return res;
 };
 
 export const resourceQuotaOut = (record: Record<string, ValueItem> = {}) => {
   const { linkQuota = {}, ...rest } = record;
   let storage = rest['requests.storage'];
-  if (storage) {
+  if (!isNil(storage) && storage !== Infinity) {
     set(rest, `['requests.storage']`, storage + 'Gi');
   } else {
     set(rest, `['requests.storage']`, undefined);
