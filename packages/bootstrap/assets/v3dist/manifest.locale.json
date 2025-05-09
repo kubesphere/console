@@ -1,0 +1,28 @@
+{
+  "entrypoints": {
+    "locale-en": {
+      "json": [
+        "locale-en.60d9ddf6aff8fa136646.json"
+      ]
+    },
+    "locale-es": {
+      "json": [
+        "locale-es.17fac91efc88f812ecab.json"
+      ]
+    },
+    "locale-tc": {
+      "json": [
+        "locale-tc.51f034784a9c9904d493.json"
+      ]
+    },
+    "locale-zh": {
+      "json": [
+        "locale-zh.4dcfc8f8663252717a8c.json"
+      ]
+    }
+  },
+  "locale-en.json": "locale-en.60d9ddf6aff8fa136646.json",
+  "locale-es.json": "locale-es.17fac91efc88f812ecab.json",
+  "locale-tc.json": "locale-tc.51f034784a9c9904d493.json",
+  "locale-zh.json": "locale-zh.4dcfc8f8663252717a8c.json"
+}
