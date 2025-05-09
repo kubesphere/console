@@ -197,6 +197,7 @@ const Projects = (props: ProjectsProps) => {
               },
               onSuccess: () => {
                 closeQuotasModal();
+                tableRef.current?.refetch();
                 notify.success(t('UPDATE_SUCCESSFUL'));
               },
             },
