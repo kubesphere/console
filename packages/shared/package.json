@@ -37,9 +37,9 @@
     "@types/nanoid": "^2.1.0"
   },
   "peerDependencies": {
-    "@kubed/charts": "^0.2.31",
-    "@kubed/code-editor": "^0.2.31",
-    "@kubed/log-viewer": "^0.2.31"
+    "@kubed/charts": "^0.2.32",
+    "@kubed/code-editor": "^0.2.32",
+    "@kubed/log-viewer": "^0.2.32"
   },
   "gitHead": "6380079918d574a833739b35ee51b0d2f72985ee"
 }
