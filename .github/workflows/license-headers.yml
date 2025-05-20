@@ -13,7 +13,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version-file: .nvmrc
+          cache: yarn
 
       - name: Install Yarn
         run: npm install --global yarn
