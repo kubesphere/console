@@ -20,7 +20,8 @@ export const getDeployStatus = ({
     readyReplicas?: number;
   };
   status: {
-    [key: string]: string | number | undefined;
+    conditions?: Record<string, any>[];
+    [key: string]: string | number | undefined | Record<string, any>[];
     readyReplicas?: number;
   };
   annotations: Record<string, string>;
@@ -33,6 +34,17 @@ export const getDeployStatus = ({
   }
 
   if (spec.replicas === 0 && !isUndefined(status.readyReplicas) && status.readyReplicas !== 0) {
+    return 'Updating';
+  }
+
+  if (
+    status?.conditions?.find(
+      i =>
+        (i.type === 'ReplicaFailure' && i.status === 'True') ||
+        (i.type === 'Progressing' && i.status === 'False') ||
+        (i.type === 'Available' && i.status === 'False'),
+    )
+  ) {
     return 'Updating';
   }
 
