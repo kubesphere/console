@@ -178,7 +178,7 @@ function ResourceStatus() {
           url={url}
           columns={columns}
           tableName={`CRDResources${detail?.name}`}
-          rowKey="name"
+          rowKey="uid"
           onPageChange={handlePageChange}
           placeholder={t('SEARCH_BY_NAME')}
           serverDataFormat={formatServerData}
