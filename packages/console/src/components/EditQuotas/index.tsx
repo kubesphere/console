@@ -32,8 +32,12 @@ const EditQuotas = (props: EditQuotasProps) => {
     storageResourceQuota: Record<string, any>;
     appResourceQuota: Record<string, any>;
   }>();
+  const [error, setError] = React.useState(false);
 
   const handleOk = () => {
+    if (error) {
+      return;
+    }
     form.validateFields().then(v => {
       const { resourceLimit = {}, storageResourceQuota = {}, appResourceQuota = {} } = v;
       onOk?.({
@@ -119,6 +123,9 @@ const EditQuotas = (props: EditQuotasProps) => {
           </FormItem>
           <FormItem label={null} name={'resourceLimit'}>
             <ResourceLimit
+              onError={e => {
+                setError(!!e);
+              }}
               workspaceLimitProps={get(workspaceQuotaData, 'spec.quota.hard')}
               memoryProps={{
                 unit: 'Gi',

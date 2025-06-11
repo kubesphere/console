@@ -82,7 +82,6 @@ export const useProjectEditQuotasModal = getUseModal<
       cluster: params.cluster,
     };
     const resp = await quotaStore.checkName(params1, {});
-    console.log(resp, params1);
     if (resp.exist) {
       return {
         op: 'PUT',
