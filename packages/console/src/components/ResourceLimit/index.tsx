@@ -138,14 +138,6 @@ const getValue = (props: Props) => {
 
   const memoryLimits = allowInputDot(limitMeo, memoryUnit, memoryFormat, true);
 
-  const workspaceReqMeo = memoryFormat(`${getWorkspaceRequestLimit(props, 'memory')}`, memoryUnit);
-
-  const workspaceMeoLimit = memoryFormat(`${getWorkspaceLimitValue(props, 'memory')}`, memoryUnit);
-
-  const workspaceCpuRequests = cpuFormat(getWorkspaceRequestLimit(props, 'cpu'), cpuUnit);
-
-  const workspaceCpuLimits = cpuFormat(getWorkspaceLimitValue(props, 'cpu'), cpuUnit);
-
   return {
     requests: {
       cpu: cpuRequests,
@@ -155,6 +147,22 @@ const getValue = (props: Props) => {
       cpu: cpuLimits,
       memory: memoryLimits,
     },
+
+    gpu: getGpuFromProps(props),
+  };
+};
+
+const getWorkspaceLimits = (props: Props) => {
+  const cpuUnit = get(props, 'cpuProps.unit', 'Core');
+  const memoryUnit = get(props, 'memoryProps.unit', 'Mi');
+  const workspaceReqMeo = memoryFormat(`${getWorkspaceRequestLimit(props, 'memory')}`, memoryUnit);
+
+  const workspaceMeoLimit = memoryFormat(`${getWorkspaceLimitValue(props, 'memory')}`, memoryUnit);
+
+  const workspaceCpuRequests = cpuFormat(getWorkspaceRequestLimit(props, 'cpu'), cpuUnit);
+
+  const workspaceCpuLimits = cpuFormat(getWorkspaceLimitValue(props, 'cpu'), cpuUnit);
+  return {
     workspaceRequests: {
       cpu:
         !isNumber(workspaceCpuRequests) || isNaN(workspaceCpuRequests)
@@ -173,7 +181,6 @@ const getValue = (props: Props) => {
           ? 'Not Limited'
           : workspaceMeoLimit,
     },
-    gpu: getGpuFromProps(props),
   };
 };
 
@@ -194,12 +201,16 @@ const ResourceLimit = (props: Props) => {
   const [state, setState] = React.useState(() => getValue(props));
   const valueRef = React.useRef(props.value ?? props.defaultValue);
 
+  const { workspaceLimits, workspaceRequests } = React.useMemo(() => {
+    return getWorkspaceLimits(props);
+  }, [workspaceLimitProps, cpuUnit, memoryUnit]);
+
   React.useEffect(() => {
     const valueProp = props.value ?? props.defaultValue;
     if (valueRef.current !== valueProp) {
       setState(getValue(props));
     }
-  }, [props.value, props.defaultValue, workspaceLimitProps, props.cpuProps, props.memoryProps]);
+  }, [props.value, props.defaultValue, props.cpuProps, props.memoryProps]);
 
   const [workspaceLimitCheck, setWorkspaceLimitCheck] = React.useState<
     Partial<{
@@ -317,7 +328,9 @@ const ResourceLimit = (props: Props) => {
   };
 
   const checkAndTrigger = (newState: typeof state) => {
-    const { requests, limits, gpu, workspaceLimits: wsL, workspaceRequests: wsR } = newState;
+    const { requests, limits, gpu } = newState;
+    const wsL = workspaceLimits;
+    const wsR = workspaceRequests;
     setWorkspaceLimitCheck({
       requestCpuError: checkNumOutLimit(requests.cpu, wsR.cpu),
       requestMemoryError: checkNumOutLimit(requests.memory, wsR.memory),
